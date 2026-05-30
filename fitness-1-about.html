@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About FitCore Studio | Fitness About Page</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #080808;
+      --charcoal: #171717;
+      --dark-grey: #2a2a2a;
+      --mid-grey: #777777;
+      --soft-grey: #f1f1f1;
+      --light-grey: #f7f7f4;
+      --white: #ffffff;
+      --yellow: #f5c518;
+      --yellow-soft: #fff3b0;
+      --line: rgba(8, 8, 8, 0.12);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.13);
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font);
+      background: #e9ecef;
+      color: var(--black);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-shell {
+      width: min(1180px, calc(100% - 44px));
+      margin: 58px auto;
+      background: var(--white);
+      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.10);
+      overflow: hidden;
+    }
+
+    .container {
+      width: min(1010px, calc(100% - 44px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 24px 0 16px;
+      background: var(--white);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      font-size: 17px;
+    }
+
+    .brand-mark {
+      width: 23px;
+      height: 23px;
+      border-radius: 8px;
+      background: var(--yellow);
+      color: var(--black);
+      display: grid;
+      place-items: center;
+      font-weight: 1000;
+      transform: rotate(-8deg);
+      box-shadow: 0 8px 20px rgba(245, 197, 24, 0.35);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 38px;
+      font-size: 13px;
+      color: #111;
+    }
+
+    .nav-links a.active {
+      font-weight: 900;
+      border-bottom: 2px solid var(--yellow);
+      padding-bottom: 4px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 0;
+      cursor: pointer;
+      font-weight: 800;
+      transition: 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      height: 38px;
+      padding: 0 17px;
+      border-radius: 999px;
+      background: var(--white);
+      border: 1px solid var(--line);
+    }
+
+    .btn-yellow {
+      height: 38px;
+      padding: 0 19px;
+      border-radius: 999px;
+      background: var(--yellow);
+      color: var(--black);
+      box-shadow: 0 12px 30px rgba(245, 197, 24, 0.28);
+    }
+
+    .about-hero {
+      padding: 20px 0 80px;
+      background: var(--white);
+    }
+
+    .hero-card {
+      position: relative;
+      min-height: 560px;
+      border-radius: 22px;
+      overflow: hidden;
+      padding: 78px 72px;
+      color: var(--white);
+      isolation: isolate;
+      background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.18)),
+        url("https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=1800&q=80") center / cover;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 84% 18%, rgba(245, 197, 24, 0.46), transparent 28%),
+        linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.46));
+      z-index: -1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 800;
+      color: rgba(255,255,255,0.84);
+      margin-bottom: 28px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--yellow);
+    }
+
+    h1 {
+      font-size: clamp(48px, 7vw, 82px);
+      line-height: 1.04;
+      letter-spacing: -0.025em;
+      font-weight: 600;
+      max-width: 720px;
+      margin-bottom: 28px;
+      text-wrap: balance;
+    }
+
+    .hero-copy {
+      color: rgba(255,255,255,0.82);
+      max-width: 530px;
+      font-size: 16px;
+      line-height: 1.75;
+      margin-bottom: 34px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-light {
+      height: 42px;
+      padding: 0 20px;
+      border-radius: 999px;
+      background: white;
+      color: var(--black);
+      font-size: 13px;
+    }
+
+    .text-link {
+      color: white;
+      font-size: 13px;
+      font-weight: 900;
+      padding-bottom: 5px;
+      border-bottom: 1px solid rgba(255,255,255,0.6);
+    }
+
+    .floating-card {
+      position: absolute;
+      right: 62px;
+      bottom: 42px;
+      width: 330px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.90);
+      backdrop-filter: blur(18px);
+      color: var(--black);
+      box-shadow: var(--shadow);
+      padding: 23px;
+    }
+
+    .floating-card h3 {
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .mini-stat {
+      background: #f3f3f3;
+      border-radius: 14px;
+      padding: 14px 10px;
+    }
+
+    .mini-stat strong {
+      display: block;
+      font-size: 25px;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 7px;
+    }
+
+    .mini-stat span {
+      display: block;
+      color: #5f5f5f;
+      font-size: 10px;
+      line-height: 1.35;
+    }
+
+    .story {
+      padding: 18px 0 94px;
+      background: var(--white);
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 90px;
+      align-items: start;
+    }
+
+    .section-title {
+      font-size: clamp(36px, 4.3vw, 54px);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      font-weight: 500;
+      text-wrap: balance;
+    }
+
+    .muted {
+      color: #8b8b8b;
+    }
+
+    .story-text {
+      display: grid;
+      gap: 22px;
+      color: #5e5e5e;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .story-strip {
+      margin-top: 72px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .strip-item {
+      padding: 30px 24px;
+      background: #fbfbfb;
+      border-right: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .strip-item:last-child {
+      border-right: 0;
+    }
+
+    .strip-item strong {
+      display: block;
+      font-size: 42px;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .strip-item span {
+      color: #676767;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .values {
+      padding: 92px 0 96px;
+      background: #f0f1f1;
+    }
+
+    .values .section-title {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 50px;
+    }
+
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .value-card {
+      min-height: 185px;
+      padding: 35px 28px;
+      border-right: 1px solid rgba(0,0,0,0.08);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .value-card:nth-child(3n) {
+      border-right: 0;
+    }
+
+    .value-card:nth-child(n+4) {
+      border-bottom: 0;
+    }
+
+    .value-icon {
+      width: 25px;
+      height: 25px;
+      border-radius: 8px;
+      background: var(--yellow);
+      margin-bottom: 30px;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .value-card h3 {
+      font-size: 18px;
+      letter-spacing: -0.015em;
+      margin-bottom: 11px;
+      font-weight: 650;
+    }
+
+    .value-card p {
+      color: #686868;
+      font-size: 13px;
+      line-height: 1.6;
+      max-width: 265px;
+    }
+
+    .team {
+      padding: 98px 0 118px;
+      background: var(--white);
+    }
+
+    .team-head {
+      display: grid;
+      grid-template-columns: 0.8fr 0.95fr;
+      gap: 80px;
+      align-items: end;
+      margin-bottom: 52px;
+    }
+
+    .team-head p {
+      color: #666;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .coach-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .coach {
+      border: 1px solid rgba(0,0,0,0.09);
+      border-radius: 18px;
+      overflow: hidden;
+      background: white;
+    }
+
+    .coach-image {
+      height: 300px;
+      background-size: cover;
+      background-position: center;
+      filter: saturate(0.96);
+    }
+
+    .coach:nth-child(1) .coach-image {
+      background-image: url("https://images.unsplash.com/photo-1549476464-37392f717541?auto=format&fit=crop&w=900&q=80");
+    }
+
+    .coach:nth-child(2) .coach-image {
+      background-image: url("https://images.unsplash.com/photo-1571019613914-85f342c6a11e?auto=format&fit=crop&w=900&q=80");
+    }
+
+    .coach:nth-child(3) .coach-image {
+      background-image: url("https://images.unsplash.com/photo-1518310383802-640c2de311b2?auto=format&fit=crop&w=900&q=80");
+    }
+
+    .coach-info {
+      padding: 23px;
+    }
+
+    .coach-info h3 {
+      font-size: 19px;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .coach-info p {
+      color: #6f6f6f;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .method {
+      padding: 0 0 118px;
+      background: white;
+    }
+
+    .method-card {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 34px;
+      background: #eff0f0;
+      border-radius: 16px;
+      padding: 34px;
+      align-items: stretch;
+    }
+
+    .method-copy {
+      padding: 14px 0 10px;
+    }
+
+    .method-copy h2 {
+      margin-bottom: 24px;
+    }
+
+    .method-copy p {
+      color: #4f4f4f;
+      line-height: 1.75;
+      font-size: 15px;
+      max-width: 475px;
+      margin-bottom: 24px;
+    }
+
+    .steps {
+      display: grid;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: var(--yellow);
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .step h3 {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .step p {
+      font-size: 13px;
+      margin: 0;
+      color: #666;
+    }
+
+    .method-image {
+      min-height: 460px;
+      border-radius: 12px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.20)),
+        url("https://images.unsplash.com/photo-1517963628607-235ccdd5476c?auto=format&fit=crop&w=1200&q=80") center / cover;
+    }
+
+    .cta-footer {
+      background: #030303;
+      color: var(--white);
+      padding: 86px 0 45px;
+    }
+
+    .cta-row {
+      display: grid;
+      grid-template-columns: 1fr 0.78fr;
+      gap: 90px;
+      align-items: start;
+      padding-bottom: 72px;
+    }
+
+    .cta-row h2 {
+      font-size: clamp(34px, 4vw, 50px);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      font-weight: 500;
+      max-width: 620px;
+      margin-bottom: 28px;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: rgba(255,255,255,0.78);
+      font-size: 13px;
+      flex-wrap: wrap;
+    }
+
+    .check-row span::before {
+      content: "✓";
+      display: inline-grid;
+      place-items: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: var(--yellow);
+      color: var(--black);
+      font-weight: 900;
+      margin-right: 8px;
+    }
+
+    .cta-copy {
+      color: rgba(255,255,255,0.74);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .cta-copy .btn-yellow {
+      margin-top: 26px;
+      color: var(--black);
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 28px;
+    }
+
+    .footer-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 26px;
+      margin-bottom: 34px;
+    }
+
+    .footer-nav .brand {
+      color: white;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 34px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.74);
+    }
+
+    .socials {
+      display: flex;
+      gap: 9px;
+    }
+
+    .socials a {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,0.10);
+      color: rgba(255,255,255,0.75);
+      font-size: 11px;
+    }
+
+    .legal {
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: rgba(255,255,255,0.7);
+      font-size: 12px;
+    }
+
+    .legal-links {
+      display: flex;
+      gap: 22px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: 0.75s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .site-shell {
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-card {
+        padding: 58px 28px 270px;
+      }
+
+      .floating-card {
+        left: 24px;
+        right: 24px;
+        bottom: 28px;
+        width: auto;
+      }
+
+      .story-grid,
+      .team-head,
+      .method-card,
+      .cta-row {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .story-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .strip-item:nth-child(2) {
+        border-right: 0;
+      }
+
+      .strip-item:nth-child(-n+2) {
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+      }
+
+      .value-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .value-card:nth-child(3n) {
+        border-right: 1px solid rgba(0,0,0,0.08);
+      }
+
+      .value-card:nth-child(2n) {
+        border-right: 0;
+      }
+
+      .value-card:nth-child(n+4) {
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+      }
+
+      .value-card:nth-child(n+5) {
+        border-bottom: 0;
+      }
+
+      .coach-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .coach-image {
+        height: 420px;
+      }
+
+      .method-image {
+        min-height: 360px;
+      }
+
+      .footer-nav,
+      .legal {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .site-shell {
+        box-shadow: none;
+      }
+
+      .container {
+        width: min(100% - 28px, 1010px);
+      }
+
+      header {
+        padding-top: 18px;
+      }
+
+      .nav-actions .btn-ghost {
+        display: none;
+      }
+
+      h1 {
+        font-size: 46px;
+        line-height: 1.06;
+        letter-spacing: -0.018em;
+      }
+
+      .hero-card {
+        min-height: 650px;
+        padding: 48px 22px 290px;
+      }
+
+      .mini-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .story-strip,
+      .value-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .strip-item,
+      .strip-item:nth-child(2),
+      .strip-item:nth-child(-n+2),
+      .value-card,
+      .value-card:nth-child(2n),
+      .value-card:nth-child(3n),
+      .value-card:nth-child(n+5) {
+        border-right: 0;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+      }
+
+      .strip-item:last-child,
+      .value-card:last-child {
+        border-bottom: 0;
+      }
+
+      .coach-image {
+        height: 320px;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="site-shell">
+    <header>
+      <div class="container nav">
+        <a href="#" class="brand" aria-label="FitCore Studio Home">
+          <span class="brand-mark">F</span>
+          <span>FitCore</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#">Home</a>
+          <a href="#" class="active">About</a>
+          <a href="#programs">Programs</a>
+          <a href="#coaches">Coaches</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a href="#" class="btn btn-ghost">Log in</a>
+          <a href="#contact" class="btn btn-yellow">Join now</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="about-hero">
+        <div class="container">
+          <div class="hero-card reveal">
+            <p class="eyebrow">About FitCore Studio</p>
+            <h1>Built for people who want to train with purpose</h1>
+            <p class="hero-copy">
+              We are a fitness community focused on strength, mobility, conditioning, and sustainable habits. Our coaches help every member move better, train smarter, and stay consistent.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#story" class="btn btn-light">Our story</a>
+              <a href="#coaches" class="text-link">Meet the coaches</a>
+            </div>
+
+            <div class="floating-card">
+              <h3>Our studio in numbers</h3>
+              <div class="mini-stats">
+                <div class="mini-stat">
+                  <strong>6k</strong>
+                  <span>members coached</span>
+                </div>
+                <div class="mini-stat">
+                  <strong>12</strong>
+                  <span>certified coaches</span>
+                </div>
+                <div class="mini-stat">
+                  <strong>315</strong>
+                  <span>weekly sessions</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="story" id="story">
+        <div class="container">
+          <div class="story-grid reveal">
+            <h2 class="section-title">We started with one simple belief, <span class="muted">fitness should feel clear and achievable</span></h2>
+
+            <div class="story-text">
+              <p>
+                FitCore Studio was created for people who were tired of random workouts, confusing advice, and short-term motivation. We wanted to build a place where training feels structured, welcoming, and results-driven.
+              </p>
+              <p>
+                Our approach combines expert coaching, progressive programming, recovery support, and community accountability. Whether someone is starting their first fitness journey or preparing for a performance goal, we make the process simple and personal.
+              </p>
+            </div>
+          </div>
+
+          <div class="story-strip reveal">
+            <div class="strip-item">
+              <strong>8+</strong>
+              <span>years of coaching experience across strength, conditioning, and mobility.</span>
+            </div>
+            <div class="strip-item">
+              <strong>92%</strong>
+              <span>member retention from consistent coaching and supportive community.</span>
+            </div>
+            <div class="strip-item">
+              <strong>40+</strong>
+              <span>weekly group classes for beginners and advanced athletes.</span>
+            </div>
+            <div class="strip-item">
+              <strong>1:1</strong>
+              <span>personal plans available for strength, weight loss, and performance.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="values">
+        <div class="container">
+          <h2 class="section-title reveal">Our values shape every workout, <span class="muted">every class and every coaching plan</span></h2>
+
+          <div class="value-grid reveal">
+            <article class="value-card">
+              <div class="value-icon">01</div>
+              <h3>Technique first</h3>
+              <p>We teach movement properly so members build strength with confidence and control.</p>
+            </article>
+
+            <article class="value-card">
+              <div class="value-icon">02</div>
+              <h3>Progress over pressure</h3>
+              <p>We focus on steady improvement, realistic milestones, and long-term consistency.</p>
+            </article>
+
+            <article class="value-card">
+              <div class="value-icon">03</div>
+              <h3>Coaching with care</h3>
+              <p>Every member gets attention, guidance, and modifications when needed.</p>
+            </article>
+
+            <article class="value-card">
+              <div class="value-icon">04</div>
+              <h3>Community energy</h3>
+              <p>Our classes are motivating, supportive, and built to help members show up.</p>
+            </article>
+
+            <article class="value-card">
+              <div class="value-icon">05</div>
+              <h3>Smart recovery</h3>
+              <p>We balance intensity with mobility, rest, and practical recovery habits.</p>
+            </article>
+
+            <article class="value-card">
+              <div class="value-icon">06</div>
+              <h3>Results that last</h3>
+              <p>Our goal is not a quick fix. It is fitness that fits real life and keeps working.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="team" id="coaches">
+        <div class="container">
+          <div class="team-head reveal">
+            <h2 class="section-title">Meet the coaches, <span class="muted">behind the FitCore method</span></h2>
+            <p>
+              Our team brings experience across strength training, performance coaching, mobility, nutrition support, and beginner-friendly movement education.
+            </p>
+          </div>
+
+          <div class="coach-grid reveal">
+            <article class="coach">
+              <div class="coach-image" role="img" aria-label="Strength coach"></div>
+              <div class="coach-info">
+                <h3>Maya Carter</h3>
+                <p>Head Strength Coach specializing in progressive lifting, movement quality, and sustainable training plans.</p>
+              </div>
+            </article>
+
+            <article class="coach">
+              <div class="coach-image" role="img" aria-label="Conditioning coach"></div>
+              <div class="coach-info">
+                <h3>Andre Lewis</h3>
+                <p>Conditioning Coach focused on HIIT, endurance, athletic performance, and class programming.</p>
+              </div>
+            </article>
+
+            <article class="coach">
+              <div class="coach-image" role="img" aria-label="Mobility coach"></div>
+              <div class="coach-info">
+                <h3>Sofia Nguyen</h3>
+                <p>Mobility and Recovery Coach helping members move better, reduce stiffness, and train safely.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="method" id="programs">
+        <div class="container">
+          <div class="method-card reveal">
+            <div class="method-copy">
+              <h2 class="section-title">How we help members, <span class="muted">from first visit to real progress</span></h2>
+              <p>
+                Every new member starts with a clear path. We learn your goals, assess your movement, recommend the right program, and keep adjusting as you improve.
+              </p>
+
+              <div class="steps">
+                <div class="step">
+                  <div class="step-num">1</div>
+                  <div>
+                    <h3>Start with a consultation</h3>
+                    <p>We understand your goals, training history, limitations, and schedule.</p>
+                  </div>
+                </div>
+
+                <div class="step">
+                  <div class="step-num">2</div>
+                  <div>
+                    <h3>Choose your training path</h3>
+                    <p>Pick group classes, personal coaching, strength programs, or recovery work.</p>
+                  </div>
+                </div>
+
+                <div class="step">
+                  <div class="step-num">3</div>
+                  <div>
+                    <h3>Track progress weekly</h3>
+                    <p>We measure consistency, strength, conditioning, mobility, and confidence.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="method-image" role="img" aria-label="Fitness training method"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section class="cta-footer" id="contact">
+      <div class="container">
+        <div class="cta-row">
+          <div>
+            <h2>Ready to train with purpose, <span class="muted">support and structure?</span></h2>
+            <div class="check-row">
+              <span>Expert coaching for every level</span>
+              <span>Flexible classes and personal plans</span>
+            </div>
+          </div>
+
+          <div class="cta-copy">
+            Book a consultation, join a trial class, or talk to a coach about your goals. FitCore gives you the structure, community, and support to stay consistent.
+            <br />
+            <a href="mailto:hello@fitcore.studio" class="btn btn-yellow">Get in touch ↗</a>
+          </div>
+        </div>
+
+        <footer>
+          <div class="footer-nav">
+            <a href="#" class="brand">
+              <span class="brand-mark">F</span>
+              <span>FitCore</span>
+            </a>
+
+            <nav class="footer-links">
+              <a href="#">Home</a>
+              <a href="#story">About</a>
+              <a href="#programs">Programs</a>
+              <a href="#coaches">Coaches</a>
+              <a href="#contact">Contact</a>
+            </nav>
+
+            <div class="socials">
+              <a href="#" aria-label="LinkedIn">in</a>
+              <a href="#" aria-label="X">x</a>
+              <a href="#" aria-label="Facebook">f</a>
+              <a href="#" aria-label="Instagram">ig</a>
+            </div>
+          </div>
+
+          <div class="legal">
+            <p>© 2024 FitCore Studio. All rights reserved.</p>
+            <div class="legal-links">
+              <a href="#">Terms of Service</a>
+              <a href="#">Privacy Policy</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const revealItems = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.14 }
+    );
+
+    revealItems.forEach(item => observer.observe(item));
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener("click", event => {
+        const target = document.querySelector(link.getAttribute("href"));
+        if (!target) return;
+        event.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  </script>
+</body>
+</html>
