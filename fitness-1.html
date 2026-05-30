@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FitCore Studio | Fitness Landing Page</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #080808;
+      --charcoal: #171717;
+      --dark-grey: #2a2a2a;
+      --mid-grey: #777777;
+      --soft-grey: #f1f1f1;
+      --light-grey: #f7f7f4;
+      --white: #ffffff;
+      --yellow: #f5c518;
+      --yellow-soft: #fff3b0;
+      --line: rgba(8, 8, 8, 0.12);
+      --radius: 26px;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.13);
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font);
+      background: #e9ecef;
+      color: var(--black);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-shell {
+      width: min(1180px, calc(100% - 44px));
+      margin: 58px auto;
+      background: var(--white);
+      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.10);
+      overflow: hidden;
+    }
+
+    .container {
+      width: min(1010px, calc(100% - 44px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 24px 0 16px;
+      background: var(--white);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      font-size: 17px;
+    }
+
+    .brand-mark {
+      width: 23px;
+      height: 23px;
+      border-radius: 8px;
+      background: var(--yellow);
+      color: var(--black);
+      display: grid;
+      place-items: center;
+      font-weight: 1000;
+      transform: rotate(-8deg);
+      box-shadow: 0 8px 20px rgba(245, 197, 24, 0.35);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 38px;
+      font-size: 13px;
+      color: #111;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 0;
+      cursor: pointer;
+      font-weight: 800;
+      transition: 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      height: 38px;
+      padding: 0 17px;
+      border-radius: 999px;
+      background: var(--white);
+      border: 1px solid var(--line);
+    }
+
+    .btn-yellow {
+      height: 38px;
+      padding: 0 19px;
+      border-radius: 999px;
+      background: var(--yellow);
+      color: var(--black);
+      box-shadow: 0 12px 30px rgba(245, 197, 24, 0.28);
+    }
+
+    .btn-dark {
+      background: var(--black);
+      color: var(--white);
+      border-radius: 999px;
+      padding: 14px 22px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+    }
+
+    .hero {
+      padding-bottom: 80px;
+      background: var(--white);
+    }
+
+    .hero-card {
+      position: relative;
+      min-height: 520px;
+      border-radius: 22px;
+      overflow: hidden;
+      padding: 86px 72px;
+      color: var(--white);
+      isolation: isolate;
+      background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.30)),
+        url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1800&q=80") center / cover;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 86% 20%, rgba(245, 197, 24, 0.42), transparent 28%),
+        linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.35));
+      z-index: -1;
+    }
+
+    .hero-kicker {
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.78);
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      font-size: clamp(48px, 7vw, 82px);
+      line-height: 1.04;
+      letter-spacing: -0.025em;
+      font-weight: 600;
+      max-width: 720px;
+      margin-bottom: 34px;
+      text-wrap: balance;
+    }
+
+    .hero-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .hero-links a {
+      padding-bottom: 5px;
+      border-bottom: 1px solid rgba(255,255,255,0.6);
+    }
+
+    .project-card {
+      position: absolute;
+      top: 92px;
+      right: 74px;
+      width: 170px;
+      padding: 12px;
+      border-radius: 13px;
+      background: rgba(255,255,255,0.80);
+      backdrop-filter: blur(15px);
+      color: var(--black);
+      box-shadow: var(--shadow);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 118px;
+      object-fit: cover;
+      border-radius: 9px;
+      display: block;
+      filter: saturate(0.92);
+    }
+
+    .project-card .dots {
+      position: absolute;
+      top: 13px;
+      right: 15px;
+      color: rgba(255,255,255,0.9);
+      font-weight: 900;
+    }
+
+    .project-caption {
+      position: absolute;
+      right: 76px;
+      top: 262px;
+      color: white;
+      font-size: 12px;
+      line-height: 1.4;
+      max-width: 130px;
+      font-weight: 700;
+    }
+
+    .round-arrow {
+      position: absolute;
+      right: 204px;
+      top: 282px;
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,0.22);
+      color: white;
+      backdrop-filter: blur(15px);
+    }
+
+    .stats-card {
+      position: absolute;
+      right: 78px;
+      bottom: -1px;
+      width: 440px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 28px 32px;
+      border-radius: 23px 23px 0 0;
+      background: var(--white);
+      color: var(--black);
+      box-shadow: 0 -14px 50px rgba(0,0,0,0.10);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 42px;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .stat span {
+      color: #555;
+      font-size: 11px;
+      line-height: 1.35;
+      display: block;
+    }
+
+    .trust {
+      padding: 18px 0 86px;
+      background: var(--white);
+    }
+
+    .trust-top {
+      display: grid;
+      grid-template-columns: 1fr 0.85fr;
+      gap: 110px;
+      align-items: start;
+      margin-bottom: 58px;
+    }
+
+    .trust h2,
+    .section-title {
+      font-size: clamp(36px, 4.3vw, 54px);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      font-weight: 500;
+    }
+
+    .muted {
+      color: #8b8b8b;
+    }
+
+    .trust p {
+      color: #656565;
+      font-size: 14px;
+      line-height: 1.6;
+      padding-top: 11px;
+    }
+
+    .partners {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+    }
+
+    .partner {
+      width: 182px;
+      height: 182px;
+      border-radius: 999px;
+      background: #f1f2f2;
+      margin-left: -17px;
+      display: grid;
+      place-items: center;
+      font-size: 15px;
+      font-weight: 900;
+      color: #181818;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.03);
+    }
+
+    .partner:first-child {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.08);
+      margin-left: 0;
+    }
+
+    .partner .mini {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: var(--yellow);
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+
+    .features {
+      padding: 92px 0 94px;
+      background: #f0f1f1;
+    }
+
+    .features .section-title {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 48px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .feature {
+      min-height: 168px;
+      padding: 35px 28px;
+      border-right: 1px solid rgba(0,0,0,0.08);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .feature:nth-child(3n) {
+      border-right: 0;
+    }
+
+    .feature:nth-child(n+4) {
+      border-bottom: 0;
+    }
+
+    .feature-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 7px;
+      background: var(--yellow);
+      margin-bottom: 30px;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .feature h3 {
+      font-size: 17px;
+      letter-spacing: -0.015em;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .feature p {
+      color: #686868;
+      font-size: 12px;
+      line-height: 1.55;
+      max-width: 245px;
+    }
+
+    .services {
+      padding: 96px 0 118px;
+      background: var(--white);
+    }
+
+    .services-inner {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .services .section-title {
+      margin-bottom: 25px;
+      max-width: 400px;
+    }
+
+    .service-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-top: 128px;
+      max-width: 430px;
+    }
+
+    .service-card {
+      border: 1px solid rgba(0,0,0,0.12);
+      border-radius: 12px;
+      padding: 24px 19px;
+      min-height: 135px;
+      transition: 0.25s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.08);
+      border-color: rgba(245,197,24,0.9);
+    }
+
+    .service-card .num {
+      display: block;
+      color: #a6a6a6;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .service-card h3 {
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      line-height: 1.15;
+      max-width: 150px;
+      margin-bottom: 11px;
+    }
+
+    .service-card a {
+      font-size: 11px;
+      font-weight: 800;
+      border-bottom: 1px solid #111;
+    }
+
+    .image-card {
+      height: 570px;
+      border-radius: 14px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.03), rgba(0,0,0,0.17)),
+        url("https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?auto=format&fit=crop&w=1200&q=80") center / cover;
+      filter: saturate(0.95);
+    }
+
+    .case-study {
+      padding: 0 0 120px;
+      background: var(--white);
+      text-align: center;
+    }
+
+    .case-study .section-title {
+      max-width: 600px;
+      margin: 0 auto 56px;
+    }
+
+    .case-card {
+      display: grid;
+      grid-template-columns: 0.95fr 1.1fr;
+      gap: 30px;
+      text-align: left;
+      background: #eff0f0;
+      border-radius: 14px;
+      padding: 34px;
+      align-items: stretch;
+    }
+
+    .quote h3 {
+      font-size: 20px;
+      margin-bottom: 34px;
+      letter-spacing: -0.02em;
+    }
+
+    .quote p {
+      color: #333;
+      font-size: 15px;
+      line-height: 1.75;
+      max-width: 470px;
+      margin-bottom: 30px;
+    }
+
+    .quote .author {
+      margin-top: 78px;
+      color: #555;
+      font-size: 13px;
+    }
+
+    .case-image {
+      min-height: 350px;
+      border-radius: 11px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.16)),
+        url("https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=1200&q=80") center / cover;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 24px;
+      font-size: 12px;
+      color: #9a9a9a;
+    }
+
+    .tabs span:first-child {
+      color: #111;
+      position: relative;
+    }
+
+    .tabs span:first-child::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -10px;
+      height: 3px;
+      background: var(--yellow);
+      border-radius: 999px;
+    }
+
+    .cta-footer {
+      background: #030303;
+      color: var(--white);
+      padding: 86px 0 45px;
+    }
+
+    .cta-row {
+      display: grid;
+      grid-template-columns: 1fr 0.78fr;
+      gap: 90px;
+      align-items: start;
+      padding-bottom: 72px;
+    }
+
+    .cta-row h2 {
+      font-size: clamp(34px, 4vw, 50px);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      font-weight: 500;
+      max-width: 620px;
+      margin-bottom: 28px;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: rgba(255,255,255,0.78);
+      font-size: 13px;
+      flex-wrap: wrap;
+    }
+
+    .check-row span::before {
+      content: "✓";
+      display: inline-grid;
+      place-items: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: var(--yellow);
+      color: var(--black);
+      font-weight: 900;
+      margin-right: 8px;
+    }
+
+    .cta-copy {
+      color: rgba(255,255,255,0.74);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .cta-copy .btn-yellow {
+      margin-top: 26px;
+      color: var(--black);
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 28px;
+    }
+
+    .footer-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 26px;
+      margin-bottom: 34px;
+    }
+
+    .footer-nav .brand {
+      color: white;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 34px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.74);
+    }
+
+    .socials {
+      display: flex;
+      gap: 9px;
+    }
+
+    .socials a {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,0.10);
+      color: rgba(255,255,255,0.75);
+      font-size: 11px;
+    }
+
+    .legal {
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: rgba(255,255,255,0.7);
+      font-size: 12px;
+    }
+
+    .legal-links {
+      display: flex;
+      gap: 22px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: 0.75s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .site-shell {
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-card {
+        padding: 62px 28px 250px;
+      }
+
+      .project-card,
+      .project-caption,
+      .round-arrow {
+        display: none;
+      }
+
+      .stats-card {
+        left: 20px;
+        right: 20px;
+        width: auto;
+      }
+
+      .trust-top,
+      .services-inner,
+      .case-card,
+      .cta-row {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .partners {
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .partner {
+        margin-left: 0;
+        width: 150px;
+        height: 150px;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .feature:nth-child(3n) {
+        border-right: 1px solid rgba(0,0,0,0.08);
+      }
+
+      .feature:nth-child(2n) {
+        border-right: 0;
+      }
+
+      .feature:nth-child(n+4) {
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+      }
+
+      .feature:nth-child(n+5) {
+        border-bottom: 0;
+      }
+
+      .service-cards {
+        margin-top: 34px;
+      }
+
+      .image-card {
+        height: 430px;
+      }
+
+      .footer-nav,
+      .legal {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        width: min(100% - 28px, 1010px);
+      }
+
+      header {
+        padding-top: 18px;
+      }
+
+      .nav-actions .btn-ghost {
+        display: none;
+      }
+
+      h1 {
+        font-size: 48px;
+        line-height: 1.06;
+        letter-spacing: -0.018em;
+      }
+
+      .hero-card {
+        min-height: 560px;
+        padding: 54px 22px 270px;
+      }
+
+      .stats-card {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 24px;
+      }
+
+      .stat strong {
+        font-size: 36px;
+      }
+
+      .feature-grid,
+      .service-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .feature,
+      .feature:nth-child(2n),
+      .feature:nth-child(3n),
+      .feature:nth-child(n+5) {
+        border-right: 0;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+      }
+
+      .feature:last-child {
+        border-bottom: 0;
+      }
+
+      .tabs {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="site-shell">
+    <header>
+      <div class="container nav">
+        <a href="#" class="brand" aria-label="FitCore Studio Home">
+          <span class="brand-mark">F</span>
+          <span>FitCore</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#home">Home</a>
+          <a href="#programs">Programs</a>
+          <a href="#features">Features</a>
+          <a href="#coaching">Coaching</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a href="#" class="btn btn-ghost">Log in</a>
+          <a href="#contact" class="btn btn-yellow">Join now</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="home">
+      <section class="hero">
+        <div class="container">
+          <div class="hero-card reveal">
+            <p class="hero-kicker">#1 Training studio for stronger everyday athletes</p>
+            <h1>Build Strength for the Future</h1>
+
+            <div class="hero-links">
+              <a href="#contact">Join a class</a>
+              <span>→</span>
+              <a href="#programs">View programs</a>
+            </div>
+
+            <div class="project-card">
+              <span class="dots">•••</span>
+              <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=600&q=80" alt="Fitness coaching session" />
+            </div>
+
+            <div class="round-arrow">↗</div>
+            <div class="project-caption">Discover Our Latest Training Program</div>
+
+            <div class="stats-card">
+              <div class="stat">
+                <strong>6k</strong>
+                <span>members coached through strength and conditioning</span>
+              </div>
+              <div class="stat">
+                <strong>315</strong>
+                <span>weekly group classes and personal sessions</span>
+              </div>
+              <div class="stat">
+                <strong>120k</strong>
+                <span>workouts completed by our fitness community</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="trust">
+        <div class="container">
+          <div class="trust-top reveal">
+            <h2>Focusing on progress, <span class="muted">we build lasting habits</span></h2>
+            <p>
+              We design fitness programs around real people, clear goals, safe movement, and steady improvement. From first-timers to advanced athletes, every member gets structure, coaching, and accountability.
+            </p>
+          </div>
+
+          <div class="partners reveal">
+            <div class="partner"><span><span class="mini"></span>STRONG</span></div>
+            <div class="partner">Mobility</div>
+            <div class="partner">HIIT</div>
+            <div class="partner">Recovery</div>
+            <div class="partner">Nutrition</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="features" id="features">
+        <div class="container">
+          <h2 class="section-title reveal">We offer quality, <span class="muted">with expert coaching and smart programming</span></h2>
+
+          <div class="feature-grid reveal">
+            <article class="feature">
+              <div class="feature-icon">01</div>
+              <h3>Strength foundations</h3>
+              <p>Learn proper form, build confidence, and develop strength with progressive coaching.</p>
+            </article>
+
+            <article class="feature">
+              <div class="feature-icon">02</div>
+              <h3>Personalized planning</h3>
+              <p>Training plans adapt to your goals, schedule, fitness level, and recovery needs.</p>
+            </article>
+
+            <article class="feature">
+              <div class="feature-icon">03</div>
+              <h3>Group motivation</h3>
+              <p>High-energy classes keep you consistent while coaches keep every rep intentional.</p>
+            </article>
+
+            <article class="feature">
+              <div class="feature-icon">04</div>
+              <h3>Progress tracking</h3>
+              <p>Measure strength, endurance, body composition, habits, and weekly milestones.</p>
+            </article>
+
+            <article class="feature">
+              <div class="feature-icon">05</div>
+              <h3>Recovery support</h3>
+              <p>Mobility, warmups, cooldowns, and recovery guidance help you train safely.</p>
+            </article>
+
+            <article class="feature">
+              <div class="feature-icon">06</div>
+              <h3>Nutrition guidance</h3>
+              <p>Simple, sustainable nutrition coaching that supports performance and energy.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="services" id="programs">
+        <div class="container services-inner">
+          <div>
+            <h2 class="section-title reveal">Trusted coaching, <span class="muted">for every fitness goal</span></h2>
+            <a href="#contact" class="btn btn-yellow reveal">Join now →</a>
+
+            <div class="service-cards reveal">
+              <article class="service-card">
+                <span class="num">01</span>
+                <h3>Strength training</h3>
+                <a href="#contact">View Details</a>
+              </article>
+
+              <article class="service-card">
+                <span class="num">02</span>
+                <h3>Personal coaching</h3>
+                <a href="#contact">View Details</a>
+              </article>
+
+              <article class="service-card">
+                <span class="num">03</span>
+                <h3>HIIT conditioning</h3>
+                <a href="#contact">View Details</a>
+              </article>
+
+              <article class="service-card">
+                <span class="num">04</span>
+                <h3>Mobility and recovery</h3>
+                <a href="#contact">View Details</a>
+              </article>
+            </div>
+          </div>
+
+          <div class="image-card reveal" role="img" aria-label="Trainer helping athlete in the gym"></div>
+        </div>
+      </section>
+
+      <section class="case-study" id="coaching">
+        <div class="container">
+          <h2 class="section-title reveal">See how we solve problems, <span class="muted">right on target</span></h2>
+
+          <div class="case-card reveal">
+            <div class="quote">
+              <h3>Member Transformation</h3>
+              <p>
+                “FitCore helped me get stronger without guessing what to do next. The coaching, structure, and weekly accountability made training feel clear, safe, and motivating.”
+              </p>
+              <a href="#contact" class="btn btn-yellow">View case study</a>
+
+              <div class="author">
+                <strong>Jordan Miles</strong> — Strength Program Member
+              </div>
+            </div>
+
+            <div class="case-image" role="img" aria-label="Athlete training in gym"></div>
+          </div>
+
+          <div class="tabs reveal">
+            <span>Strength transformation</span>
+            <span>Weight loss journey</span>
+            <span>Mobility recovery</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section class="cta-footer" id="contact">
+      <div class="container">
+        <div class="cta-row">
+          <div>
+            <h2>It's time to train smarter, <span class="muted">move better and feel stronger</span></h2>
+            <div class="check-row">
+              <span>Expert coaching for every level</span>
+              <span>Flexible classes and personal plans</span>
+            </div>
+          </div>
+
+          <div class="cta-copy">
+            Start with a consultation, join a class, or build a personal plan with our coaches. FitCore gives you the structure, community, and support to stay consistent.
+            <br />
+            <a href="mailto:hello@fitcore.studio" class="btn btn-yellow">Get in touch ↗</a>
+          </div>
+        </div>
+
+        <footer>
+          <div class="footer-nav">
+            <a href="#" class="brand">
+              <span class="brand-mark">F</span>
+              <span>FitCore</span>
+            </a>
+
+            <nav class="footer-links">
+              <a href="#home">Home</a>
+              <a href="#programs">Programs</a>
+              <a href="#features">Features</a>
+              <a href="#coaching">Coaching</a>
+              <a href="#contact">Contact</a>
+            </nav>
+
+            <div class="socials">
+              <a href="#" aria-label="LinkedIn">in</a>
+              <a href="#" aria-label="X">x</a>
+              <a href="#" aria-label="Facebook">f</a>
+              <a href="#" aria-label="Instagram">ig</a>
+            </div>
+          </div>
+
+          <div class="legal">
+            <p>© 2024 FitCore Studio. All rights reserved.</p>
+            <div class="legal-links">
+              <a href="#">Terms of Service</a>
+              <a href="#">Privacy Policy</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const revealItems = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.14 }
+    );
+
+    revealItems.forEach(item => observer.observe(item));
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener("click", event => {
+        const target = document.querySelector(link.getAttribute("href"));
+        if (!target) return;
+        event.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  </script>
+</body>
+</html>
