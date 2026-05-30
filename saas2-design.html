@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WorkflowHQ Design System</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #d8ddd6;
+      --paper: #fbfcf8;
+      --paper-2: #f3f6ef;
+      --surface: #ffffff;
+      --dark: #0b2b25;
+      --dark-2: #143c35;
+      --green: #0c6b4f;
+      --green-2: #064b38;
+      --lime: #d9ff57;
+      --muted: #63706c;
+      --soft-muted: #8a9994;
+      --line: rgba(11, 43, 37, 0.12);
+      --line-strong: rgba(11, 43, 37, 0.22);
+      --shadow: 0 24px 80px rgba(11, 43, 37, 0.14);
+      --soft-shadow: 0 15px 40px rgba(11, 43, 37, 0.09);
+      --radius-xs: 8px;
+      --radius-sm: 10px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-xl: 28px;
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    .page-shell {
+      width: min(1160px, calc(100% - 48px));
+      margin: 58px auto;
+      background: var(--paper);
+      box-shadow: 0 30px 90px rgba(10, 25, 22, 0.12);
+      overflow: hidden;
+    }
+
+    .container {
+      width: min(960px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      border-bottom: 1px solid rgba(11, 43, 37, 0.06);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-weight: 850;
+      letter-spacing: -0.035em;
+      color: var(--dark);
+    }
+
+    .brand-mark {
+      width: 24px;
+      height: 24px;
+      border-radius: 7px;
+      background: var(--lime);
+      color: var(--dark);
+      display: inline-grid;
+      place-items: center;
+      font-weight: 950;
+      transform: rotate(-7deg);
+      box-shadow: inset 0 0 0 1px rgba(11,43,37,0.1);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #1f3a35;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 0;
+      cursor: pointer;
+      border-radius: var(--radius-sm);
+      font-weight: 800;
+      transition: 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-dark {
+      height: 38px;
+      padding: 0 20px;
+      background: var(--green-2);
+      color: white;
+      box-shadow: 0 12px 28px rgba(6, 75, 56, 0.24);
+      font-size: 12px;
+    }
+
+    .btn-light {
+      height: 38px;
+      padding: 0 20px;
+      background: var(--surface);
+      color: var(--dark);
+      border: 1px solid rgba(11, 43, 37, 0.08);
+      box-shadow: 0 8px 22px rgba(11,43,37,0.04);
+      font-size: 12px;
+    }
+
+    .btn-lime {
+      height: 42px;
+      padding: 0 22px;
+      background: var(--lime);
+      color: var(--dark);
+      box-shadow: 0 12px 28px rgba(217,255,87,0.22);
+      font-size: 12px;
+    }
+
+    .hero {
+      position: relative;
+      padding: 88px 0 82px;
+      background:
+        linear-gradient(rgba(11,43,37,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(11,43,37,0.045) 1px, transparent 1px),
+        radial-gradient(circle at 50% 22%, rgba(217,255,87,0.20), transparent 28%),
+        var(--paper);
+      background-size: 48px 48px, 48px 48px, auto, auto;
+      text-align: center;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 24px;
+      padding: 5px 13px;
+      border-radius: 999px;
+      background: white;
+      border: 1px solid rgba(11,43,37,0.08);
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      box-shadow: 0 10px 30px rgba(11,43,37,0.05);
+    }
+
+    .spark {
+      width: 13px;
+      height: 13px;
+      border-radius: 5px;
+      background: var(--lime);
+      display: inline-grid;
+      place-items: center;
+      color: var(--green-2);
+      font-size: 9px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6.2vw, 78px);
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+      font-weight: 780;
+      max-width: 750px;
+      margin: 26px auto 22px;
+      text-wrap: balance;
+    }
+
+    .hero-copy {
+      max-width: 620px;
+      margin: 0 auto 34px;
+      color: #40544f;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .highlight {
+      position: relative;
+      display: inline-block;
+      z-index: 1;
+    }
+
+    .highlight::after {
+      content: "";
+      position: absolute;
+      left: 4px;
+      right: 1px;
+      bottom: 7px;
+      height: 10px;
+      background: var(--lime);
+      z-index: -1;
+      border-radius: 999px;
+      opacity: 0.9;
+    }
+
+    .section {
+      padding: 82px 0;
+      background: white;
+      border-top: 1px solid rgba(11, 43, 37, 0.07);
+    }
+
+    .section.alt {
+      background: var(--paper);
+    }
+
+    .section.dark {
+      background: var(--dark-2);
+      color: white;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 0.65fr 1fr;
+      gap: 58px;
+      align-items: start;
+      margin-bottom: 42px;
+    }
+
+    .section-label {
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    h2 {
+      font-size: clamp(30px, 4.1vw, 48px);
+      line-height: 1.13;
+      letter-spacing: -0.035em;
+      font-weight: 760;
+      text-wrap: balance;
+    }
+
+    h3 {
+      font-size: 22px;
+      line-height: 1.16;
+      letter-spacing: -0.025em;
+      font-weight: 760;
+    }
+
+    p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .dark p,
+    .dark .section-label {
+      color: rgba(255,255,255,0.72);
+    }
+
+    .grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      box-shadow: 0 10px 28px rgba(11,43,37,0.04);
+    }
+
+    .card.soft {
+      background: var(--paper-2);
+    }
+
+    .card.dark-card {
+      background: #10352e;
+      border-color: rgba(255,255,255,0.10);
+      color: white;
+    }
+
+    .card.dark-card p {
+      color: rgba(255,255,255,0.70);
+    }
+
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .swatch {
+      min-height: 150px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 8px 22px rgba(11,43,37,0.04);
+    }
+
+    .swatch-color {
+      height: 82px;
+      background: var(--swatch);
+      border-bottom: 1px solid rgba(11,43,37,0.08);
+    }
+
+    .swatch-info {
+      padding: 14px;
+    }
+
+    .swatch-info strong {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+    .swatch-info span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .type-stack {
+      display: grid;
+      gap: 28px;
+    }
+
+    .type-sample {
+      padding-bottom: 26px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .type-sample:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .type-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .display-type {
+      font-size: clamp(42px, 5vw, 68px);
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+      font-weight: 780;
+    }
+
+    .h2-type {
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.13;
+      letter-spacing: -0.035em;
+      font-weight: 760;
+    }
+
+    .body-type {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+      max-width: 620px;
+    }
+
+    .small-type {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      font-weight: 650;
+    }
+
+    .component-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .logo-lockup {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 28px;
+      background: var(--paper-2);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+    }
+
+    .logo-large .brand-mark {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      font-size: 26px;
+    }
+
+    .logo-large {
+      font-size: 34px;
+      gap: 16px;
+    }
+
+    .logo-do-dont {
+      display: grid;
+      gap: 14px;
+    }
+
+    .rule {
+      display: flex;
+      align-items: start;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .rule::before {
+      content: "✓";
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: var(--lime);
+      color: var(--dark);
+      font-weight: 950;
+      font-size: 11px;
+      margin-top: 1px;
+    }
+
+    .rule.no::before {
+      content: "×";
+      background: #ffe7e7;
+      color: #8a1f1f;
+    }
+
+    .spacing-scale {
+      display: grid;
+      gap: 16px;
+    }
+
+    .spacing-item {
+      display: grid;
+      grid-template-columns: 120px 1fr 80px;
+      gap: 18px;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .spacing-bar {
+      height: 22px;
+      width: var(--w);
+      max-width: 100%;
+      border-radius: 999px;
+      background: var(--lime);
+      box-shadow: inset 0 0 0 1px rgba(11,43,37,0.1);
+    }
+
+    .dashboard-preview {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .mock-dashboard {
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .mock-top {
+      height: 54px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+      font-weight: 850;
+      background: white;
+    }
+
+    .bars {
+      height: 210px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 16px;
+      padding: 34px 26px 34px;
+    }
+
+    .bar {
+      width: 20px;
+      border-radius: 999px 999px 0 0;
+      background: #d6dcd8;
+      height: var(--h);
+    }
+
+    .bar.active {
+      background: var(--green);
+    }
+
+    .integration-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 18px;
+    }
+
+    .app-logo {
+      aspect-ratio: 1 / 1;
+      border-radius: var(--radius-md);
+      background: white;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 16px 35px rgba(0,0,0,0.10);
+      color: var(--dark);
+      font-weight: 950;
+      font-size: 22px;
+    }
+
+    .app-logo span {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      display: grid;
+      place-items: center;
+      background: var(--logo-bg, #f1f1f1);
+    }
+
+    .footer {
+      background: #091f1b;
+      color: white;
+      padding: 58px 0;
+    }
+
+    .footer p {
+      color: rgba(255,255,255,0.7);
+      font-size: 12px;
+      margin-top: 14px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: 0.75s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 920px) {
+      .page-shell {
+        width: 100%;
+        margin: 0;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .section-head,
+      .grid.two,
+      .grid.three,
+      .dashboard-preview {
+        grid-template-columns: 1fr;
+      }
+
+      .swatch-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .integration-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .logo-lockup {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .container {
+        width: min(100% - 30px, 960px);
+      }
+
+      h1 {
+        font-size: 42px;
+        letter-spacing: -0.028em;
+      }
+
+      .hero-actions,
+      .component-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-dark,
+      .btn-light,
+      .btn-lime {
+        width: 100%;
+      }
+
+      .swatch-grid,
+      .integration-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .spacing-item {
+        grid-template-columns: 1fr;
+      }
+
+      .display-type {
+        font-size: 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-shell">
+    <header>
+      <div class="container nav">
+        <a href="#" class="brand" aria-label="WorkflowHQ design system">
+          <span class="brand-mark">W</span>
+          <span>WorkflowHQ</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Design system navigation">
+          <a href="#colors">Colors</a>
+          <a href="#type">Typography</a>
+          <a href="#components">Components</a>
+          <a href="#patterns">Patterns</a>
+        </nav>
+
+        <a href="#components" class="btn btn-dark">View System</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container reveal">
+          <div class="pill">
+            <span class="spark">✦</span>
+            Design System
+          </div>
+
+          <h1>WorkflowHQ visual system for <span class="highlight">modern</span> SaaS products</h1>
+
+          <p class="hero-copy">
+            A complete HTML style guide for the last landing page, including colors, typography, buttons, cards, spacing, logo placeholders, dashboard UI, integrations, and footer styles.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#colors" class="btn btn-dark">Explore Tokens</a>
+            <a href="#patterns" class="btn btn-light">View Patterns</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="brand">
+        <div class="container">
+          <div class="section-head reveal">
+            <div class="section-label">01 Brand</div>
+            <div>
+              <h2>Calm, structured, trustworthy and efficient</h2>
+              <p style="margin-top: 16px;">
+                The brand uses soft off-white surfaces, deep green text, lime accents, light borders, grid backgrounds, and rounded UI elements to create a polished B2B SaaS look.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid two reveal">
+            <div class="logo-lockup">
+              <div class="brand logo-large">
+                <span class="brand-mark">W</span>
+                <span>WorkflowHQ</span>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Logo Usage</h3>
+              <div class="logo-do-dont" style="margin-top: 20px;">
+                <div class="rule">Use the lime mark with dark text on light backgrounds.</div>
+                <div class="rule">Use white text with the lime mark on dark green backgrounds.</div>
+                <div class="rule no">Do not use busy shadows, gradients, or colored type inside the wordmark.</div>
+                <div class="rule no">Do not stretch the mark or change the rounded-square shape.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt" id="colors">
+        <div class="container">
+          <div class="section-head reveal">
+            <div class="section-label">02 Colors</div>
+            <div>
+              <h2>Soft enterprise neutrals with deep green and lime highlights</h2>
+              <p style="margin-top: 16px;">
+                Use lime as a strategic accent only. The landing page relies on dark green for trust and off-white surfaces for clarity.
+              </p>
+            </div>
+          </div>
+
+          <div class="swatch-grid reveal">
+            <div class="swatch">
+              <div class="swatch-color" style="--swatch:#0b2b25"></div>
+              <div class="swatch-info"><strong>Dark</strong><span>#0B2B25</span></div>
+            </div>
+
+            <div class="swatch">
+              <div class="swatch-color" style="--swatch:#143c35"></div>
+              <div class="swatch-info"><strong>Dark 2</strong><span>#143C35</span></div>
+            </div>
+
+            <div class="swatch">
+              <div class="swatch-color" style="--swatch:#064b38"></div>
+              <div class="swatch-info"><strong>Green 2</strong><span>#064B38</span></div>
+            </div>
+
+            <div class="swatch">
+              <div class="swatch-color" style="--swatch:#0c6b4f"></div>
+              <div class="swatch-info"><strong>Green</strong><span>#0C6B4F</span></div>
+            </div>
+
+            <div class="swatch">
+              <div class="swatch-color" style="--swatch:#d9ff57"></div>
+              <div class="swatch-info"><strong>Lime</strong><span>#D9FF57</span></div>
+            </div>
+
+            <div class="swatch">
+              <div class="swatch-color" style="--swatch:#d8ddd6"></div>
+              <div class="swatch-info"><strong>Outer BG</strong><span>#D8DDD6</span></div>
+            </div>
+
+            <div class="swatch">
+              <div class="swatch-color" style="--swatch:#fbfcf8"></div>
+              <div class="swatch-info"><strong>Paper</strong><span>#FBFCF8</span></div>
+            </div>
+
+            <div class="swatch">
+              <div class="swatch-color" style="--swatch:#f3f6ef"></div>
+              <div class="swatch-info"><strong>Paper 2</strong><span>#F3F6EF</span></div>
+            </div>
+
+            <div class="swatch">
+              <div class="swatch-color" style="--swatch:#63706c"></div>
+              <div class="swatch-info"><strong>Muted</strong><span>#63706C</span></div>
+            </div>
+
+            <div class="swatch">
+              <div class="swatch-color" style="--swatch:#ffffff"></div>
+              <div class="swatch-info"><strong>White</strong><span>#FFFFFF</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="type">
+        <div class="container">
+          <div class="section-head reveal">
+            <div class="section-label">03 Typography</div>
+            <div>
+              <h2>Large confident headings with clean supporting copy</h2>
+              <p style="margin-top: 16px;">
+                The system uses Inter or native system sans-serif. Letter spacing is tight but readable, never compressed enough to overlap.
+              </p>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <div class="type-stack">
+              <div class="type-sample">
+                <div class="type-meta">
+                  <span>Display</span>
+                  <span>78px / 1.08 / -0.045em / 780</span>
+                </div>
+                <div class="display-type">One tool to manage everything</div>
+              </div>
+
+              <div class="type-sample">
+                <div class="type-meta">
+                  <span>Heading 2</span>
+                  <span>48px / 1.13 / -0.035em / 760</span>
+                </div>
+                <div class="h2-type">Latest workflow tools for modern teams</div>
+              </div>
+
+              <div class="type-sample">
+                <div class="type-meta">
+                  <span>Body</span>
+                  <span>14px / 1.75 / 400</span>
+                </div>
+                <p class="body-type">
+                  WorkflowHQ helps teams manage projects, automate approvals, centralize updates, and understand performance with clear operational insights.
+                </p>
+              </div>
+
+              <div class="type-sample">
+                <div class="type-meta">
+                  <span>Small UI</span>
+                  <span>12px / 1.6 / 650 to 850</span>
+                </div>
+                <p class="small-type">
+                  Used for navigation, cards, labels, partner captions, footer links, and dashboard interface text.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt" id="components">
+        <div class="container">
+          <div class="section-head reveal">
+            <div class="section-label">04 Components</div>
+            <div>
+              <h2>Reusable UI blocks from the landing page</h2>
+              <p style="margin-top: 16px;">
+                Components use subtle borders, small radius values, soft shadows, and strong contrast between white, paper, green, and lime.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid two">
+            <div class="card reveal">
+              <h3>Buttons</h3>
+              <p style="margin: 12px 0 22px;">Primary actions use dark green. Secondary actions use white. Promotional CTAs use lime.</p>
+              <div class="component-row">
+                <a href="#" class="btn btn-dark">Start For Free</a>
+                <a href="#" class="btn btn-light">Get a Demo</a>
+                <a href="#" class="btn btn-lime">Start Now</a>
+              </div>
+            </div>
+
+            <div class="card reveal">
+              <h3>Pills and Highlights</h3>
+              <p style="margin: 12px 0 22px;">Use compact uppercase pills and lime underline highlights for emphasis.</p>
+              <div class="component-row">
+                <span class="pill"><span class="spark">✦</span> Create fast</span>
+                <h3 style="margin:0;">Built for <span class="highlight">teams</span></h3>
+              </div>
+            </div>
+
+            <div class="card soft reveal">
+              <h3>Feature Card</h3>
+              <p style="margin-top: 14px;">
+                Light cards are used for feature descriptions, product UI previews, smart notifications, and task management sections.
+              </p>
+              <a href="#" class="btn btn-dark" style="margin-top: 26px;">Explore all</a>
+            </div>
+
+            <div class="card dark-card reveal">
+              <h3>Dark Panel</h3>
+              <p style="margin-top: 14px;">
+                Dark panels are reserved for integration sections, CTA areas, and the footer to create strong page rhythm.
+              </p>
+              <a href="#" class="btn btn-lime" style="margin-top: 26px;">All integrations</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="spacing">
+        <div class="container">
+          <div class="section-head reveal">
+            <div class="section-label">05 Spacing</div>
+            <div>
+              <h2>Generous vertical spacing and compact UI density</h2>
+              <p style="margin-top: 16px;">
+                The layout feels premium because content blocks breathe, while dashboard elements stay compact and efficient.
+              </p>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <div class="spacing-scale">
+              <div class="spacing-item">
+                <span>XS</span>
+                <div class="spacing-bar" style="--w:8px"></div>
+                <span>8px</span>
+              </div>
+
+              <div class="spacing-item">
+                <span>SM</span>
+                <div class="spacing-bar" style="--w:14px"></div>
+                <span>14px</span>
+              </div>
+
+              <div class="spacing-item">
+                <span>MD</span>
+                <div class="spacing-bar" style="--w:22px"></div>
+                <span>22px</span>
+              </div>
+
+              <div class="spacing-item">
+                <span>LG</span>
+                <div class="spacing-bar" style="--w:42px"></div>
+                <span>42px</span>
+              </div>
+
+              <div class="spacing-item">
+                <span>XL</span>
+                <div class="spacing-bar" style="--w:82px"></div>
+                <span>82px</span>
+              </div>
+
+              <div class="spacing-item">
+                <span>Section</span>
+                <div class="spacing-bar" style="--w:98px"></div>
+                <span>98px</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt" id="patterns">
+        <div class="container">
+          <div class="section-head reveal">
+            <div class="section-label">06 Page Patterns</div>
+            <div>
+              <h2>Dashboard cards, partner logos, integrations and stats</h2>
+              <p style="margin-top: 16px;">
+                These patterns define the main landing page language and can be reused across product pages, about pages, and feature pages.
+              </p>
+            </div>
+          </div>
+
+          <div class="dashboard-preview reveal">
+            <div class="mock-dashboard">
+              <div class="mock-top">
+                <span>Acme Team ⌄</span>
+                <span style="color:var(--muted);font-size:12px;">Dashboard</span>
+              </div>
+
+              <div class="bars">
+                <span class="bar" style="--h: 62%"></span>
+                <span class="bar" style="--h: 42%"></span>
+                <span class="bar" style="--h: 30%"></span>
+                <span class="bar active" style="--h: 86%"></span>
+                <span class="bar" style="--h: 44%"></span>
+                <span class="bar" style="--h: 58%"></span>
+                <span class="bar" style="--h: 45%"></span>
+                <span class="bar" style="--h: 25%"></span>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Dashboard Pattern</h3>
+              <p style="margin-top: 14px;">
+                Use pale cards, rounded corners, small UI text, muted grey bars, and one dark green active indicator to communicate product capability without heavy detail.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid two" style="margin-top: 22px;">
+            <div class="card reveal">
+              <h3>Partner Logo Placeholders</h3>
+              <p style="margin: 14px 0 24px;">Use simple monochrome marks and text labels to represent partner logos until final brand assets are available.</p>
+
+              <div class="component-row">
+                <span class="brand"><span class="brand-mark">H</span>Horizon</span>
+                <span class="brand"><span class="brand-mark">D</span>Driftlab</span>
+                <span class="brand"><span class="brand-mark">S</span>Squarely</span>
+              </div>
+            </div>
+
+            <div class="card reveal">
+              <h3>Stat Block</h3>
+              <p style="margin: 14px 0 24px;">Use large numbers, tight letter spacing, and short labels.</p>
+
+              <div class="grid three">
+                <div>
+                  <h2>2021</h2>
+                  <p style="font-size:12px;">Founded</p>
+                </div>
+                <div>
+                  <h2>50K+</h2>
+                  <p style="font-size:12px;">Active Users</p>
+                </div>
+                <div>
+                  <h2>1K+</h2>
+                  <p style="font-size:12px;">Partners</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section dark" id="integrations">
+        <div class="container">
+          <div class="section-head reveal">
+            <div class="section-label">07 Integration System</div>
+            <div>
+              <h2>Dark grid panels with clean logo tiles</h2>
+              <p style="margin-top: 16px;">
+                Integration sections should use deep green surfaces, subtle grid lines, white logo tiles, and compact descriptive copy.
+              </p>
+            </div>
+          </div>
+
+          <div class="integration-grid reveal">
+            <div class="app-logo"><span style="--logo-bg:#ffe9ef">S</span></div>
+            <div class="app-logo"><span style="--logo-bg:#f1f1f1">N</span></div>
+            <div class="app-logo"><span style="--logo-bg:#e1f2ff">T</span></div>
+            <div class="app-logo"><span style="--logo-bg:#e6eeff">P</span></div>
+            <div class="app-logo"><span style="--logo-bg:#fff0d1">A</span></div>
+            <div class="app-logo"><span style="--logo-bg:#e7f5ff">G</span></div>
+            <div class="app-logo"><span style="--logo-bg:#edfff4">C</span></div>
+            <div class="app-logo"><span style="--logo-bg:#f5ebff">W</span></div>
+            <div class="app-logo"><span style="--logo-bg:#fff3d6">M</span></div>
+            <div class="app-logo"><span style="--logo-bg:#ffe7e7">A</span></div>
+            <div class="app-logo"><span style="--logo-bg:#f4f5f7">Z</span></div>
+            <div class="app-logo"><span style="--logo-bg:#fff4e8">Y</span></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container reveal">
+        <a href="#" class="brand" style="color:white;">
+          <span class="brand-mark">W</span>
+          <span>WorkflowHQ</span>
+        </a>
+        <p>
+          Complete HTML design system for the WorkflowHQ SaaS landing page. Use this file as a visual reference for future pages, components, and brand assets.
+        </p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const revealItems = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    revealItems.forEach(item => observer.observe(item));
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener("click", event => {
+        const target = document.querySelector(link.getAttribute("href"));
+        if (!target) return;
+        event.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  </script>
+</body>
+</html>
