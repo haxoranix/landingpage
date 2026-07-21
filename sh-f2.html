@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Hero | Production Project Management Software</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CDNs -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                            950: '#172554',
+                        }
+                    },
+                    boxShadow: {
+                        'subtle': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'subtle-hover': '0 10px 40px -4px rgba(0, 0, 0, 0.08)',
+                        'glow': '0 0 20px rgba(37, 99, 235, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #f8fafc; /* slate-50 */
+            color: #334155; /* slate-700 */
+        }
+
+        /* Modern mesh gradient background for hero */
+        .mesh-bg {
+            background-color: #ffffff;
+            background-image: 
+                radial-gradient(at 80% 0%, hsla(217,100%,92%,1) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, hsla(217,100%,95%,1) 0px, transparent 50%),
+                radial-gradient(at 80% 100%, hsla(210,100%,95%,1) 0px, transparent 50%);
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .dark-glass {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Clean Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* Accordion */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-500 selection:text-white flex flex-col min-h-screen overflow-x-hidden">
+
+    <!-- Navigation -->
+    <header class="fixed top-0 w-full z-50 glass transition-all duration-300 border-b border-slate-200" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2 font-bold text-xl tracking-tight text-slate-900">
+                <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white">
+                    <i data-lucide="layers" class="w-5 h-5"></i>
+                </div>
+                <span>StudioHero</span>
+            </div>
+            <nav class="hidden md:flex gap-8 text-sm font-semibold text-slate-600">
+                <a href="#structure" class="hover:text-brand-600 transition-colors">Platform</a>
+                <a href="#productions" class="hover:text-brand-600 transition-colors">Features</a>
+                <a href="#compare" class="hover:text-brand-600 transition-colors">Compare</a>
+                <a href="#faq" class="hover:text-brand-600 transition-colors">FAQ</a>
+            </nav>
+            <button class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-all shadow-sm">
+                Book Demo
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="mesh-bg pt-32 md:pt-40 pb-20 px-6 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div class="hero-el inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 text-xs font-semibold text-slate-500 tracking-wide mb-8 shadow-sm uppercase">
+                <span class="w-2 h-2 rounded-full bg-brand-500"></span>
+                STUDIO OPERATIONS · PRODUCTION MANAGEMENT
+            </div>
+            
+            <h1 class="hero-el text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-6 leading-[1.1]">
+                Production Project Management Software Built for Studios
+            </h1>
+            
+            <p class="hero-el text-lg md:text-xl text-slate-600 mb-10 max-w-3xl mx-auto leading-relaxed">
+                Manage every production your studio delivers, from portfolio down to task, with live profit tracking on every project. Schedules, budgets, crew, and invoices stay connected in one system, so you always know what's on track and what's turning a profit.
+            </p>
+            
+            <div class="hero-el flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                <button class="bg-brand-600 hover:bg-brand-700 text-white px-8 py-3.5 rounded-lg font-semibold transition-all shadow-glow flex items-center justify-center gap-2 w-full sm:w-auto text-base">
+                    Book a Free Demo <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+                <a href="#structure" class="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-8 py-3.5 rounded-lg font-semibold transition-all shadow-sm flex items-center justify-center w-full sm:w-auto text-base">
+                    See How It Works
+                </a>
+            </div>
+
+            <div class="hero-el flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-sm text-slate-500 font-medium">
+                <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-500"></i> Streamlining studio operations since 1997</span>
+                <span class="hidden md:inline text-slate-300">|</span>
+                <span class="flex items-center gap-1.5"><i data-lucide="building-2" class="w-4 h-4 text-slate-400"></i> Built for film, audio, video, photo, broadcast & podcast facilities</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- One System Section (Bento Grid) -->
+    <section class="py-24 px-6 relative bg-white border-y border-slate-100">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16 gs-reveal">
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-4">One System, From Portfolio to Task</h2>
+                <p class="text-lg text-slate-600 leading-relaxed">
+                    Most studios run productions across a calendar, a spreadsheet, and an accounting tool that never talk to each other. StudioHero runs the whole thing in one connected structure, so oversight, profit, and resources stay in sync.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-200 gs-reveal transition-all hover:shadow-subtle hover:bg-white hover:border-brand-200">
+                    <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center mb-6">
+                        <i data-lucide="folder-kanban" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-slate-900">Portfolio-to-Task Oversight</h3>
+                    <p class="text-slate-600 leading-relaxed">See every show, project, session, and task in one hierarchy. Roll up to a portfolio view for executives, or drill down to a single call sheet, without switching tools or losing the thread.</p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-200 gs-reveal transition-all hover:shadow-subtle hover:bg-white hover:border-emerald-200">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-6">
+                        <i data-lucide="line-chart" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-slate-900">Profit Tracking on Every Production</h3>
+                    <p class="text-slate-600 leading-relaxed">Live P&L on every project, with budget vs. actual, billable resource rates, and margins updating as work happens. Know which productions make money before they wrap, not after.</p>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-200 gs-reveal transition-all hover:shadow-subtle hover:bg-white hover:border-purple-200">
+                    <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center mb-6">
+                        <i data-lucide="blocks" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-slate-900">Connected to Your Whole Studio</h3>
+                    <p class="text-slate-600 leading-relaxed">Projects link to schedules, crew, equipment, and invoices in one database. A booking, a logged hour, or a gear pull updates the project automatically, no re-entry, one source of truth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How Studio Hero Structures Your Work -->
+    <section id="structure" class="py-24 px-6 relative bg-slate-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-12 gs-reveal text-center md:text-left">
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-4">How Studio Hero Structures Your Work</h2>
+                <p class="text-lg text-slate-600 max-w-4xl leading-relaxed">
+                    Every production your studio takes on flows through the same four levels, from the big-picture show down to the individual task. Because the levels are connected, a change at any level updates everything linked to it: a rate on a project rolls up to the production's profit, a completed task updates its session, a booked session reserves the room.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 gs-reveal">
+                <a href="#productions" class="bg-white p-6 rounded-xl border border-slate-200 hover:border-brand-500 hover:shadow-subtle transition-all flex flex-col gap-2 group">
+                    <div class="flex items-center justify-between font-bold text-lg text-slate-900 group-hover:text-brand-600 transition-colors">
+                        Productions <i data-lucide="arrow-down" class="w-4 h-4 text-slate-400 group-hover:text-brand-600 transition-colors"></i>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed">The show, series, or campaign. Your top-down portfolio view.</p>
+                </a>
+                <a href="#projects" class="bg-white p-6 rounded-xl border border-slate-200 hover:border-emerald-500 hover:shadow-subtle transition-all flex flex-col gap-2 group">
+                    <div class="flex items-center justify-between font-bold text-lg text-slate-900 group-hover:text-emerald-600 transition-colors">
+                        Projects <i data-lucide="arrow-down" class="w-4 h-4 text-slate-400 group-hover:text-emerald-600 transition-colors"></i>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed">The deliverables inside a production, where budgets, billable resources, and live P&L live.</p>
+                </a>
+                <a href="#events" class="bg-white p-6 rounded-xl border border-slate-200 hover:border-purple-500 hover:shadow-subtle transition-all flex flex-col gap-2 group">
+                    <div class="flex items-center justify-between font-bold text-lg text-slate-900 group-hover:text-purple-600 transition-colors">
+                        Events / Sessions <i data-lucide="arrow-down" class="w-4 h-4 text-slate-400 group-hover:text-purple-600 transition-colors"></i>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed">The scheduled units of work, shoots, recordings, and edit sessions, with work orders, talent, and media attached.</p>
+                </a>
+                <a href="#tasks" class="bg-white p-6 rounded-xl border border-slate-200 hover:border-orange-500 hover:shadow-subtle transition-all flex flex-col gap-2 group">
+                    <div class="flex items-center justify-between font-bold text-lg text-slate-900 group-hover:text-orange-600 transition-colors">
+                        Tasks <i data-lucide="arrow-down" class="w-4 h-4 text-slate-400 group-hover:text-orange-600 transition-colors"></i>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed">The assignments that move each session forward, with owners and due dates.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature 1: Productions -->
+    <section id="productions" class="py-24 px-6 bg-white scroll-mt-20 border-t border-slate-100 overflow-hidden">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center">
+            <div class="lg:w-1/2 gs-reveal">
+                <div class="text-brand-600 font-semibold tracking-wider text-xs uppercase mb-3 flex items-center gap-2">
+                    <span class="w-8 h-px bg-brand-600/50"></span> Level 1: Productions
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-6">Production Portfolio Management for Multi-Project Studios</h2>
+                <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+                    Oversee every show, series, and campaign from one place. The Productions level gives producers and executives a top-down view of all active work, so you can see what your studio is delivering, for whom, and where each production stands, without opening a single project.
+                </p>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-brand-500 shrink-0 mt-0.5"></i>
+                        <div class="text-slate-600"><strong class="text-slate-900">Master Production List.</strong> Every production in one sortable list, with columns for client, status, type, and due date. Find any show in seconds.</div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-brand-500 shrink-0 mt-0.5"></i>
+                        <div class="text-slate-600"><strong class="text-slate-900">Smart Filters and Search.</strong> Filter productions by client, project type, or production status such as In Progress or Delivered, and locate the right production in seconds.</div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-brand-500 shrink-0 mt-0.5"></i>
+                        <div class="text-slate-600"><strong class="text-slate-900">Portfolio Status Tracking.</strong> Track real-time progress across active shows, episodes, and campaigns, so nothing stalls unnoticed.</div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-brand-500 shrink-0 mt-0.5"></i>
+                        <div class="text-slate-600"><strong class="text-slate-900">Client and PO Records.</strong> Client details, linked client IDs, and purchase orders live on the production itself, keeping business and creative teams working from the same record.</div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-brand-500 shrink-0 mt-0.5"></i>
+                        <div class="text-slate-600"><strong class="text-slate-900">Top-Down to Every Project.</strong> Each production links directly to its related projects and sessions, so you can drill from the portfolio view down to a single deliverable in one click.</div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-brand-500 shrink-0 mt-0.5"></i>
+                        <div class="text-slate-600"><strong class="text-slate-900">Portfolio Reports.</strong> Generate and share progress summaries with stakeholders, producers, and executives in a few clicks.</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="lg:w-1/2 w-full gs-reveal relative">
+                <!-- Abstract SaaS UI Representation -->
+                <div class="bg-white rounded-xl border border-slate-200 shadow-subtle p-1 relative z-10">
+                    <div class="bg-slate-50 rounded-lg border border-slate-100 p-6 flex flex-col gap-4 h-[420px]">
+                        <div class="flex justify-between items-center border-b border-slate-200 pb-4">
+                            <div class="flex gap-4">
+                                <div class="h-6 w-32 bg-slate-200 rounded"></div>
+                                <div class="h-6 w-16 bg-slate-200 rounded"></div>
+                            </div>
+                            <div class="h-8 w-24 bg-brand-100 rounded-md"></div>
+                        </div>
+                        <div class="flex flex-col gap-3 mt-2">
+                            <div class="bg-white border border-slate-200 rounded-md p-4 flex items-center justify-between shadow-sm">
+                                <div>
+                                    <div class="font-semibold text-slate-800 text-sm">Spring Campaign '26</div>
+                                    <div class="text-xs text-slate-500 mt-1">Client: Nike</div>
+                                </div>
+                                <span class="bg-emerald-50 text-emerald-600 text-[10px] font-bold px-2 py-1 rounded-full uppercase">In Progress</span>
+                            </div>
+                            <div class="bg-white border border-slate-200 rounded-md p-4 flex items-center justify-between shadow-sm">
+                                <div>
+                                    <div class="font-semibold text-slate-800 text-sm">Podcast Season 3</div>
+                                    <div class="text-xs text-slate-500 mt-1">Client: Spotify</div>
+                                </div>
+                                <span class="bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-1 rounded-full uppercase">Pre-Pro</span>
+                            </div>
+                            <div class="bg-white border border-slate-200 rounded-md p-4 flex items-center justify-between shadow-sm">
+                                <div>
+                                    <div class="font-semibold text-slate-800 text-sm">Super Bowl Ad</div>
+                                    <div class="text-xs text-slate-500 mt-1">Client: Doritos</div>
+                                </div>
+                                <span class="bg-rose-50 text-rose-600 text-[10px] font-bold px-2 py-1 rounded-full uppercase">At Risk</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Background decorative element -->
+                <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-brand-100 rounded-full blur-3xl opacity-50 z-0"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature 2: Projects -->
+    <section id="projects" class="py-24 px-6 bg-slate-50 scroll-mt-20 border-t border-slate-100 overflow-hidden">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row-reverse gap-16 items-center">
+            <div class="lg:w-1/2 gs-reveal">
+                <div class="text-emerald-600 font-semibold tracking-wider text-xs uppercase mb-3 flex items-center gap-2">
+                    <span class="w-8 h-px bg-emerald-600/50"></span> Level 2: Projects
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-6">Project Management with Live Profitability Tracking</h2>
+                <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+                    The Projects level is your command center for every deliverable, and the one place most studio tools leave a gap. It combines scheduling and task tracking with real production budgeting: every project carries live profit and loss, with budgets, billable resources, rates, expenses, and margins updating as the work happens. It's job costing built for studios, so you see whether a project is making money while it's still in progress, not after the invoice goes out.
+                </p>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"></i>
+                        <div class="text-slate-600"><strong class="text-slate-900">Live P&L and Budget vs. Actual.</strong> Charges, expenses, and profit update automatically against budget as resources are logged, so producers spot overruns before they happen.</div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"></i>
+                        <div class="text-slate-600"><strong class="text-slate-900">Billable Resource Management.</strong> Add and rate every billable resource with live cost and line totals. Margins stay visible and accurate at all times.</div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"></i>
+                        <div class="text-slate-600"><strong class="text-slate-900">Client, PO, and Invoice Status.</strong> Client details, purchase orders, and billing data sit on the project, and you can see at a glance which projects are approved, pending, or billed, with budgets, expenses, and invoices in sync.</div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"></i>
+                        <div class="text-slate-600"><strong class="text-slate-900">Master Project List with Smart Filters.</strong> Every active project in one sortable view, filterable by client, production, approval, invoice status, project type, or due date, so no deadline or pending bill slips.</div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"></i>
+                        <div class="text-slate-600"><strong class="text-slate-900">Tasks and Talent in One Record.</strong> Switch between resources, tasks, and talent inside each project, without leaving the project.</div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"></i>
+                        <div class="text-slate-600"><strong class="text-slate-900">Profit Analysis and Reporting.</strong> Generate real-time P&L summaries and billing reports. Export performance data for finance teams or executives across every active project.</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="lg:w-1/2 w-full gs-reveal relative">
+                <div class="bg-white rounded-xl border border-slate-200 shadow-subtle p-1 relative z-10">
+                    <div class="bg-slate-50 rounded-lg border border-slate-100 p-6 flex flex-col h-[420px]">
+                        <!-- P&L Abstract -->
+                        <div class="grid grid-cols-3 gap-4 mb-6">
+                            <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                <div class="text-[10px] text-slate-500 font-bold mb-1 uppercase tracking-wide">Budget</div>
+                                <div class="text-xl font-semibold text-slate-900">$45,000</div>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                <div class="text-[10px] text-slate-500 font-bold mb-1 uppercase tracking-wide">Actual</div>
+                                <div class="text-xl font-semibold text-slate-900">$32,450</div>
+                            </div>
+                            <div class="bg-emerald-50 p-4 rounded-lg border border-emerald-100 shadow-sm">
+                                <div class="text-[10px] text-emerald-600 font-bold mb-1 uppercase tracking-wide">Margin</div>
+                                <div class="text-xl font-semibold text-emerald-600">+ 28%</div>
+                            </div>
+                        </div>
+                        <div class="flex-1 bg-white border border-slate-200 rounded-lg p-5 shadow-sm">
+                            <div class="h-4 w-24 bg-slate-200 rounded mb-5"></div>
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center pb-2 border-b border-slate-100">
+                                    <div class="text-sm font-medium text-slate-700">Director (2 Days)</div>
+                                    <div class="text-sm font-semibold text-slate-900">$3,000</div>
+                                </div>
+                                <div class="flex justify-between items-center pb-2 border-b border-slate-100">
+                                    <div class="text-sm font-medium text-slate-700">Studio A Rental</div>
+                                    <div class="text-sm font-semibold text-slate-900">$1,500</div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div class="text-sm font-medium text-slate-700">Camera Package</div>
+                                    <div class="text-sm font-semibold text-slate-900">$850</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute -left-10 -bottom-10 w-64 h-64 bg-emerald-100 rounded-full blur-3xl opacity-50 z-0"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature 3: Events / Sessions -->
+    <section id="events" class="py-24 px-6 bg-white scroll-mt-20 border-t border-slate-100 overflow-hidden">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center">
+            <div class="lg:w-1/2 gs-reveal">
+                <div class="text-purple-600 font-semibold tracking-wider text-xs uppercase mb-3 flex items-center gap-2">
+                    <span class="w-8 h-px bg-purple-600/50"></span> Level 3: Events & Sessions
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-6">Session Management with Work Orders, Talent, and Media</h2>
+                <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+                    Every shoot, recording, and edit session lives in a single connected record. Open a session and everything about it is one click away, financials, work orders, the crew, the media, and the paperwork, so the people running the day never chase details across separate tools.
+                </p>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-purple-500 shrink-0 mt-0.5"></i>
+                        <div class="text-slate-600"><strong class="text-slate-900">Multi-Tab Session Record.</strong> Details, Financials, Work Orders, Tasks, Talent, Media, Files, and Reports, organized as tabs on one screen, so the whole session is accessible at a glance.</div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-purple-500 shrink-0 mt-0.5"></i>
+                        <div class="text-slate-600"><strong class="text-slate-900">Session-Level Financials.</strong> Live charge, expense, and profit and loss columns update per session, so a single shoot's costs and margin are visible alongside the work itself.</div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-purple-500 shrink-0 mt-0.5"></i>
+                        <div class="text-slate-600"><strong class="text-slate-900">Work Order Management.</strong> Generate call sheets and gear pull lists in seconds. Linked resource bookings appear under Related Events, keeping rooms, crew, and gear synchronized for airtight logistics.</div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-purple-500 shrink-0 mt-0.5"></i>
+                        <div class="text-slate-600"><strong class="text-slate-900">Task and Talent Grid.</strong> Assign and update work on a drag-and-drop board, and manage the session's talent, roles, contact details, start and end times, and call sheet flags, in one grid.</div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-purple-500 shrink-0 mt-0.5"></i>
+                        <div class="text-slate-600"><strong class="text-slate-900">Media and Reporting Hub.</strong> Attach scripts, rough cuts, or Pro Tools sessions directly to the record, and print PDF or CSV usage and itemized reports from the Reports tab for clean documentation and delivery.</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="lg:w-1/2 w-full gs-reveal relative">
+                <div class="bg-white rounded-xl border border-slate-200 shadow-subtle p-1 relative z-10">
+                    <div class="bg-slate-50 rounded-lg border border-slate-100 p-6 flex flex-col h-[420px]">
+                        <!-- Tabs Abstract -->
+                        <div class="flex gap-6 border-b border-slate-200 pb-3 mb-6">
+                            <div class="text-sm font-semibold text-purple-600 border-b-2 border-purple-600 pb-2 -mb-[14px]">Details</div>
+                            <div class="text-sm font-medium text-slate-500 pb-2">Financials</div>
+                            <div class="text-sm font-medium text-slate-500 pb-2">Work Orders</div>
+                            <div class="text-sm font-medium text-slate-500 pb-2">Media</div>
+                        </div>
+                        <div class="flex gap-4 flex-1">
+                            <div class="w-1/3 bg-white p-4 rounded-lg border border-slate-200 shadow-sm flex flex-col gap-3">
+                                <div class="h-3 w-16 bg-slate-200 rounded mb-2"></div>
+                                <div class="h-10 w-full bg-slate-50 rounded border border-slate-100 flex items-center px-3 gap-2"><div class="w-5 h-5 bg-slate-200 rounded-full"></div><div class="h-2 w-12 bg-slate-200 rounded"></div></div>
+                                <div class="h-10 w-full bg-slate-50 rounded border border-slate-100 flex items-center px-3 gap-2"><div class="w-5 h-5 bg-slate-200 rounded-full"></div><div class="h-2 w-16 bg-slate-200 rounded"></div></div>
+                            </div>
+                            <div class="w-2/3 bg-white p-4 rounded-lg border border-slate-200 shadow-sm flex flex-col gap-4">
+                                <div class="h-3 w-24 bg-slate-200 rounded mb-1"></div>
+                                <div class="flex gap-3"><div class="h-12 w-12 bg-slate-100 rounded-lg border border-slate-200"></div><div class="flex-1 bg-slate-50 border border-slate-100 rounded-lg"></div></div>
+                                <div class="flex gap-3"><div class="h-12 w-12 bg-slate-100 rounded-lg border border-slate-200"></div><div class="flex-1 bg-slate-50 border border-slate-100 rounded-lg"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-purple-100 rounded-full blur-3xl opacity-50 z-0"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature 4: Tasks -->
+    <section id="tasks" class="py-24 px-6 bg-slate-50 scroll-mt-20 border-t border-slate-100 overflow-hidden">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row-reverse gap-16 items-center">
+            <div class="lg:w-1/2 gs-reveal">
+                <div class="text-orange-600 font-semibold tracking-wider text-xs uppercase mb-3 flex items-center gap-2">
+                    <span class="w-8 h-px bg-orange-600/50"></span> Level 4: Tasks
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-6">Task Management with Assignments and Accountability</h2>
+                <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+                    Break every session into the work that moves it forward. StudioHero's built-in task management tools connect each task directly to its project and session, so assignments, deadlines, and progress stay visible in context, without a separate task app bolted on. Nothing slips through in a fast-paced production.
+                </p>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-orange-500 shrink-0 mt-0.5"></i>
+                        <div class="text-slate-600"><strong class="text-slate-900">Task List Dashboard.</strong> Every task in one sortable table, showing priority, status, project, due date, and assignee, so the whole workload is visible at a glance.</div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-orange-500 shrink-0 mt-0.5"></i>
+                        <div class="text-slate-600"><strong class="text-slate-900">Priority and Status Controls.</strong> Set priorities and track progress through statuses such as Created, In Progress, and Assigned, for real-time visibility into how work is distributed.</div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-orange-500 shrink-0 mt-0.5"></i>
+                        <div class="text-slate-600"><strong class="text-slate-900">Linked to Projects and Sessions.</strong> Each task connects to its related project or session, giving producers a unified view of dependencies and overall workflow progress.</div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-orange-500 shrink-0 mt-0.5"></i>
+                        <div class="text-slate-600"><strong class="text-slate-900">Subtasks and Task Groups.</strong> Break large deliverables into manageable actions, and organize workflows with Manage Task Groups.</div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-orange-500 shrink-0 mt-0.5"></i>
+                        <div class="text-slate-600"><strong class="text-slate-900">Assignment and Scheduling.</strong> Assign tasks to individuals or departments with defined due dates and durations, and see every assignment in one place to keep schedules on track.</div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-orange-500 shrink-0 mt-0.5"></i>
+                        <div class="text-slate-600"><strong class="text-slate-900">Accountability Reporting.</strong> Generate task reports on productivity, completion rates, and missed deadlines, and export them to share with teams or department heads.</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="lg:w-1/2 w-full gs-reveal relative">
+                <div class="bg-white rounded-xl border border-slate-200 shadow-subtle p-1 relative z-10">
+                    <div class="bg-slate-50 rounded-lg border border-slate-100 p-6 flex flex-col gap-3 h-[420px]">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="h-5 w-24 bg-slate-200 rounded"></div>
+                            <div class="h-7 w-20 bg-white border border-slate-200 rounded text-[10px] text-slate-500 flex items-center justify-center font-bold">FILTER</div>
+                        </div>
+                        
+                        <div class="bg-white border border-slate-200 p-3 rounded-lg shadow-sm flex items-center justify-between">
+                            <div class="flex items-center gap-3"><div class="w-4 h-4 border border-slate-300 rounded"></div><div class="text-sm font-medium text-slate-700">Finalize Shot List</div></div>
+                            <div class="w-6 h-6 rounded-full bg-brand-100 text-[10px] text-brand-700 flex items-center justify-center font-bold">JD</div>
+                        </div>
+                        <div class="bg-slate-100 border border-slate-200 p-3 rounded-lg shadow-sm flex items-center justify-between">
+                            <div class="flex items-center gap-3"><div class="w-4 h-4 bg-emerald-500 rounded flex items-center justify-center"><i data-lucide="check" class="w-3 h-3 text-white"></i></div><div class="text-sm font-medium text-slate-400 line-through">Book Studio A</div></div>
+                            <div class="w-6 h-6 rounded-full bg-slate-200 text-[10px] text-slate-500 flex items-center justify-center font-bold">MK</div>
+                        </div>
+                        <div class="bg-white border border-slate-200 p-3 rounded-lg shadow-sm flex items-center justify-between">
+                            <div class="flex items-center gap-3"><div class="w-4 h-4 border border-slate-300 rounded"></div><div class="text-sm font-medium text-slate-700">Send PO to Vendor</div></div>
+                            <div class="w-6 h-6 rounded-full bg-orange-100 text-[10px] text-orange-700 flex items-center justify-center font-bold">AS</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute -left-10 -bottom-10 w-64 h-64 bg-orange-100 rounded-full blur-3xl opacity-50 z-0"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table Section -->
+    <section id="compare" class="py-24 px-6 relative bg-white border-y border-slate-100">
+        <div class="max-w-5xl mx-auto gs-reveal">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-6">Why Studios Choose Studio Hero Over Generic Project Management</h2>
+                <p class="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                    Generic project management tools track tasks. Creative production tools plan shoots. Neither tells you whether a production made money, or connects to the rooms, crew, and gear you're actually scheduling. Studio Hero was built for how studios run, so project management, profitability, and operations live in one system instead of three.
+                </p>
+            </div>
+
+            <div class="overflow-x-auto rounded-xl border border-slate-200 shadow-sm bg-white">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr>
+                            <th class="p-6 text-slate-500 font-semibold border-b border-slate-200 w-1/2 bg-slate-50">Running on generic or point tools</th>
+                            <th class="p-6 text-brand-700 font-bold border-b border-slate-200 bg-brand-50 w-1/2">Running on Studio Hero</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <tr>
+                            <td class="p-6 text-slate-600 text-sm md:text-base">Tasks tracked in one app, budgets in another, gear in a third</td>
+                            <td class="p-6 text-slate-900 font-medium text-sm md:text-base bg-brand-50/50 flex items-start gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-500 shrink-0 mt-0.5"></i> Productions, projects, sessions, and tasks in one connected structure</td>
+                        </tr>
+                        <tr>
+                            <td class="p-6 text-slate-600 text-sm md:text-base">Profit calculated after the invoice, in a spreadsheet</td>
+                            <td class="p-6 text-slate-900 font-medium text-sm md:text-base bg-brand-50/50 flex items-start gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-500 shrink-0 mt-0.5"></i> Live P&L and budget vs. actual on every project, as work happens</td>
+                        </tr>
+                        <tr>
+                            <td class="p-6 text-slate-600 text-sm md:text-base">Billable hours and gear usage re-keyed into accounting</td>
+                            <td class="p-6 text-slate-900 font-medium text-sm md:text-base bg-brand-50/50 flex items-start gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-500 shrink-0 mt-0.5"></i> Billable resources, rates, and expenses roll straight into invoices</td>
+                        </tr>
+                        <tr>
+                            <td class="p-6 text-slate-600 text-sm md:text-base">Generic "assets" and "tickets" that don't fit production</td>
+                            <td class="p-6 text-slate-900 font-medium text-sm md:text-base bg-brand-50/50 flex items-start gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-500 shrink-0 mt-0.5"></i> Studio-native records: shoots, call sheets, rooms, talent, and kits</td>
+                        </tr>
+                        <tr>
+                            <td class="p-6 text-slate-600 text-sm md:text-base">Project tool disconnected from scheduling and equipment</td>
+                            <td class="p-6 text-slate-900 font-medium text-sm md:text-base bg-brand-50/50 flex items-start gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-500 shrink-0 mt-0.5"></i> Projects linked to schedules, crew, and equipment in one database</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-center text-slate-500 mt-8 text-sm max-w-2xl mx-auto">
+                Built for studios since 1997, Studio Hero replaces the stack of disconnected tools with one platform, so producers and owners always know what's on track and what's turning a profit.
+            </p>
+        </div>
+    </section>
+
+    <!-- Studio Types -->
+    <section class="py-24 px-6 bg-slate-950 border-y border-slate-900 relative">
+        <div class="max-w-7xl mx-auto text-center gs-reveal">
+            <h2 class="text-3xl font-bold mb-6 text-white tracking-tight">Built for Every Kind of Production Studio</h2>
+            <p class="text-lg text-slate-400 max-w-3xl mx-auto mb-12 leading-relaxed">
+                Studio Hero adapts to how your studio works, whether you're producing films, cutting audio, running broadcasts, or shooting campaigns. Every production type manages the same connected hierarchy of productions, projects, sessions, and tasks, tuned to its own workflow.
+            </p>
+            <div class="flex flex-wrap justify-center gap-3">
+                <span class="px-5 py-2 rounded-full border border-slate-800 bg-slate-900 text-slate-300 text-sm font-medium">Film & Video Production</span>
+                <span class="px-5 py-2 rounded-full border border-slate-800 bg-slate-900 text-slate-300 text-sm font-medium">Music / Audio Post</span>
+                <span class="px-5 py-2 rounded-full border border-slate-800 bg-slate-900 text-slate-300 text-sm font-medium">Broadcast TV & Radio</span>
+                <span class="px-5 py-2 rounded-full border border-slate-800 bg-slate-900 text-slate-300 text-sm font-medium">Podcast Studios</span>
+                <span class="px-5 py-2 rounded-full border border-slate-800 bg-slate-900 text-slate-300 text-sm font-medium">Photography Studios</span>
+                <span class="px-5 py-2 rounded-full border border-slate-800 bg-slate-900 text-slate-300 text-sm font-medium">Creative Media Agencies</span>
+                <span class="px-5 py-2 rounded-full border border-slate-800 bg-slate-900 text-slate-300 text-sm font-medium">Post-Production Facilities</span>
+                <span class="px-5 py-2 rounded-full border border-slate-800 bg-slate-900 text-slate-300 text-sm font-medium">Equipment Rental Houses</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Explore Platform Grid -->
+    <section class="py-24 px-6 bg-white border-b border-slate-100">
+        <div class="max-w-5xl mx-auto gs-reveal">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold tracking-tight text-slate-900">Explore the Studio Hero Platform</h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <a href="/studio-operations-management/" class="p-6 rounded-xl border border-slate-200 bg-white hover:border-brand-500 hover:shadow-subtle transition-all text-center text-slate-800 font-semibold text-sm">Studio Operations Management</a>
+                <a href="/studio-scheduling/" class="p-6 rounded-xl border border-slate-200 bg-white hover:border-brand-500 hover:shadow-subtle transition-all text-center text-slate-800 font-semibold text-sm">Studio Scheduling</a>
+                <a href="/crew-management/" class="p-6 rounded-xl border border-slate-200 bg-white hover:border-brand-500 hover:shadow-subtle transition-all text-center text-slate-800 font-semibold text-sm">Crew Management</a>
+                <a href="/client-booking-portal/" class="p-6 rounded-xl border border-slate-200 bg-white hover:border-brand-500 hover:shadow-subtle transition-all text-center text-slate-800 font-semibold text-sm">Client Booking Portal</a>
+                <a href="/studio-budgeting/" class="p-6 rounded-xl border border-slate-200 bg-white hover:border-brand-500 hover:shadow-subtle transition-all text-center text-slate-800 font-semibold text-sm">Studio Budgeting</a>
+                <a href="/studio-invoicing/" class="p-6 rounded-xl border border-slate-200 bg-white hover:border-brand-500 hover:shadow-subtle transition-all text-center text-slate-800 font-semibold text-sm">Studio Invoicing</a>
+                <a href="/equipment-tracking/" class="p-6 rounded-xl border border-slate-200 bg-white hover:border-brand-500 hover:shadow-subtle transition-all text-center text-slate-800 font-semibold text-sm">Equipment Tracking</a>
+                <a href="/inventory-management/" class="p-6 rounded-xl border border-slate-200 bg-white hover:border-brand-500 hover:shadow-subtle transition-all text-center text-slate-800 font-semibold text-sm">Inventory Management</a>
+                <a href="/media-asset-management/" class="p-6 rounded-xl border border-slate-200 bg-white hover:border-brand-500 hover:shadow-subtle transition-all text-center text-slate-800 font-semibold text-sm">Media Asset Management</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 px-6 bg-slate-50 relative">
+        <div class="max-w-3xl mx-auto gs-reveal">
+            <h2 class="text-3xl font-bold mb-10 text-center tracking-tight text-slate-900">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <details class="group bg-white rounded-xl border border-slate-200" open>
+                    <summary class="p-6 font-semibold cursor-pointer flex justify-between items-center text-base text-slate-900 select-none">
+                        How is Studio Hero different from generic project management tools?
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <div class="px-6 pb-6 pt-0 text-slate-600 leading-relaxed text-sm">
+                        Generic tools like Asana or Monday track tasks but know nothing about rooms, crew, gear, or whether a production made money. Studio Hero is built for studios: it connects production project management to live profit and loss, scheduling, equipment, and invoicing in one system. You manage the work and see the margin in the same place. The fastest way to see the difference is a quick demo on your own workflow.
+                    </div>
+                </details>
+                
+                <details class="group bg-white rounded-xl border border-slate-200">
+                    <summary class="p-6 font-semibold cursor-pointer flex justify-between items-center text-base text-slate-900 select-none">
+                        Can Studio Hero manage multiple shows or productions at once?
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <div class="px-6 pb-6 pt-0 text-slate-600 leading-relaxed text-sm">
+                        Yes. The Productions level is built for multi-project studios, giving producers and executives a top-down portfolio view of every show, series, and campaign, with status, budgets, and progress updating in real time. You can drill from the portfolio down to a single project or session in a click.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-xl border border-slate-200">
+                    <summary class="p-6 font-semibold cursor-pointer flex justify-between items-center text-base text-slate-900 select-none">
+                        How does Studio Hero help me track profitability?
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <div class="px-6 pb-6 pt-0 text-slate-600 leading-relaxed text-sm">
+                        Every project carries live profit and loss. Billable resources, rates, expenses, and budget vs. actual update as the work happens, so you know whether a production is making money while it's still in progress, not after the invoice goes out. Profit and billing reports export straight to your finance team.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-xl border border-slate-200">
+                    <summary class="p-6 font-semibold cursor-pointer flex justify-between items-center text-base text-slate-900 select-none">
+                        Does Studio Hero connect to scheduling, crew, and equipment?
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <div class="px-6 pb-6 pt-0 text-slate-600 leading-relaxed text-sm">
+                        Yes, and this is the point. Projects link to schedules, crew assignments, and equipment in one database, so a booking, a logged hour, or a gear pull updates the project automatically with no re-entry. It's one connected system, not a project tool bolted onto separate apps.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-xl border border-slate-200">
+                    <summary class="p-6 font-semibold cursor-pointer flex justify-between items-center text-base text-slate-900 select-none">
+                        Is Studio Hero right for both small studios and large facilities?
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <div class="px-6 pb-6 pt-0 text-slate-600 leading-relaxed text-sm">
+                        Both. The Small Studio plan supports 1 to 10 users for independent teams, and Enterprise plans add single sign-on, multi-site licensing, QuickBooks Online, and calendar integration for larger facilities. You can start with the modules you need now and expand as you grow, without migrating to a new system later.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-xl border border-slate-200">
+                    <summary class="p-6 font-semibold cursor-pointer flex justify-between items-center text-base text-slate-900 select-none">
+                        Do I have to move everything over at once?
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <div class="px-6 pb-6 pt-0 text-slate-600 leading-relaxed text-sm">
+                        No. Most studios start with the workflows that hurt most, often production tracking and profitability, and expand into the rest of the platform on the same system over time. A demo is the easiest way to map your current tools to Studio Hero and see where you'd start.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-xl border border-slate-200">
+                    <summary class="p-6 font-semibold cursor-pointer flex justify-between items-center text-base text-slate-900 select-none">
+                        What kinds of studios use Studio Hero?
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <div class="px-6 pb-6 pt-0 text-slate-600 leading-relaxed text-sm">
+                        Film and video production, audio and music post, broadcast TV and radio, podcast studios, photography studios, creative media agencies, post-production facilities, and equipment rental houses. Each uses its own combination of modules tuned to its workflow.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-xl border border-slate-200">
+                    <summary class="p-6 font-semibold cursor-pointer flex justify-between items-center text-base text-slate-900 select-none">
+                        How do I see it working on my own studio's setup?
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <div class="px-6 pb-6 pt-0 text-slate-600 leading-relaxed text-sm">
+                        Book a free, personalized walkthrough. We'll show you Studio Hero running against your real production types, resources, and workflow, so you can see exactly how it fits before deciding. No hidden fees, no pressure.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="py-32 px-6 relative bg-white border-t border-slate-100 overflow-hidden">
+        <!-- Abstract gradient mesh -->
+        <div class="absolute inset-0 z-0 opacity-40 mesh-bg"></div>
+        
+        <div class="max-w-4xl mx-auto text-center relative z-10 gs-reveal">
+            <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-6">See Every Production, and Every Dollar, in One Place</h2>
+            <p class="text-xl text-slate-600 mb-6 leading-relaxed max-w-2xl mx-auto">
+                Book a free, personalized walkthrough. We'll show Studio Hero running on your real production types, resources, and workflow, so you can watch a production move from brief to schedule to invoice in one system, with the profit visible the whole way.
+            </p>
+            <p class="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-10">No hidden fees. No pressure. Just your studio, running the way it should.</p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <button class="bg-brand-600 hover:bg-brand-700 text-white px-10 py-4 rounded-xl text-base font-semibold transition-all shadow-glow w-full sm:w-auto">
+                    Book a Free Demo
+                </button>
+                <div class="text-slate-600 font-medium px-6 py-4 flex items-center justify-center gap-2 w-full sm:w-auto bg-white border border-slate-200 rounded-xl shadow-sm">
+                    <i data-lucide="phone" class="w-4 h-4 text-slate-400"></i> +1 800-783-3346
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 py-12 px-6 text-center text-slate-400 text-sm">
+        <p>&copy; 2026 Studio Hero. All rights reserved. Streamlining studio operations since 1997.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Register ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Modern, subtle Hero Animation
+        const heroTl = gsap.timeline();
+        heroTl.from(".hero-el", {
+            y: 20,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "power2.out",
+            delay: 0.1
+        });
+
+        // Global Scroll Reveal for sections - smooth fade-up
+        const revealElements = gsap.utils.toArray('.gs-reveal');
+        revealElements.forEach((el) => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                },
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            });
+        });
+
+        // Navbar solid effect on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white/90', 'shadow-sm');
+                navbar.classList.remove('glass');
+            } else {
+                navbar.classList.add('glass');
+                navbar.classList.remove('bg-white/90', 'shadow-sm');
+            }
+        });
+    </script>
+</body>
+</html>
