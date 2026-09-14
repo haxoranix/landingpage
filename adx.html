@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- INTER -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+.ada-integrations,
+.ada-integrations * {
+    box-sizing: border-box;
+}
+
+.ada-integrations {
+    width: 100%;
+    font-family: "Inter", sans-serif;
+    color: #202024;
+}
+
+
+/* ACCORDION WRAPPER */
+
+.ada-integrations-inner {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    border-top: 1px solid #dedbe2;
+    border-bottom: 1px solid #dedbe2;
+}
+
+
+/* HEADER */
+
+.ada-integrations-trigger {
+    appearance: none;
+    width: 100%;
+    border: 0;
+    background: transparent;
+    padding: 30px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+
+    cursor: pointer;
+    text-align: left;
+
+    font-family: "Inter", sans-serif;
+    color: #202024;
+}
+
+
+.ada-integrations-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+.ada-integrations-title {
+    display: block;
+
+    font-family: "Inter", sans-serif;
+    font-size: 30px;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    font-weight: 700;
+
+    color: #202024;
+}
+
+
+.ada-integrations-description {
+    display: block;
+    max-width: 780px;
+
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    font-weight: 400;
+
+    color: #66626b;
+}
+
+
+/* TOGGLE */
+
+.ada-integrations-toggle {
+    width: 44px;
+    height: 44px;
+
+    flex: 0 0 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #dedbe2;
+    border-radius: 50%;
+
+    color: #353138;
+
+    transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+.ada-integrations-toggle svg {
+    width: 17px;
+    height: 17px;
+
+    transition: transform 0.3s ease;
+}
+
+
+.ada-integrations-trigger:hover .ada-integrations-toggle {
+    background: #f6f4f7;
+}
+
+
+.ada-integrations-trigger[aria-expanded="true"]
+.ada-integrations-toggle svg {
+    transform: rotate(180deg);
+}
+
+
+/* ACCORDION PANEL */
+
+.ada-integrations-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+
+    transition: grid-template-rows 0.35s ease;
+}
+
+
+.ada-integrations-panel.is-open {
+    grid-template-rows: 1fr;
+}
+
+
+.ada-integrations-panel-inner {
+    overflow: hidden;
+}
+
+
+/* LINKS GRID */
+
+.ada-integrations-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    column-gap: 56px;
+    row-gap: 0;
+
+    padding: 4px 0 36px;
+}
+
+
+.ada-integration-link {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+
+    padding: 17px 0;
+
+    border-bottom: 1px solid #ebe8ed;
+
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 600;
+
+    color: #252429;
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        padding-left 0.2s ease;
+}
+
+
+.ada-integration-link:hover {
+    color: #654784;
+    padding-left: 4px;
+}
+
+
+.ada-integration-arrow {
+    flex: 0 0 auto;
+
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+
+    color: #aaa5ad;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.ada-integration-link:hover .ada-integration-arrow {
+    color: #654784;
+    transform: translateX(4px);
+}
+
+
+/* TABLET */
+
+@media (max-width: 1024px) {
+
+    .ada-integrations-inner {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .ada-integrations-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 40px;
+    }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .ada-integrations-inner {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .ada-integrations-trigger {
+        padding: 24px 0;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    .ada-integrations-title {
+        font-size: 24px;
+        line-height: 1.25;
+    }
+
+    .ada-integrations-description {
+        font-size: 15px;
+        line-height: 1.55;
+    }
+
+    .ada-integrations-toggle {
+        width: 38px;
+        height: 38px;
+        flex-basis: 38px;
+    }
+
+    .ada-integrations-grid {
+        grid-template-columns: 1fr;
+        padding-bottom: 28px;
+    }
+
+    .ada-integration-link {
+        padding: 15px 0;
+        font-size: 15px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="ada-integrations">
+
+    <div class="ada-integrations-inner">
+
+        <button
+            class="ada-integrations-trigger"
+            type="button"
+            aria-expanded="false"
+            aria-controls="ada-integrations-panel"
+        >
+
+            <span class="ada-integrations-heading">
+
+                <span class="ada-integrations-title">
+                    Explore Odoo Integrations by Platform
+                </span>
+
+                <span class="ada-integrations-description">
+                    Find platform-specific Odoo integration services for accounting, CRM, eCommerce, payments, shipping, communications, EDI, and more.
+                </span>
+
+            </span>
+
+
+            <span class="ada-integrations-toggle" aria-hidden="true">
+
+                <svg viewBox="0 0 24 24" fill="none">
+
+                    <path
+                        d="M6 9L12 15L18 9"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+
+                </svg>
+
+            </span>
+
+        </button>
+
+
+        <div
+            class="ada-integrations-panel"
+            id="ada-integrations-panel"
+            aria-hidden="true"
+        >
+
+            <div class="ada-integrations-panel-inner">
+
+                <div class="ada-integrations-grid">
+
+
+                    <!-- ECOMMERCE -->
+
+                    <a
+                        class="ada-integration-link"
+                        href="https://adatasol.com/services/odoo-integration/odoo-amazon-integration/"
+                    >
+                        <span>Amazon</span>
+                        <span class="ada-integration-arrow">→</span>
+                    </a>
+
+
+                    <a
+                        class="ada-integration-link"
+                        href="https://adatasol.com/services/odoo-integration/odoo-shopify-integration/"
+                    >
+                        <span>Shopify</span>
+                        <span class="ada-integration-arrow">→</span>
+                    </a>
+
+
+                    <a
+                        class="ada-integration-link"
+                        href="https://adatasol.com/services/odoo-integration/odoo-woocommerce-integration/"
+                    >
+                        <span>WooCommerce</span>
+                        <span class="ada-integration-arrow">→</span>
+                    </a>
+
+
+                    <a
+                        class="ada-integration-link"
+                        href="https://adatasol.com/services/odoo-integration/odoo-magento-integration/"
+                    >
+                        <span>Magento</span>
+                        <span class="ada-integration-arrow">→</span>
+                    </a>
+
+
+
+                    <!-- CRM -->
+
+                    <a
+                        class="ada-integration-link"
+                        href="https://adatasol.com/services/odoo-integration/odoo-salesforce-integration/"
+                    >
+                        <span>Salesforce</span>
+                        <span class="ada-integration-arrow">→</span>
+                    </a>
+
+
+                    <a
+                        class="ada-integration-link"
+                        href="https://adatasol.com/services/odoo-integration/odoo-hubspot-integration/"
+                    >
+                        <span>HubSpot</span>
+                        <span class="ada-integration-arrow">→</span>
+                    </a>
+
+
+
+                    <!-- ACCOUNTING -->
+
+                    <a
+                        class="ada-integration-link"
+                        href="https://adatasol.com/services/odoo-integration/odoo-quickbooks-integration/"
+                    >
+                        <span>QuickBooks</span>
+                        <span class="ada-integration-arrow">→</span>
+                    </a>
+
+
+                    <a
+                        class="ada-integration-link"
+                        href="https://adatasol.com/services/odoo-integration/odoo-xero-integration/"
+                    >
+                        <span>Xero</span>
+                        <span class="ada-integration-arrow">→</span>
+                    </a>
+
+
+                    <a
+                        class="ada-integration-link"
+                        href="https://adatasol.com/services/odoo-integration/odoo-sap-integration/"
+                    >
+                        <span>SAP</span>
+                        <span class="ada-integration-arrow">→</span>
+                    </a>
+
+
+                    <a
+                        class="ada-integration-link"
+                        href="https://adatasol.com/services/odoo-integration/odoo-bank-integration/"
+                    >
+                        <span>Bank Integration</span>
+                        <span class="ada-integration-arrow">→</span>
+                    </a>
+
+
+
+                    <!-- PAYMENTS -->
+
+                    <a
+                        class="ada-integration-link"
+                        href="https://adatasol.com/services/odoo-integration/odoo-paypal-integration/"
+                    >
+                        <span>PayPal</span>
+                        <span class="ada-integration-arrow">→</span>
+                    </a>
+
+
+                    <a
+                        class="ada-integration-link"
+                        href="https://adatasol.com/services/odoo-integration/odoo-stripe-integration/"
+                    >
+                        <span>Stripe</span>
+                        <span class="ada-integration-arrow">→</span>
+                    </a>
+
+
+                    <a
+                        class="ada-integration-link"
+                        href="https://adatasol.com/services/odoo-integration/odoo-payment-gateway-integration/"
+                    >
+                        <span>Payment Gateway</span>
+                        <span class="ada-integration-arrow">→</span>
+                    </a>
+
+
+
+                    <!-- SHIPPING -->
+
+                    <a
+                        class="ada-integration-link"
+                        href="https://adatasol.com/services/odoo-integration/odoo-fedex-integration/"
+                    >
+                        <span>FedEx</span>
+                        <span class="ada-integration-arrow">→</span>
+                    </a>
+
+
+                    <a
+                        class="ada-integration-link"
+                        href="https://adatasol.com/services/odoo-integration/odoo-ups-integration/"
+                    >
+                        <span>UPS</span>
+                        <span class="ada-integration-arrow">→</span>
+                    </a>
+
+
+                    <a
+                        class="ada-integration-link"
+                        href="https://adatasol.com/services/odoo-integration/odoo-shipping-carrier-integration/"
+                    >
+                        <span>Shipping Carrier</span>
+                        <span class="ada-integration-arrow">→</span>
+                    </a>
+
+
+
+                    <!-- COMMUNICATION -->
+
+                    <a
+                        class="ada-integration-link"
+                        href="https://adatasol.com/services/odoo-integration/odoo-ringcentral-integration/"
+                    >
+                        <span>RingCentral</span>
+                        <span class="ada-integration-arrow">→</span>
+                    </a>
+
+
+                    <a
+                        class="ada-integration-link"
+                        href="https://adatasol.com/services/odoo-integration/odoo-voip-integration/"
+                    >
+                        <span>VoIP</span>
+                        <span class="ada-integration-arrow">→</span>
+                    </a>
+
+
+
+                    <!-- HR & PAYROLL -->
+
+                    <a
+                        class="ada-integration-link"
+                        href="https://adatasol.com/services/odoo-integration/odoo-adp-integration/"
+                    >
+                        <span>ADP</span>
+                        <span class="ada-integration-arrow">→</span>
+                    </a>
+
+
+                    <a
+                        class="ada-integration-link"
+                        href="https://adatasol.com/services/odoo-integration/odoo-payroll-platform-integration/"
+                    >
+                        <span>Payroll Platform</span>
+                        <span class="ada-integration-arrow">→</span>
+                    </a>
+
+
+
+                    <!-- TECHNICAL -->
+
+                    <a
+                        class="ada-integration-link"
+                        href="https://adatasol.com/services/odoo-integration/odoo-edi-integration/"
+                    >
+                        <span>EDI Integration</span>
+                        <span class="ada-integration-arrow">→</span>
+                    </a>
+
+
+                    <a
+                        class="ada-integration-link"
+                        href="https://adatasol.com/services/odoo-integration/odoo-api-integration/"
+                    >
+                        <span>API Integration</span>
+                        <span class="ada-integration-arrow">→</span>
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const trigger = document.querySelector(
+        ".ada-integrations-trigger"
+    );
+
+    const panel = document.querySelector(
+        ".ada-integrations-panel"
+    );
+
+    if (!trigger || !panel) {
+        return;
+    }
+
+
+    trigger.addEventListener("click", function () {
+
+        const currentlyOpen =
+            trigger.getAttribute("aria-expanded") === "true";
+
+
+        trigger.setAttribute(
+            "aria-expanded",
+            currentlyOpen ? "false" : "true"
+        );
+
+
+        panel.setAttribute(
+            "aria-hidden",
+            currentlyOpen ? "true" : "false"
+        );
+
+
+        panel.classList.toggle(
+            "is-open",
+            !currentlyOpen
+        );
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
