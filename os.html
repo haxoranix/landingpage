@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b1020" />
+  <title>Hostcode HQ Dashboard</title>
+  <style>
+    :root{
+      --bg:#f5f7fb;--surface:rgba(255,255,255,.88);--card:#fff;--text:#111827;--muted:#6b7280;
+      --line:rgba(17,24,39,.08);--brand:#6d5dfc;--brand2:#8b5cf6;--green:#10b981;
+      --amber:#f59e0b;--red:#ef4444;--blue:#2563eb;--shadow:0 18px 55px rgba(15,23,42,.08);
+      --radius:22px;--sidebar:246px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;min-height:100vh;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 8% 0%,rgba(139,92,246,.13),transparent 30%),radial-gradient(circle at 100% 10%,rgba(37,99,235,.09),transparent 28%),var(--bg)}
+    button,input{font:inherit}button{border:0}a{color:inherit;text-decoration:none}
+    .shell{display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr);min-height:100vh}
+    .sidebar{position:fixed;inset:0 auto 0 0;width:var(--sidebar);z-index:40;padding:22px 16px;display:flex;flex-direction:column;background:rgba(8,13,28,.97);color:#fff;border-right:1px solid rgba(255,255,255,.07);overflow:auto;transition:transform .22s ease}
+    .brand{display:flex;align-items:center;gap:12px;padding:4px 8px 22px}.brandmark{width:42px;height:42px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(145deg,#8b5cf6,#5b4de3);font-weight:900;box-shadow:0 12px 28px rgba(108,92,231,.35)}
+    .brand strong{display:block;font-size:16px}.brand span{display:block;margin-top:3px;color:rgba(255,255,255,.5);font-size:12px}
+    .navlabel{padding:12px 12px 8px;color:rgba(255,255,255,.35);font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    .nav{display:grid;gap:5px}.nav a{display:flex;align-items:center;gap:11px;min-height:44px;padding:0 12px;border-radius:14px;color:rgba(255,255,255,.69);font-size:14px;font-weight:650;transition:.18s ease}.nav a:hover,.nav a.active{background:rgba(255,255,255,.1);color:#fff}.nav a.active{box-shadow:inset 3px 0 0 #a78bfa}.nav i{width:20px;text-align:center;font-style:normal;font-size:17px}.count{margin-left:auto;min-width:22px;height:22px;padding:0 6px;display:grid;place-items:center;border-radius:999px;background:#7c3aed;font-size:11px;font-weight:800}
+    .help{margin-top:auto;padding-top:18px}.helpbox{padding:16px;border-radius:18px;background:linear-gradient(145deg,rgba(139,92,246,.24),rgba(37,99,235,.12)),rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}.helpbox strong{font-size:13px}.helpbox p{margin:7px 0 13px;color:rgba(255,255,255,.56);font-size:12px;line-height:1.5}.helpbox button{width:100%;min-height:38px;border-radius:12px;background:#fff;color:#111827;font-weight:800;cursor:pointer}
+    .main{grid-column:2;min-width:0;padding:20px 24px 90px}.topbar{position:sticky;top:0;z-index:25;display:flex;align-items:center;gap:14px;min-height:72px;margin:-20px -24px 18px;padding:12px 24px;background:rgba(245,247,251,.82);backdrop-filter:blur(18px);border-bottom:1px solid rgba(17,24,39,.06)}
+    .menu{display:none;width:42px;height:42px;border-radius:14px;background:#fff;box-shadow:var(--shadow);cursor:pointer}.searchwrap{position:relative;width:min(430px,42vw)}.searchwrap:before{content:"⌕";position:absolute;left:15px;top:50%;transform:translateY(-53%);font-size:21px;color:var(--muted)}.search{width:100%;height:44px;padding:0 18px 0 44px;border:1px solid var(--line);border-radius:15px;outline:0;background:rgba(255,255,255,.87)}.search:focus{border-color:rgba(109,93,252,.4);box-shadow:0 0 0 4px rgba(109,93,252,.1)}
+    .topactions{margin-left:auto;display:flex;align-items:center;gap:10px}.iconbtn{position:relative;width:42px;height:42px;display:grid;place-items:center;border-radius:14px;background:rgba(255,255,255,.88);border:1px solid var(--line);cursor:pointer}.dot{position:absolute;right:8px;top:7px;width:8px;height:8px;border-radius:99px;background:var(--red);border:2px solid #fff}.mini{display:flex;align-items:center;gap:9px;padding:5px 9px 5px 5px;border-radius:15px;background:rgba(255,255,255,.88);border:1px solid var(--line)}.avatar-sm{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:linear-gradient(145deg,#7c3aed,#2563eb);color:#fff;font-size:12px;font-weight:900}.mini strong{display:block;font-size:12px}.mini span{display:block;margin-top:2px;color:var(--muted);font-size:10px}
+    .head{display:flex;align-items:flex-end;gap:20px;margin-bottom:18px}.head h1{margin:0;font-size:clamp(24px,3vw,34px);letter-spacing:-.04em}.head p{margin:8px 0 0;color:var(--muted);font-size:14px}.date{margin-left:auto;padding:10px 14px;border-radius:14px;background:var(--surface);border:1px solid var(--line);color:var(--muted);font-size:12px;font-weight:700}
+    .grid{display:grid;grid-template-columns:minmax(250px,.92fr) minmax(0,2.08fr);gap:18px;align-items:start}.left,.right{display:grid;gap:18px;min-width:0}.card{background:var(--surface);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.84);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+    .idcard{position:relative;min-height:370px;padding:22px;color:#fff;background:radial-gradient(circle at 88% 12%,rgba(255,255,255,.23),transparent 23%),radial-gradient(circle at 0 100%,rgba(255,255,255,.13),transparent 30%),linear-gradient(155deg,#0f172a 0%,#312e81 56%,#6d28d9 100%);box-shadow:0 26px 65px rgba(49,46,129,.26)}.idcard:before,.idcard:after{content:"";position:absolute;border-radius:999px;border:1px solid rgba(255,255,255,.13)}.idcard:before{width:180px;height:180px;top:-88px;right:-66px}.idcard:after{width:115px;height:115px;right:18px;bottom:-55px}.idtop{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between}.idlogo{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:800}.idlogo b{width:31px;height:31px;display:grid;place-items:center;border-radius:10px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.2)}.status{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.14);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.status i{width:7px;height:7px;border-radius:99px;background:#34d399;box-shadow:0 0 0 4px rgba(52,211,153,.16)}
+    .photo{position:relative;z-index:1;display:grid;place-items:center;margin:28px auto 18px;width:110px;height:110px;border-radius:34px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);transform:rotate(4deg);box-shadow:0 20px 36px rgba(0,0,0,.2)}.avatar{width:94px;height:94px;display:grid;place-items:center;border-radius:28px;background:linear-gradient(145deg,rgba(255,255,255,.26),rgba(255,255,255,.08)),linear-gradient(145deg,#8b5cf6,#2563eb);transform:rotate(-4deg);font-size:32px;font-weight:900}.idname{position:relative;z-index:1;text-align:center}.idname h2{margin:0;font-size:24px;letter-spacing:-.035em}.idname p{margin:7px 0 0;color:rgba(255,255,255,.7);font-size:13px}.idmeta{position:relative;z-index:1;margin-top:26px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14);display:grid;grid-template-columns:1fr 1fr;gap:14px}.idmeta span{display:block;color:rgba(255,255,255,.48);font-size:10px;text-transform:uppercase;letter-spacing:.1em;font-weight:800}.idmeta strong{display:block;margin-top:5px;font-size:12px}
+    .pad{padding:20px}.cardhead{display:flex;align-items:center;gap:12px;margin-bottom:16px}.cardhead h3{margin:0;font-size:16px;letter-spacing:-.02em}.cardhead p{margin:3px 0 0;color:var(--muted);font-size:11px}.link{margin-left:auto;color:var(--brand);background:transparent;font-size:12px;font-weight:800;cursor:pointer}.progresswrap{display:flex;align-items:center;gap:14px}.ring{width:82px;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:radial-gradient(closest-side,#fff 75%,transparent 76% 99%),conic-gradient(var(--brand) 82%,#ebeef5 0);font-weight:900}.progresscopy strong{display:block;font-size:14px}.progresscopy p{margin:6px 0 0;color:var(--muted);font-size:11px;line-height:1.5}
+    .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.stat{padding:17px;border-radius:var(--radius);background:var(--surface);border:1px solid rgba(255,255,255,.84);box-shadow:var(--shadow)}.stattop{display:flex;align-items:center;justify-content:space-between;gap:10px}.sticon{width:38px;height:38px;display:grid;place-items:center;border-radius:13px;font-size:17px}.purple{color:var(--brand);background:rgba(109,93,252,.12)}.green{color:var(--green);background:rgba(16,185,129,.12)}.orange{color:var(--amber);background:rgba(245,158,11,.14)}.blue{color:var(--blue);background:rgba(37,99,235,.12)}.change{font-size:10px;font-weight:800;color:var(--green)}.stat h3{margin:16px 0 3px;font-size:24px;letter-spacing:-.04em}.stat p{margin:0;color:var(--muted);font-size:11px}
+    .attendance{padding:20px;background:radial-gradient(circle at 85% 10%,rgba(109,93,252,.16),transparent 30%),var(--surface)}.attendancebody{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center}.clock{font-size:clamp(34px,5vw,50px);font-weight:900;letter-spacing:-.05em}.clock span{font-size:15px;color:var(--muted);letter-spacing:0}.attstatus{display:flex;align-items:center;gap:8px;margin-top:8px;color:var(--muted);font-size:12px}.attstatus i{width:9px;height:9px;border-radius:99px;background:var(--amber);box-shadow:0 0 0 5px rgba(245,158,11,.14)}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.btn{min-height:42px;padding:0 16px;border-radius:13px;cursor:pointer;font-size:12px;font-weight:850;transition:.15s ease}.btn:hover{transform:translateY(-1px)}.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}.primary{background:linear-gradient(145deg,#7968ff,#5b4de3);color:#fff;box-shadow:0 11px 24px rgba(109,93,252,.25)}.secondary{background:#fff;border:1px solid var(--line);color:var(--text)}.danger{background:rgba(239,68,68,.12);color:var(--red)}.times{display:grid;grid-template-columns:1fr 1fr;gap:10px}.timebox{padding:15px;border-radius:16px;background:rgba(255,255,255,.72);border:1px solid var(--line)}.timebox span{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;font-weight:800;letter-spacing:.08em}.timebox strong{display:block;margin-top:7px;font-size:18px}
+    .twocol{display:grid;grid-template-columns:1.18fr .82fr;gap:18px}.tasklist{display:grid;gap:10px}.task{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;padding:13px;border-radius:16px;background:rgba(255,255,255,.65);border:1px solid var(--line)}.tasknum{width:34px;height:34px;display:grid;place-items:center;border-radius:12px;background:rgba(109,93,252,.12);color:var(--brand);font-size:12px;font-weight:900}.taskcopy{min-width:0}.taskcopy strong{display:block;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.taskcopy span{display:block;margin-top:5px;color:var(--muted);font-size:10px}.tag{padding:6px 8px;border-radius:999px;font-size:9px;font-weight:900;text-transform:uppercase}.high{color:var(--red);background:rgba(239,68,68,.12)}.medium{color:var(--amber);background:rgba(245,158,11,.14)}.low{color:var(--green);background:rgba(16,185,129,.12)}
+    .leavegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.leavebox{padding:14px 8px;border-radius:15px;text-align:center;background:#eef1f7}.leavebox strong{display:block;font-size:20px}.leavebox span{display:block;margin-top:4px;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.06em;font-weight:800}.announcement{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}.announcement:last-child{border-bottom:0;padding-bottom:0}.announceicon{width:38px;height:38px;display:grid;place-items:center;border-radius:13px;background:rgba(37,99,235,.12);color:var(--blue)}.announcement strong{display:block;font-size:12px}.announcement p{margin:5px 0 0;color:var(--muted);font-size:10px;line-height:1.45}.announcement time{display:block;margin-top:6px;color:#9ca3af;font-size:9px}.course{padding:15px;border-radius:17px;background:linear-gradient(145deg,rgba(109,93,252,.11),rgba(37,99,235,.06)),rgba(255,255,255,.62);border:1px solid rgba(109,93,252,.1)}.coursetop{display:flex;align-items:center;gap:12px}.courseicon{width:42px;height:42px;display:grid;place-items:center;border-radius:14px;background:#fff;color:var(--brand);box-shadow:var(--shadow)}.coursetop strong{display:block;font-size:12px}.coursetop span{display:block;margin-top:4px;color:var(--muted);font-size:10px}.bar{height:8px;margin-top:15px;overflow:hidden;border-radius:999px;background:#e7eaf1}.bar i{display:block;height:100%;width:68%;border-radius:inherit;background:linear-gradient(90deg,#7c3aed,#2563eb)}.coursefooter{display:flex;justify-content:space-between;margin-top:8px;color:var(--muted);font-size:10px}
+    .overlay{display:none;position:fixed;inset:0;z-index:35;background:rgba(2,6,23,.45);backdrop-filter:blur(3px)}.toast{position:fixed;right:22px;bottom:22px;z-index:100;max-width:min(360px,calc(100vw - 32px));padding:14px 16px;border-radius:15px;background:#111827;color:#fff;box-shadow:0 18px 45px rgba(15,23,42,.24);opacity:0;transform:translateY(18px);pointer-events:none;transition:.22s ease;font-size:12px;font-weight:700}.toast.show{opacity:1;transform:translateY(0)}.bottomnav{display:none}
+    @media(max-width:1120px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.grid{grid-template-columns:minmax(235px,.78fr) minmax(0,1.6fr)}.twocol{grid-template-columns:1fr}}
+    @media(max-width:860px){.shell{grid-template-columns:1fr}.sidebar{transform:translateX(-105%);width:min(290px,86vw)}.sidebar.open{transform:translateX(0)}.overlay.show{display:block}.main{grid-column:1;padding:16px 16px 88px}.topbar{margin:-16px -16px 16px;padding:10px 16px}.menu{display:grid;place-items:center}.grid{grid-template-columns:1fr}.left{grid-template-columns:minmax(250px,.9fr) minmax(230px,1.1fr)}.idcard{min-height:335px}.searchwrap{width:min(320px,42vw)}}
+    @media(max-width:640px){.topbar{min-height:64px}.searchwrap{flex:1;width:auto}.search{height:40px}.topactions .iconbtn:first-child,.mini{display:none}.head{align-items:flex-start;margin-top:4px}.head p{font-size:12px}.date{display:none}.left{grid-template-columns:1fr}.idcard{min-height:auto;padding:18px}.photo{width:92px;height:92px;border-radius:28px;margin:22px auto 15px}.avatar{width:78px;height:78px;border-radius:23px;font-size:27px}.idname h2{font-size:21px}.stats{grid-template-columns:1fr 1fr;gap:10px}.stat{padding:14px}.stat h3{font-size:21px;margin-top:12px}.attendancebody{grid-template-columns:1fr}.clock{font-size:38px}.right,.left,.grid,.twocol{gap:14px}.bottomnav{position:fixed;left:10px;right:10px;bottom:10px;z-index:30;display:grid;grid-template-columns:repeat(5,1fr);padding:7px;border-radius:20px;background:rgba(10,15,30,.95);backdrop-filter:blur(18px);box-shadow:0 18px 50px rgba(15,23,42,.28)}.bottomnav button{height:48px;display:grid;place-items:center;gap:2px;border-radius:14px;background:transparent;color:rgba(255,255,255,.62);cursor:pointer}.bottomnav button span{font-size:8px;font-weight:800}.bottomnav button.active{background:rgba(255,255,255,.12);color:#fff}.toast{right:16px;bottom:82px}}
+  </style>
+</head>
+<body>
+  <div class="overlay" id="overlay"></div>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><div class="brandmark">H</div><div><strong>Hostcode HQ</strong><span>People operations</span></div></div>
+      <div class="navlabel">Workspace</div>
+      <nav class="nav">
+        <a class="active" href="#"><i>⌂</i>Dashboard</a>
+        <a href="#attendance"><i>◷</i>Attendance</a>
+        <a href="#leave"><i>◫</i>Leave</a>
+        <a href="#tasks"><i>✓</i>My Tasks <span class="count">6</span></a>
+        <a href="#training"><i>▶</i>Training</a>
+      </nav>
+      <div class="navlabel">Growth</div>
+      <nav class="nav">
+        <a href="#"><i>◈</i>Performance</a>
+        <a href="#"><i>✦</i>Achievements</a>
+        <a href="#"><i>▣</i>Certificates</a>
+      </nav>
+      <div class="navlabel">Company</div>
+      <nav class="nav">
+        <a href="#announcements"><i>◉</i>Announcements</a>
+        <a href="#"><i>□</i>Holidays</a>
+        <a href="#"><i>✉</i>Messages <span class="count">3</span></a>
+        <a href="#"><i>▤</i>Documents</a>
+      </nav>
+      <div class="help"><div class="helpbox"><strong>Need help?</strong><p>Raise an HR or technical support request directly from your workspace.</p><button onclick="toast('Support request opened')">Contact support</button></div></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="menu" id="menuBtn">☰</button>
+        <div class="searchwrap"><input class="search" id="search" type="search" placeholder="Search tasks, policies, documents..." /></div>
+        <div class="topactions">
+          <button class="iconbtn" onclick="toast('You have 3 unread messages')">✉</button>
+          <button class="iconbtn" onclick="toast('You have 5 new notifications')">♢<span class="dot"></span></button>
+          <div class="mini"><div class="avatar-sm">AR</div><div><strong>Arjun Roy</strong><span>Product Intern</span></div></div>
+        </div>
+      </header>
+
+      <section class="head">
+        <div><h1>Good morning, Arjun 👋</h1><p>Here is your workday, progress, and what needs your attention.</p></div>
+        <div class="date" id="dateLabel"></div>
+      </section>
+
+      <section class="grid">
+        <div class="left">
+          <article class="card idcard">
+            <div class="idtop"><div class="idlogo"><b>H</b>Hostcode Lab</div><div class="status"><i></i>Active</div></div>
+            <div class="photo"><div class="avatar">AR</div></div>
+            <div class="idname"><h2>Arjun Roy</h2><p>Product Design Intern</p></div>
+            <div class="idmeta">
+              <div><span>Department</span><strong>Product & Design</strong></div>
+              <div><span>Employee ID</span><strong>HCL-IN-024</strong></div>
+              <div><span>Joined on</span><strong>12 May 2026</strong></div>
+              <div><span>Mentor</span><strong>Priya Sharma</strong></div>
+            </div>
+          </article>
+
+          <article class="card pad">
+            <div class="cardhead"><div><h3>Onboarding progress</h3><p>Complete your remaining items</p></div><button class="link" onclick="toast('Opening onboarding checklist')">View</button></div>
+            <div class="progresswrap"><div class="ring">82%</div><div class="progresscopy"><strong>9 of 11 completed</strong><p>Policy acknowledgement and bank details are still pending.</p></div></div>
+          </article>
+        </div>
+
+        <div class="right">
+          <section class="stats">
+            <article class="stat"><div class="stattop"><div class="sticon purple">✓</div><span class="change">+2 this week</span></div><h3>12</h3><p>Tasks completed</p></article>
+            <article class="stat"><div class="stattop"><div class="sticon green">◷</div><span class="change">94%</span></div><h3>7h 36m</h3><p>Average workday</p></article>
+            <article class="stat"><div class="stattop"><div class="sticon orange">★</div><span class="change">Latest</span></div><h3>8.7</h3><p>Performance score</p></article>
+            <article class="stat"><div class="stattop"><div class="sticon blue">▶</div><span class="change">68%</span></div><h3>4</h3><p>Training modules</p></article>
+          </section>
+
+          <article class="card attendance" id="attendance">
+            <div class="cardhead"><div><h3>Today’s attendance</h3><p>Location is captured only during attendance actions</p></div><button class="link" onclick="toast('Opening attendance history')">History</button></div>
+            <div class="attendancebody">
+              <div>
+                <div class="clock" id="clock">00:00 <span>AM</span></div>
+                <div class="attstatus"><i id="statusDot"></i><span id="statusText">You have not checked in yet</span></div>
+                <div class="actions"><button class="btn primary" id="checkIn">Check in</button><button class="btn secondary" id="breakBtn" disabled>Start break</button><button class="btn danger" id="checkOut" disabled>Check out</button></div>
+              </div>
+              <div class="times">
+                <div class="timebox"><span>Check in</span><strong id="checkInTime">--:--</strong></div>
+                <div class="timebox"><span>Worked</span><strong id="worked">0h 00m</strong></div>
+                <div class="timebox"><span>Break</span><strong id="breakTime">0m</strong></div>
+                <div class="timebox"><span>Location</span><strong id="location">Pending</strong></div>
+              </div>
+            </div>
+          </article>
+
+          <section class="twocol">
+            <article class="card pad" id="tasks">
+              <div class="cardhead"><div><h3>My tasks</h3><p>Focus items assigned to you</p></div><button class="link" onclick="toast('Opening complete task board')">View all</button></div>
+              <div class="tasklist">
+                <div class="task"><div class="tasknum">01</div><div class="taskcopy"><strong>Create employee mobile dashboard wireframe</strong><span>Due today · Product portal</span></div><span class="tag high">High</span></div>
+                <div class="task"><div class="tasknum">02</div><div class="taskcopy"><strong>Review onboarding usability notes</strong><span>Due tomorrow · Research</span></div><span class="tag medium">Medium</span></div>
+                <div class="task"><div class="tasknum">03</div><div class="taskcopy"><strong>Complete UI accessibility module</strong><span>Due 6 Aug · Training</span></div><span class="tag low">Low</span></div>
+              </div>
+            </article>
+
+            <article class="card pad" id="leave">
+              <div class="cardhead"><div><h3>Leave balance</h3><p>Current annual allocation</p></div><button class="link" onclick="toast('Leave request form opened')">Request</button></div>
+              <div class="leavegrid"><div class="leavebox"><strong>8</strong><span>Available</span></div><div class="leavebox"><strong>3</strong><span>Used</span></div><div class="leavebox"><strong>1</strong><span>Pending</span></div></div>
+              <div class="actions"><button class="btn primary" onclick="toast('Starting a new leave request')">Request leave</button><button class="btn secondary" onclick="toast('Opening leave history')">View history</button></div>
+            </article>
+          </section>
+
+          <section class="twocol">
+            <article class="card pad" id="announcements">
+              <div class="cardhead"><div><h3>Announcements</h3><p>Updates from Hostcode Lab</p></div><button class="link" onclick="toast('Opening announcement archive')">Browse</button></div>
+              <div class="announcement"><div class="announceicon">◉</div><div><strong>Monthly town hall on Friday</strong><p>Join the team at 4:00 PM for product updates and Q&A.</p><time>Today, 9:15 AM</time></div></div>
+              <div class="announcement"><div class="announceicon">✦</div><div><strong>Independence Day holiday</strong><p>The office will remain closed on 15 August.</p><time>1 August 2026</time></div></div>
+            </article>
+
+            <article class="card pad" id="training">
+              <div class="cardhead"><div><h3>Training progress</h3><p>Continue your active learning path</p></div><button class="link" onclick="toast('Opening training library')">Open</button></div>
+              <div class="course"><div class="coursetop"><div class="courseicon">▶</div><div><strong>Product Design Foundations</strong><span>8 of 12 lessons completed</span></div></div><div class="bar"><i></i></div><div class="coursefooter"><span>68% complete</span><span>Due 10 Aug</span></div></div>
+            </article>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <nav class="bottomnav">
+    <button class="active" onclick="scrollTo({top:0,behavior:'smooth'})">⌂<span>Home</span></button>
+    <button onclick="location.hash='attendance'">◷<span>Attendance</span></button>
+    <button onclick="location.hash='tasks'">✓<span>Tasks</span></button>
+    <button onclick="location.hash='training'">▶<span>Training</span></button>
+    <button onclick="toast('Opening profile')">◉<span>Profile</span></button>
+  </nav>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const sidebar=document.getElementById('sidebar');
+    const overlay=document.getElementById('overlay');
+    document.getElementById('menuBtn').onclick=()=>{sidebar.classList.add('open');overlay.classList.add('show')};
+    overlay.onclick=()=>{sidebar.classList.remove('open');overlay.classList.remove('show')};
+
+    const toastEl=document.getElementById('toast');
+    let toastTimer;
+    function toast(message){clearTimeout(toastTimer);toastEl.textContent=message;toastEl.classList.add('show');toastTimer=setTimeout(()=>toastEl.classList.remove('show'),2200)}
+
+    function updateClock(){
+      const now=new Date();
+      const parts=new Intl.DateTimeFormat('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true}).formatToParts(now);
+      const hour=parts.find(x=>x.type==='hour').value;
+      const minute=parts.find(x=>x.type==='minute').value;
+      const period=parts.find(x=>x.type==='dayPeriod').value;
+      document.getElementById('clock').innerHTML=`${hour}:${minute} <span>${period}</span>`;
+      document.getElementById('dateLabel').textContent=new Intl.DateTimeFormat('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(now);
+    }
+    updateClock();setInterval(updateClock,1000);
+
+    let checkedIn=false,onBreak=false,startTime=null,breakStarted=null,totalBreak=0,timer=null;
+    const checkIn=document.getElementById('checkIn');
+    const breakBtn=document.getElementById('breakBtn');
+    const checkOut=document.getElementById('checkOut');
+    const statusText=document.getElementById('statusText');
+    const statusDot=document.getElementById('statusDot');
+    const checkInTime=document.getElementById('checkInTime');
+    const worked=document.getElementById('worked');
+    const breakTime=document.getElementById('breakTime');
+    const locationEl=document.getElementById('location');
+
+    function formatTime(ms){const m=Math.max(0,Math.floor(ms/60000));return `${Math.floor(m/60)}h ${String(m%60).padStart(2,'0')}m`}
+    function refreshWorked(){if(!checkedIn||!startTime)return;const now=Date.now();const currentBreak=onBreak?(now-breakStarted):0;worked.textContent=formatTime(now-startTime-totalBreak-currentBreak);breakTime.textContent=`${Math.floor((totalBreak+currentBreak)/60000)}m`}
+    function setActiveDot(color,shadow){statusDot.style.background=color;statusDot.style.boxShadow=`0 0 0 5px ${shadow}`}
+
+    checkIn.onclick=()=>{
+      checkedIn=true;startTime=Date.now();checkIn.disabled=true;breakBtn.disabled=false;checkOut.disabled=false;
+      checkInTime.textContent=new Intl.DateTimeFormat('en-IN',{hour:'2-digit',minute:'2-digit'}).format(new Date());
+      statusText.textContent='Checked in and working';setActiveDot('#10b981','rgba(16,185,129,.12)');locationEl.textContent='Captured';
+      timer=setInterval(refreshWorked,1000);refreshWorked();toast('Checked in successfully');
+    };
+    breakBtn.onclick=()=>{
+      if(!onBreak){onBreak=true;breakStarted=Date.now();breakBtn.textContent='End break';statusText.textContent='Currently on break';setActiveDot('#f59e0b','rgba(245,158,11,.14)');toast('Break started')}
+      else{totalBreak+=Date.now()-breakStarted;onBreak=false;breakStarted=null;breakBtn.textContent='Start break';statusText.textContent='Checked in and working';setActiveDot('#10b981','rgba(16,185,129,.12)');refreshWorked();toast('Break ended')}
+    };
+    checkOut.onclick=()=>{
+      if(onBreak){totalBreak+=Date.now()-breakStarted;onBreak=false}
+      refreshWorked();checkedIn=false;clearInterval(timer);breakBtn.disabled=true;checkOut.disabled=true;statusText.textContent='Checked out for today';setActiveDot('#ef4444','rgba(239,68,68,.12)');toast('Checked out successfully')
+    };
+
+    document.getElementById('search').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.value.trim())toast(`Searching for: ${e.target.value.trim()}`)});
+  </script>
+</body>
+</html>
+
