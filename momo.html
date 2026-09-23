@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Momo Entertainment homepage concept focused on music IP, artist development, long-term value creation and strategic partnerships." />
+  <title>Momo Entertainment | Music. IP. Growth.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#070707;
+      --bg-soft:#0d0d0d;
+      --paper:#f2f0eb;
+      --paper-2:#e7e4dd;
+      --text:#f4f2ed;
+      --muted:#aaa9a4;
+      --ink:#0b0b0b;
+      --line:rgba(255,255,255,.16);
+      --line-dark:rgba(0,0,0,.14);
+      --accent:#d8ff57;
+      --max:1440px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:"DM Sans",Arial,sans-serif;
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    button{font:inherit}
+    ::selection{background:var(--accent);color:#111}
+
+    .shell{width:min(var(--max),calc(100% - 64px));margin:0 auto}
+    .eyebrow{
+      display:flex;align-items:center;gap:10px;
+      font-size:12px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;
+    }
+    .eyebrow::before{content:"";width:26px;height:1px;background:currentColor;opacity:.7}
+
+    /* NAV */
+    .nav{
+      position:fixed;inset:0 0 auto 0;z-index:50;
+      background:linear-gradient(to bottom,rgba(5,5,5,.92),rgba(5,5,5,.5),transparent);
+      transition:.35s ease;
+    }
+    .nav.scrolled{background:rgba(7,7,7,.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+    .nav-inner{height:92px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:14px}
+    .brand img{width:108px;height:58px;object-fit:contain;object-position:left center}
+    .nav-links{display:flex;align-items:center;gap:27px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#d6d4cf}
+    .nav-links a{position:relative;padding:8px 0}
+    .nav-links a:not(.nav-cta)::after{content:"";position:absolute;left:0;bottom:2px;width:0;height:1px;background:#fff;transition:.25s ease}
+    .nav-links a:not(.nav-cta):hover::after{width:100%}
+    .nav-links .nav-cta{display:inline-flex;align-items:center;justify-content:center;padding:11px 18px;border:1px solid rgba(255,255,255,.38);border-radius:999px;flex:0 0 auto;white-space:nowrap;line-height:1;min-height:36px;min-width:92px}
+    .nav-links .nav-cta:hover{border-color:rgba(255,255,255,.72);background:rgba(255,255,255,.06)}
+    .nav-cta span{display:none}
+    .menu-btn{display:none;background:transparent;border:0;color:white;font-size:24px;cursor:pointer}
+
+    /* HERO */
+    .hero{
+      position:relative;
+      min-height:100svh;
+      min-height:760px;
+      overflow:hidden;
+      background:#050505;
+      isolation:isolate;
+    }
+    .hero-media{position:absolute;inset:0;z-index:0;background:radial-gradient(circle at 72% 38%,#292929 0%,#111 36%,#050505 72%)}
+    .hero-media::before{
+      content:"";position:absolute;inset:0;z-index:2;
+      background:
+        linear-gradient(90deg,rgba(0,0,0,.88) 0%,rgba(0,0,0,.68) 34%,rgba(0,0,0,.2) 66%,rgba(0,0,0,.5) 100%),
+        linear-gradient(to top,rgba(0,0,0,.93) 0%,rgba(0,0,0,.35) 38%,rgba(0,0,0,.08) 72%);
+    }
+    .hero-media img{
+      position:absolute;inset:0;
+      width:100%;height:100%;
+      object-fit:cover;object-position:center 42%;
+      filter:grayscale(1) contrast(1.06) brightness(.86);
+      transform:scale(1.015);
+    }
+    .hero-gridline{
+      position:absolute;inset:0;z-index:1;pointer-events:none;
+      background-image:
+        linear-gradient(to right,
+          transparent calc(25% - .5px),rgba(255,255,255,.07) 25%,transparent calc(25% + .5px),
+          transparent calc(50% - .5px),rgba(255,255,255,.07) 50%,transparent calc(50% + .5px),
+          transparent calc(75% - .5px),rgba(255,255,255,.07) 75%,transparent calc(75% + .5px));
+    }
+    .hero-content{
+      position:relative;z-index:5;
+      min-height:100svh;
+      min-height:760px;
+      padding:148px 0 54px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+    }
+    .hero .eyebrow{color:#d6d4cf;margin-bottom:26px}
+    .hero h1{
+      font-family:"Manrope",sans-serif;
+      font-size:clamp(70px,8.9vw,132px);
+      line-height:.88;
+      letter-spacing:-.062em;
+      font-weight:500;
+      margin:0;
+      width:100%;
+      max-width:1260px;
+      text-wrap:balance;
+    }
+    .hero h1 .hero-line{display:block;white-space:nowrap}
+    .hero h1 .outline{color:transparent;-webkit-text-stroke:1.15px rgba(255,255,255,.82)}
+    .hero-bottom{
+      margin-top:42px;
+      padding-top:24px;
+      border-top:1px solid var(--line);
+      display:grid;
+      grid-template-columns:minmax(0,1.35fr) minmax(230px,.65fr) 96px;
+      gap:34px;
+      align-items:end;
+    }
+    .hero-lead{max-width:690px;font-size:18px;line-height:1.58;color:#dedcd7;margin:0}
+    .hero-side{font-size:13px;line-height:1.6;color:#aaa9a4;max-width:300px}
+    .circle-link{
+      justify-self:end;
+      width:88px;height:88px;
+      border:1px solid rgba(255,255,255,.42);
+      border-radius:50%;
+      display:grid;place-items:center;
+      transition:.3s ease;
+      font-size:23px;
+      flex:0 0 auto;
+    }
+    .circle-link:hover{background:white;color:black;transform:rotate(45deg)}
+
+    /* MARQUEE */
+    .ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#090909}
+    .ticker-track{display:flex;width:max-content;animation:ticker 25s linear infinite}
+    .ticker-item{display:flex;align-items:center;gap:30px;padding:20px 30px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#c9c8c3;white-space:nowrap}
+    .ticker-item i{width:5px;height:5px;background:var(--accent);border-radius:50%}
+    @keyframes ticker{to{transform:translateX(-50%)}}
+
+    /* GENERIC */
+    section{position:relative}
+    .section-pad{padding:120px 0}
+    .section-head{display:grid;grid-template-columns:.55fr 1.45fr;gap:70px;align-items:start;margin-bottom:78px}
+    .section-head h2{font-family:"Manrope",sans-serif;font-size:clamp(42px,6.2vw,96px);line-height:.96;letter-spacing:-.055em;font-weight:500;margin:0;max-width:920px}
+    .section-head p{margin:24px 0 0;max-width:760px;color:#a9a8a4;font-size:17px;line-height:1.7}
+
+    /* THESIS */
+    .thesis{background:var(--paper);color:var(--ink)}
+    .thesis .section-head p{color:#565650}
+    .thesis-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark)}
+    .thesis-card{padding:34px 34px 42px 0;min-height:290px;border-right:1px solid var(--line-dark);position:relative}
+    .thesis-card:not(:first-child){padding-left:34px}
+    .thesis-card:last-child{border-right:0}
+    .thesis-card .num{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#73736e}
+    .thesis-card h3{font-family:"Manrope",sans-serif;font-size:32px;line-height:1.1;letter-spacing:-.04em;margin:72px 0 16px;font-weight:600}
+    .thesis-card p{color:#5f5f5a;line-height:1.65;margin:0;max-width:350px}
+
+    /* OPERATING MODEL */
+    .operating{background:#0a0a0a}
+    .operating-wrap{display:grid;grid-template-columns:.7fr 1.3fr;gap:90px}
+    .operating-copy{position:sticky;top:130px;height:max-content}
+    .operating-copy h2{font-family:"Manrope";font-size:clamp(45px,5.8vw,84px);line-height:.95;letter-spacing:-.055em;font-weight:500;margin:22px 0 28px}
+    .operating-copy p{color:#aeadab;line-height:1.7;font-size:17px;max-width:520px}
+    .stage-list{border-top:1px solid var(--line)}
+    .stage{display:grid;grid-template-columns:80px 1fr auto;gap:20px;padding:30px 0;border-bottom:1px solid var(--line);align-items:start;cursor:pointer}
+    .stage .n{font-size:12px;color:#777;letter-spacing:.12em}
+    .stage h3{font-family:"Manrope";font-size:30px;letter-spacing:-.03em;margin:0 0 12px;font-weight:500}
+    .stage p{margin:0;color:#989894;line-height:1.6;max-width:600px;max-height:0;overflow:hidden;opacity:0;transition:.35s ease}
+    .stage.active p{max-height:120px;opacity:1;margin-top:4px}
+    .stage .plus{font-size:22px;transition:.3s ease}
+    .stage.active .plus{transform:rotate(45deg);color:var(--accent)}
+
+    /* CAPABILITIES */
+    .capabilities{background:var(--paper);color:var(--ink)}
+    .capabilities .section-head p{color:#5c5c56}
+    .cap-grid{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line-dark)}
+    .cap-item{display:grid;grid-template-columns:58px 1fr auto;gap:18px;align-items:center;padding:25px 22px 25px 0;border-bottom:1px solid var(--line-dark);min-height:94px;transition:.25s ease}
+    .cap-item:nth-child(even){padding-left:28px;border-left:1px solid var(--line-dark)}
+    .cap-item:hover{background:#e9e6df;padding-right:32px}
+    .cap-item .cap-num{font-size:11px;color:#75756f}
+    .cap-item h3{font-size:20px;font-weight:500;margin:0;letter-spacing:-.02em}
+    .cap-item .arrow{font-size:21px}
+
+    /* FEATURE SPLIT */
+    .split-feature{display:grid;grid-template-columns:1fr 1fr;min-height:760px}
+    .split-media{min-height:620px;overflow:hidden;position:relative}
+    .split-media img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);transition:transform .8s ease}
+    .split-media:hover img{transform:scale(1.035)}
+    .split-copy{background:#111;padding:90px 8vw;display:flex;flex-direction:column;justify-content:center}
+    .split-copy h2{font-family:"Manrope";font-size:clamp(44px,5vw,78px);line-height:.97;letter-spacing:-.055em;font-weight:500;margin:22px 0 30px}
+    .split-copy p{font-size:17px;line-height:1.75;color:#a9a8a4;max-width:570px}
+    .text-link{display:inline-flex;align-items:center;gap:14px;margin-top:34px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;width:max-content}
+    .text-link i{width:35px;height:35px;border:1px solid #555;border-radius:50%;display:grid;place-items:center;font-style:normal;transition:.25s ease}
+    .text-link:hover i{background:white;color:black;border-color:white;transform:translateX(4px)}
+
+    /* TRACK RECORD */
+    .projects{background:#070707}
+    .projects .section-head{margin-bottom:48px}
+    .project-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+    .project-card{position:relative;min-height:650px;overflow:hidden;background:#151515;cursor:pointer}
+    .project-card.small{min-height:316px}
+    .project-stack{display:grid;gap:18px}
+    .project-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.65);transition:.7s ease}
+    .project-card::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.8),rgba(0,0,0,.08) 62%)}
+    .project-card:hover img{transform:scale(1.045);filter:grayscale(1) brightness(.78)}
+    .project-info{position:absolute;z-index:2;left:30px;right:30px;bottom:26px;display:flex;align-items:end;justify-content:space-between;gap:20px}
+    .project-info .type{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#c5c4c0;margin-bottom:8px}
+    .project-info h3{font-family:"Manrope";font-weight:500;font-size:30px;letter-spacing:-.035em;margin:0}
+    .project-info .round{min-width:48px;width:48px;height:48px;border:1px solid rgba(255,255,255,.45);border-radius:50%;display:grid;place-items:center}
+
+    /* PARTNERSHIPS */
+    .partners{background:var(--paper);color:var(--ink)}
+    .partner-layout{display:grid;grid-template-columns:.82fr 1.18fr;gap:90px}
+    .partner-copy{padding-top:10px}
+    .partner-copy h2{font-family:"Manrope";font-size:clamp(48px,6vw,88px);line-height:.95;letter-spacing:-.055em;font-weight:500;margin:22px 0 28px}
+    .partner-copy p{color:#5e5e58;line-height:1.75;font-size:17px;max-width:600px}
+    .partner-types{border-top:1px solid var(--line-dark)}
+    .partner-row{display:grid;grid-template-columns:52px 1fr;gap:18px;padding:25px 0;border-bottom:1px solid var(--line-dark)}
+    .partner-row span{font-size:11px;color:#777}
+    .partner-row h3{font-family:"Manrope";font-size:23px;margin:0 0 8px;letter-spacing:-.03em;font-weight:600}
+    .partner-row p{margin:0;color:#676761;line-height:1.55;font-size:14px}
+
+    /* CTA */
+    .cta{background:#0b0b0b;padding:125px 0 50px}
+    .cta-panel{border-top:1px solid var(--line);padding-top:48px}
+    .cta h2{font-family:"Manrope";font-size:clamp(56px,8vw,126px);line-height:.88;letter-spacing:-.065em;font-weight:500;margin:0;max-width:1100px}
+    .cta h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.7)}
+    .cta-bottom{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-top:54px;padding-bottom:60px}
+    .cta-bottom p{color:#9d9c98;max-width:560px;line-height:1.7;margin:0}
+    .big-link{display:flex;align-items:center;gap:18px;font-size:13px;text-transform:uppercase;letter-spacing:.12em}
+    .big-link i{font-style:normal;width:56px;height:56px;border-radius:50%;background:var(--accent);color:#111;display:grid;place-items:center;font-size:22px;transition:.25s ease}
+    .big-link:hover i{transform:translateX(5px)}
+
+    /* FOOTER */
+    footer{border-top:1px solid var(--line);padding:30px 0 40px;background:#0b0b0b;color:#a6a5a0}
+    .footer-inner{display:grid;grid-template-columns:1fr auto auto;gap:44px;align-items:end;font-size:12px}
+    .footer-brand img{width:88px;height:48px;object-fit:contain;object-position:left center;opacity:.8;margin-bottom:14px}
+    .footer-links{display:flex;gap:20px;flex-wrap:wrap}
+
+    /* MODAL */
+    .modal{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.8);backdrop-filter:blur(12px);display:none;place-items:center;padding:30px}
+    .modal.open{display:grid}
+    .modal-card{width:min(820px,100%);background:#111;border:1px solid var(--line);padding:40px;position:relative}
+    .modal-close{position:absolute;right:18px;top:14px;background:none;border:0;color:white;font-size:28px;cursor:pointer}
+    .modal-tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#aaa}
+    .modal-card h3{font-family:"Manrope";font-size:48px;letter-spacing:-.045em;margin:12px 0 20px}
+    .modal-card p{color:#aaa;line-height:1.7;max-width:700px}
+    .modal-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:30px}
+    .metric{border:1px solid var(--line);padding:20px}
+    .metric strong{display:block;font-size:24px;margin-bottom:7px}
+    .metric span{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.1em}
+
+    /* REVEALS */
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease, transform .7s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    @media(max-width:1000px){
+      .shell{width:min(var(--max),calc(100% - 36px))}
+      .nav-links{display:none}
+      .menu-btn{display:block}
+      .section-head,.operating-wrap,.partner-layout{grid-template-columns:1fr}
+      .hero-content{padding-top:132px;padding-bottom:42px}
+      .hero h1{font-size:clamp(62px,10.8vw,104px)}
+      .hero-bottom{grid-template-columns:minmax(0,1fr) minmax(220px,.58fr) 78px;gap:24px}
+      .hero-lead{font-size:17px}
+      .circle-link{width:72px;height:72px}
+      .section-head{gap:18px}
+      .operating-copy{position:relative;top:auto}
+      .split-feature{grid-template-columns:1fr}
+      .split-media{min-height:540px}
+      .project-grid{grid-template-columns:1fr}
+      .project-card{min-height:520px}
+      .project-card.small{min-height:390px}
+    }
+    @media(max-width:720px){
+      .nav-inner{height:74px}
+      .brand img{width:86px;height:48px}
+      .hero{min-height:720px}
+      .hero-content{min-height:720px;padding:118px 0 32px;justify-content:flex-end}
+      .hero .eyebrow{margin-bottom:18px}
+      .hero h1{font-size:clamp(48px,15.2vw,72px);line-height:.9;letter-spacing:-.055em}
+      .hero h1 .hero-line{white-space:normal}
+      .hero-bottom{grid-template-columns:1fr 58px;gap:18px;margin-top:28px;padding-top:20px;align-items:end}
+      .hero-lead{font-size:15px;line-height:1.55;grid-column:1 / 2}
+      .hero-side{grid-column:1 / -1;grid-row:2;max-width:520px;font-size:12px;padding-right:8px}
+      .circle-link{grid-column:2;grid-row:1;width:56px;height:56px;font-size:18px}
+      .section-pad{padding:86px 0}
+      .thesis-grid{grid-template-columns:1fr}
+      .thesis-card,.thesis-card:not(:first-child){padding:28px 0;border-right:0;border-bottom:1px solid var(--line-dark);min-height:0}
+      .thesis-card h3{margin:35px 0 12px}
+      .cap-grid{grid-template-columns:1fr}
+      .cap-item:nth-child(even){padding-left:0;border-left:0}
+      .split-copy{padding:70px 24px}
+      .project-card{min-height:460px}
+      .project-card.small{min-height:330px}
+      .partner-layout{gap:50px}
+      .cta-bottom{flex-direction:column;align-items:flex-start}
+      .footer-inner{grid-template-columns:1fr;gap:22px}
+      .modal-metrics{grid-template-columns:1fr}
+      .modal-card{padding:32px 22px}
+      .modal-card h3{font-size:36px}
+    }
+
+    .mobile-menu{position:fixed;inset:0;z-index:70;background:#080808;display:none;padding:95px 24px 30px}
+    .mobile-menu.open{display:block}
+    .mobile-menu a{display:block;font-family:"Manrope";font-size:34px;letter-spacing:-.04em;padding:13px 0;border-bottom:1px solid var(--line)}
+    .mobile-close{position:absolute;right:22px;top:24px;background:transparent;border:0;color:white;font-size:28px}
+  </style>
+</head>
+<body>
+
+  <header class="nav" id="nav">
+    <div class="shell nav-inner">
+      <a class="brand" href="#top" aria-label="Momo Entertainment home">
+        <img src="https://images.squarespace-cdn.com/content/v1/5752096ef850829dde19dc00/1465770101232-IGRIQAJVKJRJQ42NMZR7/MOMO-social-media-icon.png?format=1500w" alt="Momo Entertainment logo" />
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#music-ip">Music IP</a>
+        <a href="#artist-development">Artist Development</a>
+        <a href="#projects">Projects</a>
+        <a href="#partnerships">Partnerships</a>
+        <a class="nav-cta" href="#contact">Contact</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="mobileClose" aria-label="Close menu">×</button>
+    <a href="#about">About</a>
+    <a href="#music-ip">Music IP</a>
+    <a href="#artist-development">Artist Development</a>
+    <a href="#projects">Projects / Track Record</a>
+    <a href="#partnerships">Partnerships</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-media">
+        <img src="https://images.pexels.com/photos/28703480/pexels-photo-28703480.jpeg?cs=srgb&fm=jpg" alt="Artist development session in a recording studio" />
+      </div>
+      <div class="hero-gridline"></div>
+      <div class="shell hero-content">
+        <div class="eyebrow">Independent Music Company</div>
+        <h1><span class="hero-line">MUSIC.</span><span class="hero-line outline">IP. GROWTH.</span></h1>
+        <div class="hero-bottom">
+          <p class="hero-lead">Momo Entertainment operates at the intersection of artist development, intellectual property and investment, identifying music assets early and building the creative and commercial infrastructure around them.</p>
+          <div class="hero-side">Built for long-term value creation across artists, recordings, catalogs, rights and strategic partnerships.</div>
+          <a class="circle-link" href="#music-ip" aria-label="Explore Momo">↘</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <div class="ticker-item"><i></i> Music IP Origination <i></i> Artist Development <i></i> Catalog Development <i></i> Rights Strategy <i></i> Audience Growth <i></i> Strategic Partnerships</div>
+        <div class="ticker-item"><i></i> Music IP Origination <i></i> Artist Development <i></i> Catalog Development <i></i> Rights Strategy <i></i> Audience Growth <i></i> Strategic Partnerships</div>
+      </div>
+    </div>
+
+    <section class="thesis section-pad" id="about">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div class="eyebrow">Our Thesis</div>
+          <div>
+            <h2>Acquire Earlier. Build Deliberately. Own for the Long Term.</h2>
+            <p>Momo seeks to identify promising music IP before it reaches mature institutional valuations, then develop the artist, audience and commercial infrastructure around the asset to strengthen long-term value.</p>
+          </div>
+        </div>
+        <div class="thesis-grid reveal">
+          <article class="thesis-card">
+            <div class="num">01 / Identify</div>
+            <h3>Find potential before consensus.</h3>
+            <p>Originate opportunities across artists, recordings, catalogs and music rights while there is still meaningful room to build.</p>
+          </article>
+          <article class="thesis-card">
+            <div class="num">02 / Develop</div>
+            <h3>Build the asset, not just the release.</h3>
+            <p>Combine A&amp;R, production, audience growth, release strategy, distribution and publishing into one development engine.</p>
+          </article>
+          <article class="thesis-card">
+            <div class="num">03 / Compound</div>
+            <h3>Create value that can endure.</h3>
+            <p>Develop stronger artist ecosystems and catalogs positioned for long-term ownership, strategic partnership and future growth.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="operating section-pad" id="music-ip">
+      <div class="shell operating-wrap">
+        <div class="operating-copy reveal">
+          <div class="eyebrow">Music IP</div>
+          <h2>From opportunity to operating asset.</h2>
+          <p>Momo's role can extend beyond sourcing. The platform is designed to support the full development lifecycle around music assets and the people who create them.</p>
+        </div>
+        <div class="stage-list reveal" id="stageList">
+          <div class="stage active">
+            <div class="n">01</div>
+            <div><h3>Originate</h3><p>Identify promising artists, recordings, catalogs and rights opportunities before they become fully institutionalized.</p></div>
+            <div class="plus">+</div>
+          </div>
+          <div class="stage">
+            <div class="n">02</div>
+            <div><h3>Evaluate</h3><p>Review creative potential, audience signals, ownership structure, rights position and opportunities for commercial development.</p></div>
+            <div class="plus">+</div>
+          </div>
+          <div class="stage">
+            <div class="n">03</div>
+            <div><h3>Partner / Acquire</h3><p>Structure the right path around the opportunity, from strategic collaboration to rights participation or acquisition where appropriate.</p></div>
+            <div class="plus">+</div>
+          </div>
+          <div class="stage">
+            <div class="n">04</div>
+            <div><h3>Develop</h3><p>Apply A&amp;R, creative production, release strategy, audience development and commercial infrastructure to strengthen the underlying asset.</p></div>
+            <div class="plus">+</div>
+          </div>
+          <div class="stage">
+            <div class="n">05</div>
+            <div><h3>Grow</h3><p>Support catalog activation, publishing, distribution, marketing and new opportunities designed to extend the life and value of the music.</p></div>
+            <div class="plus">+</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="capabilities section-pad">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div class="eyebrow">Capabilities</div>
+          <div>
+            <h2>Music IP &amp; institutional partnerships.</h2>
+            <p>A focused operating capability set for music assets, strategic partners and long-term growth.</p>
+          </div>
+        </div>
+        <div class="cap-grid reveal">
+          <div class="cap-item"><div class="cap-num">01</div><h3>Music IP Origination</h3><div class="arrow">↗</div></div>
+          <div class="cap-item"><div class="cap-num">02</div><h3>A&amp;R and Artist Development</h3><div class="arrow">↗</div></div>
+          <div class="cap-item"><div class="cap-num">03</div><h3>Rights Acquisition Strategy</h3><div class="arrow">↗</div></div>
+          <div class="cap-item"><div class="cap-num">04</div><h3>Catalog Development</h3><div class="arrow">↗</div></div>
+          <div class="cap-item"><div class="cap-num">05</div><h3>Creative Production</h3><div class="arrow">↗</div></div>
+          <div class="cap-item"><div class="cap-num">06</div><h3>Marketing &amp; Audience Growth</h3><div class="arrow">↗</div></div>
+          <div class="cap-item"><div class="cap-num">07</div><h3>Distribution Strategy</h3><div class="arrow">↗</div></div>
+          <div class="cap-item"><div class="cap-num">08</div><h3>Publishing Strategy</h3><div class="arrow">↗</div></div>
+          <div class="cap-item"><div class="cap-num">09</div><h3>Due Diligence Support</h3><div class="arrow">↗</div></div>
+          <div class="cap-item"><div class="cap-num">10</div><h3>Post-Acquisition Growth</h3><div class="arrow">↗</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="split-feature" id="artist-development">
+      <div class="split-media">
+        <img src="https://images.pexels.com/photos/4988140/pexels-photo-4988140.jpeg?cs=srgb&fm=jpg" alt="Artist recording vocals in a professional studio" />
+      </div>
+      <div class="split-copy reveal">
+        <div class="eyebrow">Artist Development</div>
+        <h2>Develop the artist. Strengthen the asset.</h2>
+        <p>Artist development is part of the operating model, not a package for sale. Momo brings together A&amp;R, production, release planning, positioning, audience growth, distribution and publishing strategy around the long-term development of music IP.</p>
+        <a href="#projects" class="text-link">Explore track record <i>→</i></a>
+      </div>
+    </section>
+
+    <section class="projects section-pad" id="projects">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div class="eyebrow">Projects / Track Record</div>
+          <div>
+            <h2>Proof through execution.</h2>
+            <p>Artists, releases, live projects and strategic work are presented as evidence of Momo's ability to develop and grow music assets. Replace the placeholders below with verified projects and outcomes.</p>
+          </div>
+        </div>
+
+        <div class="project-grid reveal">
+          <article class="project-card" data-project="Project One" data-type="Artist Development" data-copy="A case study framework showing the opportunity, Momo's role, execution and verified commercial or audience outcomes." data-m1="A&R" data-m2="Release" data-m3="Growth">
+            <img src="https://images.pexels.com/photos/28703480/pexels-photo-28703480.jpeg?cs=srgb&fm=jpg" alt="Project placeholder" />
+            <div class="project-info"><div><div class="type">Artist Development</div><h3>Selected Project 01</h3></div><div class="round">↗</div></div>
+          </article>
+          <div class="project-stack">
+            <article class="project-card small" data-project="Project Two" data-type="Release / Catalog" data-copy="Use this page to show the asset, development strategy, Momo's contribution and verified results without presenting the work as a packaged service." data-m1="Catalog" data-m2="Audience" data-m3="Rights">
+              <img src="https://f4.bcbits.com/img/a3696008001_16.jpg" alt="Vinyl record representing catalog development" />
+              <div class="project-info"><div><div class="type">Release / Catalog</div><h3>Selected Project 02</h3></div><div class="round">↗</div></div>
+            </article>
+            <article class="project-card small" data-project="Project Three" data-type="Live / Strategic" data-copy="A flexible case study format for live events, strategic collaborations, releases or other evidence of operating capability." data-m1="Live" data-m2="Brand" data-m3="Scale">
+              <img src="https://images.squarespace-cdn.com/content/v1/62421ba9683c9c712d9fc720/a63f4d6d-197a-4286-b958-f25ecdf5d8b2/3D3A4335-Enhanced-NR.jpeg" alt="Professional recording studio" />
+              <div class="project-info"><div><div class="type">Live / Strategic</div><h3>Selected Project 03</h3></div><div class="round">↗</div></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="partners section-pad" id="partnerships">
+      <div class="shell partner-layout">
+        <div class="partner-copy reveal">
+          <div class="eyebrow">Partnerships</div>
+          <h2>Built to work alongside serious music and capital partners.</h2>
+          <p>Momo can engage across origination, artist and catalog development, rights strategy and post-acquisition growth without implying relationships that do not exist.</p>
+        </div>
+        <div class="partner-types reveal">
+          <div class="partner-row"><span>01</span><div><h3>Institutional &amp; Capital Partners</h3><p>Music IP origination, operating support, opportunity evaluation and long-term asset development.</p></div></div>
+          <div class="partner-row"><span>02</span><div><h3>Labels &amp; Music Companies</h3><p>Artist, catalog, release and strategic development opportunities.</p></div></div>
+          <div class="partner-row"><span>03</span><div><h3>Rights Holders &amp; Catalog Owners</h3><p>Rights, catalog and growth conversations centered on long-term value.</p></div></div>
+          <div class="partner-row"><span>04</span><div><h3>Distribution &amp; Publishing</h3><p>Infrastructure relationships that can expand reach, administration and commercial development.</p></div></div>
+          <div class="partner-row"><span>05</span><div><h3>Strategic Opportunities</h3><p>Joint ventures, co-development, acquisitions and other opportunities that merit a direct conversation.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="shell cta-panel reveal">
+        <div class="eyebrow">Start a Conversation</div>
+        <h2>Build the next <em>music asset</em> together.</h2>
+        <div class="cta-bottom">
+          <p>For music IP opportunities, catalogs, artist development partnerships, labels, distribution, publishing and strategic institutional conversations.</p>
+          <a class="big-link" href="mailto:hello@momoentertainment.com">Discuss a partnership <i>→</i></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <div class="footer-brand">
+        <img src="https://images.squarespace-cdn.com/content/v1/5752096ef850829dde19dc00/1465770101232-IGRIQAJVKJRJQ42NMZR7/MOMO-social-media-icon.png?format=1500w" alt="Momo Entertainment logo" />
+        <div>© 2026 Momo Entertainment. Concept homepage mockup.</div>
+      </div>
+      <div class="footer-links"><a href="#music-ip">Music IP</a><a href="#projects">Projects</a><a href="#partnerships">Partnerships</a></div>
+      <div class="footer-links"><a href="#">Privacy</a><a href="#">Legal</a></div>
+    </div>
+  </footer>
+
+  <div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose" aria-label="Close project detail">×</button>
+      <div class="modal-tag" id="modalTag">Project</div>
+      <h3 id="modalTitle">Selected Project</h3>
+      <p id="modalCopy"></p>
+      <div class="modal-metrics">
+        <div class="metric"><strong id="metric1">A&amp;R</strong><span>Capability</span></div>
+        <div class="metric"><strong id="metric2">Release</strong><span>Execution</span></div>
+        <div class="metric"><strong id="metric3">Growth</strong><span>Outcome</span></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+
+    document.querySelectorAll('.stage').forEach(stage => {
+      stage.addEventListener('click', () => {
+        document.querySelectorAll('.stage').forEach(s => s.classList.remove('active'));
+        stage.classList.add('active');
+      });
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){ entry.target.classList.add('visible'); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const modal = document.getElementById('projectModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalTag = document.getElementById('modalTag');
+    const modalCopy = document.getElementById('modalCopy');
+    const metric1 = document.getElementById('metric1');
+    const metric2 = document.getElementById('metric2');
+    const metric3 = document.getElementById('metric3');
+
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('click', () => {
+        modalTitle.textContent = card.dataset.project;
+        modalTag.textContent = card.dataset.type;
+        modalCopy.textContent = card.dataset.copy;
+        metric1.textContent = card.dataset.m1;
+        metric2.textContent = card.dataset.m2;
+        metric3.textContent = card.dataset.m3;
+        modal.classList.add('open');
+      });
+    });
+    document.getElementById('modalClose').addEventListener('click', () => modal.classList.remove('open'));
+    modal.addEventListener('click', e => { if(e.target === modal) modal.classList.remove('open'); });
+    document.addEventListener('keydown', e => { if(e.key === 'Escape') modal.classList.remove('open'); });
+
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+    menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+  </script>
+</body>
+</html>
