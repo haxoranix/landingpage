@@ -50,13 +50,7 @@
       align-items:center;
       gap:10px;
     }
-    .eyebrow:before{
-      content:"";
-      width:28px;
-      height:1px;
-      background:currentColor;
-      display:block;
-    }
+    .eyebrow:before{display:none}
     .section-title{
       margin:16px 0 0;
       font-family:"Manrope",sans-serif;
@@ -113,7 +107,7 @@
       border-bottom:1px solid rgba(33,49,46,.10);
     }
     .nav{
-      min-height:80px;
+      min-height:90px;
       display:grid;
       grid-template-columns:auto 1fr auto;
       align-items:center;
@@ -126,8 +120,8 @@
       width:max-content;
     }
     .brand-mark{
-      width:37px;
-      height:37px;
+      width:46px;
+      height:46px;
       border-radius:50%;
       background:var(--ink);
       color:#fff;
@@ -135,7 +129,7 @@
       place-items:center;
       flex:0 0 auto;
     }
-    .brand-mark svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.6}
+    .brand-mark svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.6}
     .brand-type{
       display:flex;
       flex-direction:column;
@@ -143,13 +137,13 @@
     }
     .brand-type b{
       font-family:"Manrope",sans-serif;
-      font-size:18px;
+      font-size:22px;
       font-weight:600;
       letter-spacing:-.035em;
     }
     .brand-type small{
       margin-top:5px;
-      font-size:8px;
+      font-size:9px;
       letter-spacing:.18em;
       text-transform:uppercase;
       color:#78827e;
@@ -248,19 +242,6 @@
       inset:0;
       background:linear-gradient(90deg,rgba(215,225,212,.10),transparent 35%);
     }
-    .hero-badge{
-      position:absolute;
-      left:28px;
-      bottom:28px;
-      width:250px;
-      background:rgba(255,253,249,.92);
-      backdrop-filter:blur(10px);
-      padding:19px 20px;
-      border-radius:18px;
-      z-index:2;
-    }
-    .hero-badge strong{display:block;font-size:15px;margin-bottom:5px}
-    .hero-badge span{font-size:12px;color:#6a746f;line-height:1.45}
 
     /* APPROACH */
     .approach{
@@ -367,10 +348,10 @@
     /* FEATURE */
     .feature-band{
       background:#dfe8ea;
-      padding:26px;
+      padding:18px;
     }
     .feature-wrap{
-      min-height:780px;
+      min-height:560px;
       border-radius:26px;
       overflow:hidden;
       position:relative;
@@ -386,7 +367,7 @@
       position:absolute;
       inset:0;
       z-index:2;
-      padding:70px;
+      padding:48px;
       color:#fff;
       display:flex;
       flex-direction:column;
@@ -512,20 +493,16 @@
       overflow:hidden;
       position:relative;
     }
-    .local-map:before{
-      content:"";
+    .local-map iframe{
       position:absolute;
       inset:0;
-      background:
-        linear-gradient(25deg,transparent 46%,rgba(255,255,255,.7) 47%,rgba(255,255,255,.7) 49%,transparent 50%),
-        linear-gradient(-35deg,transparent 55%,rgba(255,255,255,.55) 56%,rgba(255,255,255,.55) 58%,transparent 59%),
-        radial-gradient(circle at 72% 32%,rgba(255,255,255,.75) 0 3px,transparent 4px),
-        radial-gradient(circle at 40% 58%,rgba(255,255,255,.65) 0 3px,transparent 4px);
-      background-size:120px 120px,150px 150px,100% 100%,100% 100%;
-      opacity:.95;
+      width:100%;
+      height:100%;
+      border:0;
     }
     .map-card{
       position:absolute;
+      z-index:2;
       left:28px;
       bottom:28px;
       right:28px;
@@ -696,7 +673,8 @@
     }
     .footer-links{display:flex;gap:24px}
     .footer-copy{justify-self:end}
-    footer .brand-type small{color:#9da9a4}
+    footer .brand-type b{font-size:23px}
+    footer .brand-type small{color:#9da9a4;font-size:9px}
 
     .reveal{
       opacity:0;
@@ -746,7 +724,7 @@
       .services-head .section-copy{margin-top:24px}
       .service-grid{grid-template-columns:1fr}
       .feature-band{padding:14px}
-      .feature-wrap{min-height:690px}
+      .feature-wrap{min-height:540px}
       .feature-copy{padding:34px 24px}
       .feature-bottom{grid-template-columns:1fr}
       .feature-bottom .btn{justify-self:start}
@@ -761,6 +739,9 @@
 
     @media (max-width:560px){
       .nav-actions .btn-dark{padding:0 15px;min-height:44px}
+      .brand-mark{width:40px;height:40px}
+      .brand-mark svg{width:22px;height:22px}
+      .brand-type b{font-size:19px}
       .brand-type small{display:none}
       .hero-copy p,.section-copy{font-size:16px}
       .feature-copy h2{font-size:clamp(44px,10vw,58px);line-height:1.02;letter-spacing:-.025em}
@@ -817,7 +798,7 @@
             <div>
               <div class="eyebrow">Dental care, thoughtfully done</div>
               <h1>A calmer way to care for your <em>smile.</em></h1>
-              <p>Preventive, restorative and cosmetic dentistry for adults and families, delivered in a relaxed Cape Town clinic with clear treatment plans and no rushed decisions.</p>
+              <p>Preventive, restorative and cosmetic dentistry for adults and families in Cape Town, with clear treatment plans and a calm approach.</p>
               <div class="hero-actions">
                 <a class="btn btn-dark" href="#book">Book an appointment
                   <svg viewBox="0 0 24 24"><path d="M6 18 18 6M9 6h9v9"/></svg>
@@ -844,10 +825,6 @@
 
           <div class="hero-visual">
             <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=1600&q=88" alt="Dentist speaking with a patient in a bright modern clinic">
-            <div class="hero-badge">
-              <strong>Clarity before treatment</strong>
-              <span>We explain what we see, what needs attention now and what can wait.</span>
-            </div>
           </div>
         </div>
       </div>
@@ -895,7 +872,7 @@
         <div class="service-grid reveal">
           <article class="service-card">
             <div class="service-image">
-              <img src="https://images.unsplash.com/photo-1581585099402-5b7a600bde78?auto=format&fit=crop&w=1000&q=85" alt="Dental examination">
+              <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1000&q=85" alt="Dental examination">
             </div>
             <div class="service-content">
               <h3>Preventive dentistry</h3>
@@ -921,7 +898,7 @@
 
           <article class="service-card">
             <div class="service-image">
-              <img src="https://images.unsplash.com/photo-1606265752439-1f18756aa376?auto=format&fit=crop&w=1000&q=85" alt="Smiling patient">
+              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1000&q=85" alt="Smiling patient">
             </div>
             <div class="service-content">
               <h3>Cosmetic dentistry</h3>
@@ -1074,6 +1051,13 @@
         </div>
 
         <div class="local-map reveal">
+          <iframe
+            src="https://www.google.com/maps?q=Sea%20Point%2C%20Cape%20Town%2C%20South%20Africa&z=14&output=embed"
+            title="Google Map showing Sea Point, Cape Town"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen>
+          </iframe>
           <div class="map-card">
             <div>
               <strong>Moya Dental, Cape Town</strong>
