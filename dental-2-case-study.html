@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f4eee7" />
+  <meta name="description" content="Moya Dental website design case study, featuring the visual direction, typography, colour system and responsive interface for a modern Cape Town dental clinic concept." />
+  <title>Moya Dental Case Study | Website Design Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --cream:#f7f2eb;
+      --cream-2:#eee6dc;
+      --sage:#cdd8cb;
+      --sage-dark:#60756a;
+      --peach:#efcbbd;
+      --sky:#cfdde7;
+      --lavender:#d9d2e8;
+      --ink:#21312e;
+      --muted:#6c7772;
+      --white:#fffdf9;
+      --line:#d9d1c8;
+      --black:#15201d;
+      --max:1480px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--cream);
+      color:var(--ink);
+      font-family:"DM Sans",Arial,sans-serif;
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    .shell{width:min(calc(100% - 48px),var(--max));margin:0 auto}
+    .section{padding:110px 0}
+    .kicker{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-weight:600;
+      color:var(--sage-dark);
+    }
+    .display{
+      font-family:"Manrope",sans-serif;
+      font-size:clamp(56px,7.2vw,118px);
+      line-height:.92;
+      letter-spacing:-.055em;
+      font-weight:500;
+      margin:18px 0 0;
+      max-width:1180px;
+    }
+    .title{
+      font-family:"Manrope",sans-serif;
+      font-size:clamp(42px,5vw,78px);
+      line-height:1;
+      letter-spacing:-.04em;
+      font-weight:500;
+      margin:16px 0 0;
+      max-width:1000px;
+    }
+    .copy{
+      font-size:18px;
+      line-height:1.65;
+      color:var(--muted);
+      max-width:680px;
+    }
+    .btn{
+      min-height:52px;
+      border-radius:999px;
+      padding:0 22px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      font-weight:600;
+      border:1px solid transparent;
+      transition:.25s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-dark{background:var(--ink);color:#fff}
+    .btn-outline{border-color:#b8c1bb;background:rgba(255,255,255,.26)}
+
+    /* NAV */
+    .nav-wrap{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(247,242,235,.88);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(33,49,46,.10);
+    }
+    .nav{
+      min-height:78px;
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      gap:38px;
+      align-items:center;
+    }
+    .portfolio-brand{
+      font-family:"Manrope",sans-serif;
+      font-size:19px;
+      font-weight:600;
+      letter-spacing:-.035em;
+    }
+    .nav-links{
+      display:flex;
+      justify-content:center;
+      gap:28px;
+      color:#596660;
+      font-size:13px;
+    }
+    .nav-links a:hover{color:var(--ink)}
+    .nav-right{display:flex;gap:10px}
+
+    /* HERO */
+    .hero{
+      padding:78px 0 34px;
+    }
+    .hero-head{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:50px;
+      align-items:end;
+      margin-bottom:58px;
+    }
+    .hero-meta{
+      min-width:260px;
+      border-top:1px solid var(--line);
+      padding-top:17px;
+      display:grid;
+      gap:15px;
+      font-size:13px;
+      color:#707a76;
+    }
+    .hero-meta div{
+      display:grid;
+      grid-template-columns:82px 1fr;
+      gap:16px;
+    }
+    .hero-meta strong{color:var(--ink);font-weight:600}
+    .hero-screen{
+      padding:18px;
+      border-radius:32px;
+      background:#d8e1d5;
+      overflow:hidden;
+    }
+    .browser-bar{
+      height:42px;
+      background:#243632;
+      border-radius:17px 17px 0 0;
+      display:flex;
+      align-items:center;
+      gap:7px;
+      padding:0 16px;
+    }
+    .browser-dot{
+      width:8px;height:8px;border-radius:50%;
+      background:#8fa099;
+    }
+    .browser-url{
+      margin-left:8px;
+      height:22px;
+      min-width:260px;
+      max-width:440px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      color:#bdc8c3;
+      padding:4px 12px;
+      font-size:10px;
+    }
+
+    /* LIVE SCREENS */
+    .screen-stage{
+      position:relative;
+      width:100%;
+      overflow:hidden;
+      background:#eee;
+    }
+    .screen-canvas{
+      position:absolute;
+      top:0;
+      left:0;
+      transform-origin:top left;
+    }
+    .screen-canvas iframe{
+      display:block;
+      border:0;
+      pointer-events:none;
+      background:#fff;
+    }
+
+    /* OVERVIEW */
+    .overview{background:var(--white)}
+    .overview-grid{
+      display:grid;
+      grid-template-columns:.82fr 1.18fr;
+      gap:90px;
+      align-items:start;
+    }
+    .overview-intro{position:sticky;top:120px}
+    .overview-copy{
+      font-size:clamp(26px,3vw,44px);
+      line-height:1.2;
+      letter-spacing:-.03em;
+      font-family:"Manrope",sans-serif;
+      font-weight:500;
+      margin:0 0 55px;
+      max-width:760px;
+    }
+    .project-table{
+      border-top:1px solid var(--line);
+    }
+    .project-row{
+      display:grid;
+      grid-template-columns:160px 1fr;
+      gap:24px;
+      padding:19px 0;
+      border-bottom:1px solid var(--line);
+      font-size:14px;
+    }
+    .project-row span:first-child{color:#8a928e}
+    .project-row span:last-child{color:var(--ink);font-weight:500}
+
+    /* DIRECTION */
+    .direction{background:#243632;color:#fff}
+    .direction .kicker{color:#afc4b8}
+    .direction .title{color:#fff}
+    .direction-copy{
+      display:grid;
+      grid-template-columns:1fr .8fr;
+      gap:80px;
+      margin-top:54px;
+      align-items:end;
+    }
+    .direction-copy p{
+      margin:0;
+      font-size:20px;
+      line-height:1.65;
+      color:#d2ddd7;
+      max-width:780px;
+    }
+    .direction-tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:9px;
+      justify-content:flex-end;
+    }
+    .tag{
+      border:1px solid rgba(255,255,255,.18);
+      padding:11px 15px;
+      border-radius:999px;
+      font-size:12px;
+      color:#dbe5df;
+    }
+
+    /* COLORS */
+    .palette{background:#efe7dd}
+    .palette-head{
+      display:grid;
+      grid-template-columns:1fr .65fr;
+      gap:70px;
+      align-items:end;
+      margin-bottom:64px;
+    }
+    .swatches{
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      gap:12px;
+    }
+    .swatch{
+      min-height:280px;
+      border-radius:22px;
+      padding:21px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      border:1px solid rgba(33,49,46,.08);
+    }
+    .swatch strong{font-size:14px;margin-bottom:4px}
+    .swatch span{font-size:11px;opacity:.72}
+    .swatch:nth-child(1){background:#f7f2eb}
+    .swatch:nth-child(2){background:#cdd8cb}
+    .swatch:nth-child(3){background:#efcbbd}
+    .swatch:nth-child(4){background:#cfdde7}
+    .swatch:nth-child(5){background:#d9d2e8}
+    .swatch:nth-child(6){background:#21312e;color:#fff}
+
+    /* TYPE */
+    .type{background:var(--white)}
+    .type-grid{
+      display:grid;
+      grid-template-columns:.8fr 1.2fr;
+      gap:80px;
+      align-items:start;
+    }
+    .type-spec{
+      border-top:1px solid var(--line);
+    }
+    .type-row{
+      padding:26px 0;
+      border-bottom:1px solid var(--line);
+      display:grid;
+      grid-template-columns:120px 1fr;
+      gap:28px;
+      align-items:start;
+    }
+    .type-label{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:#88918d;
+      padding-top:8px;
+    }
+    .type-display{
+      font-family:"Manrope",sans-serif;
+      font-size:clamp(52px,6vw,92px);
+      line-height:.96;
+      letter-spacing:-.045em;
+      font-weight:500;
+    }
+    .type-heading{
+      font-family:"Manrope",sans-serif;
+      font-size:36px;
+      line-height:1.05;
+      letter-spacing:-.03em;
+      font-weight:500;
+    }
+    .type-body{
+      font-size:18px;
+      line-height:1.65;
+      color:#66716d;
+      max-width:630px;
+    }
+
+    /* SCREEN GALLERY */
+    .screens{background:#dbe5de}
+    .screens-head{
+      display:grid;
+      grid-template-columns:1fr .65fr;
+      gap:70px;
+      align-items:end;
+      margin-bottom:60px;
+    }
+    .screen-card{
+      margin-bottom:32px;
+      background:#fff;
+      border-radius:26px;
+      overflow:hidden;
+      border:1px solid rgba(33,49,46,.08);
+    }
+    .screen-caption{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:20px;
+      align-items:center;
+      padding:20px 23px;
+      border-top:1px solid #ece9e4;
+      font-size:13px;
+    }
+    .screen-caption strong{
+      font-family:"Manrope",sans-serif;
+      font-size:16px;
+      letter-spacing:-.02em;
+    }
+    .screen-caption span{color:#7b8580}
+    .two-screens{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:26px;
+    }
+
+    /* RESPONSIVE */
+    .responsive{background:#f0e2d8}
+    .responsive-grid{
+      display:grid;
+      grid-template-columns:.8fr 1.2fr;
+      gap:90px;
+      align-items:center;
+    }
+    .phone-wall{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:24px;
+      align-items:center;
+    }
+    .phone-shell{
+      padding:10px;
+      border-radius:34px;
+      background:#1d2d29;
+      box-shadow:0 22px 60px rgba(35,50,45,.12);
+    }
+    .phone-shell:nth-child(2){transform:translateY(48px)}
+    .phone-screen{
+      overflow:hidden;
+      border-radius:27px;
+      background:#fff;
+    }
+
+    /* END */
+    .end{
+      background:#21312e;
+      color:#fff;
+      padding:100px 0;
+    }
+    .end-grid{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:60px;
+      align-items:end;
+    }
+    .end h2{
+      font-family:"Manrope",sans-serif;
+      font-size:clamp(54px,7vw,108px);
+      line-height:.92;
+      letter-spacing:-.05em;
+      font-weight:500;
+      margin:14px 0 0;
+      max-width:950px;
+    }
+    .end .kicker{color:#adc1b7}
+    .end-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .end .btn-outline{border-color:rgba(255,255,255,.25);color:#fff}
+
+    .reveal{opacity:0;transform:translateY(22px);transition:.7s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    @media (max-width:1100px){
+      .hero-head,.overview-grid,.palette-head,.type-grid,.screens-head,.responsive-grid,.direction-copy,.end-grid{
+        grid-template-columns:1fr;
+      }
+      .hero-meta{min-width:0;max-width:500px}
+      .overview-intro{position:static}
+      .direction-tags{justify-content:flex-start}
+      .swatches{grid-template-columns:repeat(3,1fr)}
+      .two-screens{grid-template-columns:1fr}
+      .end-actions{margin-top:10px}
+    }
+
+    @media (max-width:820px){
+      .shell{width:min(calc(100% - 30px),var(--max))}
+      .section{padding:80px 0}
+      .nav{grid-template-columns:1fr auto;min-height:70px}
+      .nav-links{display:none}
+      .nav-right .btn-outline{display:none}
+      .hero{padding-top:48px}
+      .display{font-size:clamp(52px,13vw,82px)}
+      .title{font-size:clamp(40px,10vw,64px)}
+      .hero-screen{padding:10px;border-radius:22px}
+      .browser-bar{height:34px}
+      .browser-url{min-width:0;width:180px}
+      .project-row{grid-template-columns:115px 1fr}
+      .swatches{grid-template-columns:1fr 1fr}
+      .swatch{min-height:190px}
+      .type-row{grid-template-columns:1fr;gap:10px}
+      .type-label{padding-top:0}
+      .phone-wall{gap:12px}
+    }
+
+    @media (max-width:560px){
+      .nav-right .btn{min-height:43px;padding:0 15px}
+      .hero-head{gap:34px}
+      .hero-meta div{grid-template-columns:70px 1fr}
+      .swatches{grid-template-columns:1fr}
+      .swatch{min-height:150px}
+      .phone-wall{grid-template-columns:1fr}
+      .phone-shell:nth-child(2){transform:none}
+      .screen-caption{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav-wrap">
+    <div class="shell nav">
+      <a href="#" class="portfolio-brand">Moya Dental / Case Study</a>
+      <nav class="nav-links" aria-label="Case study navigation">
+        <a href="#overview">Overview</a>
+        <a href="#direction">Direction</a>
+        <a href="#palette">Colour</a>
+        <a href="#type">Typography</a>
+        <a href="#screens">Screens</a>
+      </nav>
+      <div class="nav-right">
+        <a class="btn btn-outline" href="dental-2.html" target="_blank" rel="noopener">View project</a>
+        <a class="btn btn-dark" href="#screens">See screens</a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="shell">
+        <div class="hero-head reveal">
+          <div>
+            <div class="kicker">Website design case study · Cape Town dental concept</div>
+            <h1 class="display">Moya Dental</h1>
+          </div>
+          <div class="hero-meta">
+            <div><strong>Category</strong><span>Healthcare / Dental</span></div>
+            <div><strong>Location</strong><span>Cape Town, South Africa</span></div>
+            <div><strong>Scope</strong><span>Art direction, UI, responsive front end</span></div>
+            <div><strong>Status</strong><span>Concept portfolio project</span></div>
+          </div>
+        </div>
+
+        <div class="hero-screen reveal">
+          <div class="browser-bar">
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+            <div class="browser-url">moyadental.co.za</div>
+          </div>
+          <div class="screen-stage" data-width="1440" data-height="860">
+            <div class="screen-canvas">
+              <iframe src="dental-2.html" width="1440" height="860" title="Moya Dental homepage hero preview" tabindex="-1"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section overview" id="overview">
+      <div class="shell overview-grid">
+        <div class="overview-intro reveal">
+          <div class="kicker">Project overview</div>
+          <h2 class="title">Warm, modern dentistry without losing clinical credibility.</h2>
+        </div>
+
+        <div class="reveal">
+          <p class="overview-copy">The concept reframes a dental clinic website around calm communication, approachable colour and a clean editorial structure. The visual system avoids cold medical blue, generic stock-card layouts and overly technical presentation.</p>
+
+          <div class="project-table">
+            <div class="project-row"><span>Objective</span><span>Create a contemporary dental clinic presence that feels reassuring, professional and distinctly local.</span></div>
+            <div class="project-row"><span>Audience</span><span>Adults, families and new patients looking for preventive, restorative and cosmetic dental care in Cape Town.</span></div>
+            <div class="project-row"><span>Visual tone</span><span>Soft, calm, warm, clean, approachable and clinically credible.</span></div>
+            <div class="project-row"><span>Content flow</span><span>Positioning, treatments, patient experience, local clinic information, FAQ and appointment request.</span></div>
+            <div class="project-row"><span>Build</span><span>Single-page responsive HTML, CSS and JavaScript concept.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section direction" id="direction">
+      <div class="shell">
+        <div class="reveal">
+          <div class="kicker">Creative direction</div>
+          <h2 class="title">A softer healthcare identity for a clinic that should feel easy to walk into.</h2>
+        </div>
+
+        <div class="direction-copy reveal">
+          <p>The design uses muted South African coastal tones, generous white space and natural photography. Rounded surfaces are kept controlled, while the typography stays direct and editorial. The result is friendly without becoming playful, and premium without feeling exclusive.</p>
+          <div class="direction-tags">
+            <span class="tag">Calm</span>
+            <span class="tag">Pastel</span>
+            <span class="tag">Editorial</span>
+            <span class="tag">Human</span>
+            <span class="tag">Clean</span>
+            <span class="tag">Cape Town</span>
+            <span class="tag">Modern healthcare</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section palette" id="palette">
+      <div class="shell">
+        <div class="palette-head reveal">
+          <div>
+            <div class="kicker">Colour system</div>
+            <h2 class="title">Soft colour with enough contrast to stay professional.</h2>
+          </div>
+          <p class="copy">Warm cream creates the base. Sage carries the core identity, while peach, powder blue and lavender add variation across supporting sections. Deep green anchors buttons, headings and high-contrast moments.</p>
+        </div>
+
+        <div class="swatches reveal">
+          <div class="swatch"><strong>Warm Cream</strong><span>#F7F2EB</span></div>
+          <div class="swatch"><strong>Soft Sage</strong><span>#CDD8CB</span></div>
+          <div class="swatch"><strong>Muted Peach</strong><span>#EFCBBD</span></div>
+          <div class="swatch"><strong>Powder Blue</strong><span>#CFDDE7</span></div>
+          <div class="swatch"><strong>Lavender Mist</strong><span>#D9D2E8</span></div>
+          <div class="swatch"><strong>Deep Green</strong><span>#21312E</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section type" id="type">
+      <div class="shell type-grid">
+        <div class="reveal">
+          <div class="kicker">Typography</div>
+          <h2 class="title">A modern grotesk system with natural spacing.</h2>
+          <p class="copy">Manrope handles the main display and heading hierarchy. DM Sans carries navigation, labels, body copy and interface text. The pairing keeps the website contemporary while staying readable and practical for a healthcare setting.</p>
+        </div>
+
+        <div class="type-spec reveal">
+          <div class="type-row">
+            <div class="type-label">Display</div>
+            <div class="type-display">A calmer way to care.</div>
+          </div>
+          <div class="type-row">
+            <div class="type-label">Heading</div>
+            <div class="type-heading">Good dentistry starts with trust.</div>
+          </div>
+          <div class="type-row">
+            <div class="type-label">Body</div>
+            <div class="type-body">Clear explanations, thoughtful treatment planning and a calm patient experience are carried through the complete interface.</div>
+          </div>
+          <div class="type-row">
+            <div class="type-label">Fonts</div>
+            <div>
+              <div class="type-heading" style="font-size:28px">Manrope 500 / 600</div>
+              <div class="type-body" style="margin-top:8px">DM Sans 400 / 500 / 600</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section screens" id="screens">
+      <div class="shell">
+        <div class="screens-head reveal">
+          <div>
+            <div class="kicker">Selected screens</div>
+            <h2 class="title">The system across the full patient journey.</h2>
+          </div>
+          <p class="copy">Each preview below is pulled from the live concept page, showing how the same typography, spacing, colour and component language carries through different sections.</p>
+        </div>
+
+        <div class="screen-card reveal">
+          <div class="screen-stage" data-width="1440" data-height="900">
+            <div class="screen-canvas">
+              <iframe src="dental-2.html#treatments" width="1440" height="900" title="Moya Dental treatment section preview" tabindex="-1" loading="lazy"></iframe>
+            </div>
+          </div>
+          <div class="screen-caption">
+            <strong>Treatments</strong>
+            <span>Service architecture, photography and clear conversion paths</span>
+          </div>
+        </div>
+
+        <div class="two-screens">
+          <div class="screen-card reveal">
+            <div class="screen-stage" data-width="1440" data-height="800">
+              <div class="screen-canvas">
+                <iframe src="dental-2.html#experience" width="1440" height="800" title="Moya Dental patient experience preview" tabindex="-1" loading="lazy"></iframe>
+              </div>
+            </div>
+            <div class="screen-caption">
+              <strong>Patient experience</strong>
+              <span>Structured reassurance and practical content</span>
+            </div>
+          </div>
+
+          <div class="screen-card reveal">
+            <div class="screen-stage" data-width="1440" data-height="800">
+              <div class="screen-canvas">
+                <iframe src="dental-2.html#visit" width="1440" height="800" title="Moya Dental Cape Town location preview" tabindex="-1" loading="lazy"></iframe>
+              </div>
+            </div>
+            <div class="screen-caption">
+              <strong>Local clinic</strong>
+              <span>Cape Town context, clinic details and embedded map</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="screen-card reveal">
+          <div class="screen-stage" data-width="1440" data-height="820">
+            <div class="screen-canvas">
+              <iframe src="dental-2.html#book" width="1440" height="820" title="Moya Dental booking section preview" tabindex="-1" loading="lazy"></iframe>
+            </div>
+          </div>
+          <div class="screen-caption">
+            <strong>Appointment conversion</strong>
+            <span>Strong closing message paired with a simple request form</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section responsive">
+      <div class="shell responsive-grid">
+        <div class="reveal">
+          <div class="kicker">Responsive system</div>
+          <h2 class="title">Designed to stay clear on smaller screens.</h2>
+          <p class="copy">The mobile layout keeps the clinic identity, primary booking action and treatment content easy to scan without introducing a different visual language.</p>
+        </div>
+
+        <div class="phone-wall reveal">
+          <div class="phone-shell">
+            <div class="phone-screen">
+              <div class="screen-stage" data-width="390" data-height="844">
+                <div class="screen-canvas">
+                  <iframe src="dental-2.html" width="390" height="844" title="Moya Dental mobile homepage preview" tabindex="-1" loading="lazy"></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="phone-shell">
+            <div class="phone-screen">
+              <div class="screen-stage" data-width="390" data-height="844">
+                <div class="screen-canvas">
+                  <iframe src="dental-2.html#treatments" width="390" height="844" title="Moya Dental mobile treatment preview" tabindex="-1" loading="lazy"></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="end">
+      <div class="shell end-grid">
+        <div class="reveal">
+          <div class="kicker">Moya Dental</div>
+          <h2>A warm digital identity for modern dental care.</h2>
+        </div>
+        <div class="end-actions reveal">
+          <a class="btn btn-outline" href="dental-2.html" target="_blank" rel="noopener">View live project</a>
+          <a class="btn" style="background:#fff;color:#21312e" href="#">Back to top</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function sizeScreen(stage){
+      const baseWidth = Number(stage.dataset.width || 1440);
+      const baseHeight = Number(stage.dataset.height || 900);
+      const canvas = stage.querySelector('.screen-canvas');
+      if(!canvas) return;
+
+      const scale = stage.clientWidth / baseWidth;
+      canvas.style.width = baseWidth + 'px';
+      canvas.style.height = baseHeight + 'px';
+      canvas.style.transform = 'scale(' + scale + ')';
+      stage.style.height = Math.round(baseHeight * scale) + 'px';
+    }
+
+    const stages = [...document.querySelectorAll('.screen-stage')];
+
+    function sizeAllScreens(){
+      stages.forEach(sizeScreen);
+    }
+
+    window.addEventListener('load', sizeAllScreens);
+    window.addEventListener('resize', sizeAllScreens);
+
+    if('ResizeObserver' in window){
+      const resizeObserver = new ResizeObserver(entries => {
+        entries.forEach(entry => sizeScreen(entry.target));
+      });
+      stages.forEach(stage => resizeObserver.observe(stage));
+    }
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {threshold:.08});
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  </script>
+</body>
+</html>
