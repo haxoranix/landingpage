@@ -157,6 +157,27 @@
     }
     .nav-links a:hover{color:#111}
     .nav-actions{display:flex;align-items:center;gap:10px}
+    .mobile-menu-toggle{
+      display:none;
+      width:46px;
+      height:46px;
+      border:0;
+      background:transparent;
+      padding:10px;
+      cursor:pointer;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      gap:6px;
+    }
+    .mobile-menu-toggle span{
+      width:24px;
+      height:1.5px;
+      background:var(--ink);
+      display:block;
+      transition:.25s ease;
+    }
+    .mobile-book-link{display:none}
 
     /* HERO */
     .hero{
@@ -699,20 +720,57 @@
       .shell{width:min(calc(100% - 30px),var(--max))}
       .section{padding:82px 0}
       .topbar{display:none}
+      header{position:relative}
       .nav{
         grid-template-columns:1fr auto;
         min-height:72px;
+        gap:16px;
       }
+      .mobile-menu-toggle{display:flex}
+      .nav-actions{display:none}
       .nav-links{
-        grid-column:1/-1;
-        grid-row:2;
-        justify-content:flex-start;
-        overflow-x:auto;
-        padding-bottom:14px;
-        gap:22px;
+        display:none;
+        position:absolute;
+        top:100%;
+        left:0;
+        right:0;
+        z-index:20;
+        background:var(--cream);
+        border-top:1px solid rgba(33,49,46,.08);
+        border-bottom:1px solid rgba(33,49,46,.10);
+        padding:12px 15px 18px;
+        flex-direction:column;
+        align-items:stretch;
+        gap:0;
+        box-shadow:0 18px 35px rgba(33,49,46,.08);
       }
-      .nav-links::-webkit-scrollbar{display:none}
-      .nav-actions .btn-outline{display:none}
+      header.mobile-open .nav-links{display:flex}
+      .nav-links a{
+        padding:13px 6px;
+        border-bottom:1px solid rgba(33,49,46,.08);
+        font-size:15px;
+      }
+      .nav-links a:last-child{border-bottom:0}
+      .mobile-book-link{
+        display:flex!important;
+        justify-content:center;
+        margin-top:10px;
+        background:var(--ink);
+        color:#fff!important;
+        border-radius:999px;
+        border-bottom:0!important;
+        padding:14px 18px!important;
+        font-weight:600;
+      }
+      header.mobile-open .mobile-menu-toggle span:nth-child(1){
+        transform:translateY(7.5px) rotate(45deg);
+      }
+      header.mobile-open .mobile-menu-toggle span:nth-child(2){
+        opacity:0;
+      }
+      header.mobile-open .mobile-menu-toggle span:nth-child(3){
+        transform:translateY(-7.5px) rotate(-45deg);
+      }
       .hero{padding-top:16px}
       .hero-card{border-radius:24px 24px 0 0}
       .hero-copy{padding:54px 24px 42px}
@@ -738,7 +796,6 @@
     }
 
     @media (max-width:560px){
-      .nav-actions .btn-dark{padding:0 15px;min-height:44px}
       .brand-mark{width:40px;height:40px}
       .brand-mark svg{width:22px;height:22px}
       .brand-type b{font-size:19px}
@@ -775,12 +832,17 @@
         <span class="brand-type"><b>Moya Dental</b><small>Cape Town</small></span>
       </a>
 
+      <button class="mobile-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
       <nav class="nav-links" aria-label="Main navigation">
         <a href="#about">About</a>
         <a href="#treatments">Treatments</a>
         <a href="#experience">Patient experience</a>
         <a href="#visit">Visit us</a>
         <a href="#faq">FAQ</a>
+        <a class="mobile-book-link" href="#book">Book appointment</a>
       </nav>
 
       <div class="nav-actions">
@@ -1204,6 +1266,25 @@
   </footer>
 
   <script>
+    const siteHeader = document.querySelector('header');
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+
+    if(siteHeader && mobileMenuToggle){
+      mobileMenuToggle.addEventListener('click', () => {
+        const open = siteHeader.classList.toggle('mobile-open');
+        mobileMenuToggle.setAttribute('aria-expanded', String(open));
+        mobileMenuToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+      });
+
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+          siteHeader.classList.remove('mobile-open');
+          mobileMenuToggle.setAttribute('aria-expanded', 'false');
+          mobileMenuToggle.setAttribute('aria-label', 'Open navigation');
+        });
+      });
+    }
+
     const faqItems = document.querySelectorAll('.faq-item');
 
     faqItems.forEach(item => {
