@@ -133,7 +133,46 @@
       align-items:center;
       border-bottom:1px solid rgba(255,255,255,.13);
     }
-    .brand{font-size:19px;font-weight:600;letter-spacing:-.02em}
+    .brand{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      width:max-content;
+      color:#fff;
+    }
+    .brand-mark{
+      width:31px;
+      height:31px;
+      display:grid;
+      place-items:center;
+      flex:0 0 auto;
+    }
+    .brand-mark svg{
+      width:31px;
+      height:31px;
+      display:block;
+    }
+    .brand-type{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      line-height:1;
+      transform:translateY(1px);
+    }
+    .brand-type b{
+      font-family:"Manrope",sans-serif;
+      font-size:18px;
+      font-weight:600;
+      letter-spacing:-.045em;
+    }
+    .brand-type small{
+      margin-top:4px;
+      font-size:8px;
+      font-weight:500;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:#a9a9a9;
+    }
     .nav-links{display:flex;gap:30px;font-size:13px;color:#d0d0d0}
     .nav-links a:hover{color:#fff}
     .nav-right{justify-self:end;display:flex;align-items:center;gap:34px}
@@ -146,8 +185,7 @@
     .menu-btn span{display:block;height:1px;background:#fff;width:100%;transition:.25s}
     .hero-main{
       flex:1;
-      display:grid;
-      grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);
+      display:flex;
       align-items:center;
       padding:50px 0 105px;
     }
@@ -162,19 +200,12 @@
       max-width:1050px;
     }
     .hero h1 span{display:block}
-    .hero-side{
-      align-self:end;
-      justify-self:end;
-      width:min(340px,100%);
-      margin-bottom:70px;
-    }
-    .hero-side p{font-size:14px;line-height:1.45;color:#efefef;margin:0 0 30px}
     .hero-bottom{
       position:absolute;
       z-index:3;
       left:0;right:0;bottom:25px;
       display:grid;
-      grid-template-columns:1fr 1fr 1fr;
+      grid-template-columns:minmax(80px,.55fr) minmax(240px,1fr) minmax(220px,.8fr) auto;
       align-items:end;
       gap:25px;
       pointer-events:none;
@@ -419,8 +450,6 @@
 
     @media (max-width:1100px){
       .hero-media{inset:0 0 0 25%}
-      .hero-main{grid-template-columns:1fr}
-      .hero-side{display:none}
       .hero h1{font-size:clamp(72px,12vw,130px);max-width:850px}
       .intro-grid,.detail-grid,.faq-grid{grid-template-columns:1fr;gap:55px}
       .intro-copy{padding-top:0}
@@ -491,7 +520,13 @@
 
   <div class="menu-panel" aria-hidden="true">
     <div class="menu-top">
-      <div class="brand">Kyzeg Dental</div>
+      <div class="brand"><span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M5.5 5.5v21M6 16h7.5M13.5 16 24.5 5.5M13.5 16l11 10.5" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22.3 22.1c1.6 1.5 3.2 2.3 4.7 2.5" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand-type"><b>Kyzeg</b><small>Dental</small></span></div>
       <button class="close-btn" aria-label="Close menu">&times;</button>
     </div>
     <div class="menu-grid">
@@ -516,7 +551,13 @@
     </div>
     <div class="hero-inner">
       <nav class="nav">
-        <a class="brand" href="#">Kyzeg Dental</a>
+        <a class="brand" href="#" aria-label="Kyzeg Dental home"><span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M5.5 5.5v21M6 16h7.5M13.5 16 24.5 5.5M13.5 16l11 10.5" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22.3 22.1c1.6 1.5 3.2 2.3 4.7 2.5" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand-type"><b>Kyzeg</b><small>Dental</small></span></a>
         <div class="nav-links">
           <a href="#care">Our approach</a>
           <a href="#treatments">Treatments</a>
@@ -534,9 +575,6 @@
           <span>makes you</span>
           <span>smile.</span>
         </h1>
-        <div class="hero-side">
-          <p>Modern dentistry with a calmer pace, clear treatment plans and care designed around your long-term oral health.</p>
-        </div>
       </div>
 
       <div class="hero-bottom">
@@ -785,7 +823,13 @@
 
   <footer>
     <div class="shell footer-grid">
-      <div class="brand">Kyzeg Dental</div>
+      <div class="brand"><span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M5.5 5.5v21M6 16h7.5M13.5 16 24.5 5.5M13.5 16l11 10.5" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22.3 22.1c1.6 1.5 3.2 2.3 4.7 2.5" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand-type"><b>Kyzeg</b><small>Dental</small></span></div>
       <div class="footer-links">
         <a href="#care">Approach</a>
         <a href="#treatments">Treatments</a>
