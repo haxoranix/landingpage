@@ -1,0 +1,2420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="WPtize gives agencies white-label WordPress production capacity for a simple monthly subscription. Unlimited tasks in queue, one active task at a time.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..800&display=swap" rel="stylesheet">
+<title>WPtize — White-Label WordPress Production for Agencies</title>
+
+<style>
+  :root{
+    --blue:#4169E1;
+    --blue-hover:#3458c9;
+    --blue-25:#f8faff;
+    --blue-50:#f2f5ff;
+    --blue-100:#e8edff;
+    --blue-150:#dfe6ff;
+    --blue-200:#d3ddff;
+
+    --ink:#111318;
+    --ink-2:#20232b;
+    --muted:#667085;
+    --muted-2:#8a909c;
+    --line:#e3e6eb;
+    --line-dark:#d4d8df;
+    --surface:#f7f8fa;
+    --surface-2:#f2f3f5;
+    --white:#ffffff;
+
+    --shadow-sm:0 1px 2px rgba(16,24,40,.04),0 1px 3px rgba(16,24,40,.05);
+    --shadow-md:0 16px 50px rgba(16,24,40,.08);
+    --shadow-lg:0 28px 80px rgba(16,24,40,.12);
+
+    --radius-sm:14px;
+    --radius:22px;
+    --radius-lg:30px;
+    --max:1200px;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    color:var(--ink);
+    background:var(--white);
+    font-family:"Inter",ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    font-feature-settings:"cv02","cv03","cv04","cv11";
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  body.menu-open{overflow:hidden}
+  a{color:inherit;text-decoration:none}
+  button,input{font:inherit}
+  img{display:block;max-width:100%}
+  svg{display:block}
+
+  .shell{
+    width:min(var(--max),calc(100% - 48px));
+    margin:0 auto;
+  }
+
+  .section{
+    padding:128px 0;
+  }
+
+  .section.alt{
+    background:var(--surface);
+    border-top:1px solid #f0f1f3;
+    border-bottom:1px solid #f0f1f3;
+  }
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    margin-bottom:18px;
+    color:var(--blue);
+    font-size:11px;
+    line-height:1;
+    font-weight:800;
+    letter-spacing:.10em;
+    text-transform:uppercase;
+  }
+
+  .eyebrow::before{
+    content:"";
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--blue);
+    box-shadow:0 0 0 5px var(--blue-100);
+  }
+
+  .section-head{
+    max-width:900px;
+    margin-bottom:64px;
+  }
+
+  .section-head h2{
+    margin:0;
+    color:var(--ink);
+    font-size:clamp(40px,5vw,64px);
+    line-height:1.04;
+    font-weight:700;
+    letter-spacing:-.046em;
+    text-wrap:balance;
+  }
+
+  .section-head h2 span{
+    color:#8f96a3;
+  }
+
+  .section-head p{
+    max-width:720px;
+    margin:26px 0 0;
+    color:var(--muted);
+    font-size:17px;
+    line-height:1.75;
+  }
+
+  .button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    min-height:48px;
+    padding:0 18px;
+    border:1px solid transparent;
+    border-radius:12px;
+    font-size:13px;
+    font-weight:750;
+    transition:transform .2s ease,background .2s ease,border-color .2s ease,box-shadow .2s ease;
+  }
+  .button:hover{transform:translateY(-2px)}
+  .button.primary{
+    background:var(--blue);
+    color:#fff;
+    box-shadow:0 8px 24px rgba(65,105,225,.18);
+  }
+  .button.primary:hover{background:var(--blue-hover)}
+  .button.secondary{
+    background:#fff;
+    color:var(--ink);
+    border-color:var(--line-dark);
+  }
+  .button.secondary:hover{
+    border-color:#bfc4cd;
+    box-shadow:var(--shadow-sm);
+  }
+
+  /* =========================================================
+     NAV
+  ========================================================= */
+  .site-nav{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(255,255,255,.91);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(227,230,235,.85);
+  }
+
+  .nav-inner{
+    height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:28px;
+  }
+
+  .brand{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-size:22px;
+    font-weight:820;
+    letter-spacing:-.036em;
+  }
+
+  .brand-mark{
+    width:28px;
+    height:28px;
+    border-radius:8px;
+    display:grid;
+    place-items:center;
+    color:#fff;
+    background:var(--blue);
+    font-size:12px;
+    font-weight:900;
+    letter-spacing:-.04em;
+  }
+
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap:26px;
+    margin-left:auto;
+  }
+
+  .nav-links a{
+    color:#555b66;
+    font-size:12px;
+    font-weight:650;
+    transition:color .2s ease;
+  }
+  .nav-links a:hover{color:var(--ink)}
+
+  .nav-cta{
+    min-height:40px;
+    padding:0 14px;
+    margin-left:2px;
+  }
+
+  .menu-button{
+    display:none;
+    width:42px;
+    height:42px;
+    border:1px solid var(--line);
+    background:#fff;
+    border-radius:10px;
+    cursor:pointer;
+  }
+
+  /* =========================================================
+     HERO
+  ========================================================= */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:112px 0 96px;
+    background:
+      linear-gradient(180deg,rgba(239,243,255,.96) 0%,rgba(248,250,255,.92) 30%,rgba(255,255,255,.98) 70%,#fff 100%),
+      linear-gradient(120deg,#eef2ff 0%,#ffffff 45%,#f5f7ff 100%);
+  }
+
+  /* Low-opacity grid only — no decorative circles/rings. */
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    opacity:.52;
+    background-image:
+      linear-gradient(rgba(65,105,225,.075) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(65,105,225,.075) 1px,transparent 1px);
+    background-size:48px 48px;
+    -webkit-mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.86) 40%,transparent 86%);
+    mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.86) 40%,transparent 86%);
+  }
+
+  .hero-grid{
+    position:relative;
+    z-index:2;
+    display:block;
+  }
+
+  .hero-copy{
+    max-width:980px;
+    margin:0 auto;
+    text-align:center;
+  }
+
+  .hero-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    padding:9px 13px;
+    margin-bottom:28px;
+    border:1px solid rgba(65,105,225,.18);
+    border-radius:999px;
+    background:rgba(255,255,255,.74);
+    box-shadow:0 1px 2px rgba(16,24,40,.03);
+    color:#3b5fc8;
+    font-size:11px;
+    line-height:1;
+    font-weight:700;
+    letter-spacing:.075em;
+    text-transform:uppercase;
+    backdrop-filter:blur(10px);
+  }
+
+  .hero-pill::before{
+    content:"";
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--blue);
+  }
+
+  .hero h1{
+    max-width:960px;
+    margin:0 auto;
+    font-size:clamp(54px,7vw,92px);
+    line-height:1.0;
+    font-weight:700;
+    letter-spacing:-.058em;
+    text-wrap:balance;
+  }
+
+  .hero h1 span{
+    color:#747c8a;
+  }
+
+  .hero-copy>p{
+    max-width:760px;
+    margin:30px auto 0;
+    color:#667085;
+    font-size:18px;
+    line-height:1.75;
+    text-wrap:pretty;
+  }
+
+  .hero-actions{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:34px;
+  }
+
+  .hero-actions .button{
+    min-height:52px;
+    padding:0 20px;
+    border-radius:13px;
+    font-size:13px;
+  }
+
+  .hero-foot{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px 22px;
+    flex-wrap:wrap;
+    margin-top:26px;
+    color:#7c8491;
+    font-size:11px;
+  }
+
+  .hero-foot span{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+
+  .hero-foot span::before{
+    content:"";
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:#b9c0cb;
+  }
+
+  /* Scrolling ecosystem / trust-style wordmark rail.
+     Swap these wordmarks for verified client logos when available. */
+  .trust-rail{
+    max-width:1040px;
+    margin:64px auto 0;
+    text-align:center;
+  }
+
+  .trust-label{
+    color:#9aa1ad;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.11em;
+    text-transform:uppercase;
+  }
+
+  .logo-marquee{
+    position:relative;
+    overflow:hidden;
+    margin-top:22px;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 8%,#000 92%,transparent 100%);
+    mask-image:linear-gradient(90deg,transparent 0%,#000 8%,#000 92%,transparent 100%);
+  }
+
+  .logo-track{
+    display:flex;
+    align-items:center;
+    width:max-content;
+    animation:logoScroll 30s linear infinite;
+    will-change:transform;
+  }
+
+  .logo-marquee:hover .logo-track{
+    animation-play-state:paused;
+  }
+
+  .logo-word{
+    flex:0 0 auto;
+    padding:0 30px;
+    color:#818997;
+    font-size:15px;
+    line-height:1;
+    font-weight:650;
+    letter-spacing:-.025em;
+    white-space:nowrap;
+    opacity:.78;
+  }
+
+  @keyframes logoScroll{
+    from{transform:translateX(0)}
+    to{transform:translateX(-50%)}
+  }
+
+  /* Centered product visual beneath the hero copy. */
+  .queue-shell{
+    position:relative;
+    max-width:900px;
+    margin:58px auto 0;
+    padding:12px;
+    border:1px solid rgba(212,216,223,.94);
+    border-radius:24px;
+    background:rgba(255,255,255,.76);
+    box-shadow:
+      0 1px 2px rgba(16,24,40,.04),
+      0 22px 70px rgba(31,45,82,.10);
+    backdrop-filter:blur(14px);
+  }
+
+  .queue-card{
+    overflow:hidden;
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:#fff;
+  }
+
+  .queue-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    padding:18px 20px;
+    border-bottom:1px solid var(--line);
+  }
+
+  .queue-top strong{
+    font-size:13px;
+    font-weight:650;
+    letter-spacing:-.01em;
+  }
+
+  .queue-status{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#737b88;
+    font-size:10px;
+  }
+
+  .queue-status::before{
+    content:"";
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--blue);
+  }
+
+  .queue-main{
+    padding:18px;
+    background:#fafbfc;
+  }
+
+  .active-task{
+    padding:22px;
+    border:1px solid var(--blue-200);
+    border-radius:14px;
+    background:linear-gradient(180deg,#f5f7ff 0%,#f8faff 100%);
+  }
+
+  .task-label{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:14px;
+    color:#6576b8;
+    font-size:9px;
+    font-weight:750;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+
+  .active-task h3{
+    margin:0;
+    font-size:22px;
+    line-height:1.2;
+    font-weight:650;
+    letter-spacing:-.032em;
+  }
+
+  .active-task p{
+    max-width:620px;
+    margin:9px 0 0;
+    color:#667085;
+    font-size:12px;
+    line-height:1.65;
+  }
+
+  .progress{
+    height:5px;
+    margin-top:20px;
+    overflow:hidden;
+    border-radius:999px;
+    background:#dfe5f8;
+  }
+
+  .progress span{
+    display:block;
+    width:68%;
+    height:100%;
+    border-radius:inherit;
+    background:var(--blue);
+  }
+
+  .queued{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:10px;
+  }
+
+  .queued-item{
+    display:flex;
+    min-height:86px;
+    flex-direction:column;
+    justify-content:space-between;
+    gap:14px;
+    padding:15px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:#fff;
+  }
+
+  .queued-item strong{
+    display:block;
+    margin-bottom:4px;
+    font-size:12px;
+    font-weight:650;
+    line-height:1.4;
+  }
+
+  .queued-item small{
+    color:#9298a3;
+    font-size:10px;
+  }
+
+  .queued-item em{
+    align-self:flex-start;
+    padding:5px 7px;
+    border-radius:999px;
+    background:#f2f3f5;
+    color:#737985;
+    font-size:9px;
+    font-style:normal;
+    font-weight:700;
+  }
+
+  .queue-footer{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:14px 18px;
+    border-top:1px solid var(--line);
+    color:#858c98;
+    font-size:10px;
+  }
+
+  .queue-floating{
+    position:absolute;
+    right:-24px;
+    bottom:-22px;
+    width:210px;
+    padding:15px;
+    border:1px solid var(--line);
+    border-radius:14px;
+    background:#fff;
+    box-shadow:0 14px 38px rgba(16,24,40,.10);
+    text-align:left;
+  }
+
+  .queue-floating b{
+    display:block;
+    color:var(--blue);
+    font-size:18px;
+    line-height:1.1;
+    font-weight:700;
+    letter-spacing:-.03em;
+  }
+
+  .queue-floating span{
+    display:block;
+    margin-top:5px;
+    color:#7d8592;
+    font-size:10px;
+    line-height:1.55;
+  }
+
+  /* =========================================================
+     PROBLEM / PHOTO
+  ========================================================= */
+  .problem-section{background:#f7f8fa}
+
+  .problem-layout{
+    display:grid;
+    grid-template-columns:1.04fr .96fr;
+    min-height:680px;
+    border:1px solid var(--line);
+    border-radius:30px;
+    overflow:hidden;
+    background:#fff;
+    box-shadow:0 18px 60px rgba(16,24,40,.05);
+  }
+
+  .problem-photo{
+    position:relative;
+    min-height:680px;
+    background:
+      linear-gradient(180deg,transparent 52%,rgba(13,19,34,.64)),
+      url("https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1600&q=86")
+      center/cover no-repeat;
+  }
+
+  .problem-photo-copy{
+    position:absolute;
+    left:30px;
+    right:30px;
+    bottom:28px;
+    max-width:450px;
+    color:#fff;
+    font-size:18px;
+    line-height:1.35;
+    letter-spacing:-.02em;
+    font-weight:600;
+  }
+
+  .problem-photo-copy small{
+    display:block;
+    margin-top:10px;
+    color:rgba(255,255,255,.66);
+    font-size:11px;
+    line-height:1.5;
+    font-weight:500;
+    letter-spacing:0;
+  }
+
+  .problem-cards{
+    padding:26px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:12px;
+  }
+
+  .problem-card{
+    padding:26px;
+    border:1px solid var(--line);
+    border-radius:18px;
+    background:#fff;
+    transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
+  }
+  .problem-card:hover{
+    transform:translateX(-6px);
+    border-color:#cdd4e8;
+    box-shadow:var(--shadow-sm);
+  }
+  .problem-card:nth-child(2){
+    border-color:var(--blue-200);
+    background:var(--blue-50);
+  }
+
+  .problem-card h3{
+    margin:0;
+    font-size:24px;
+    line-height:1.05;
+    letter-spacing:-.035em;
+  }
+  .problem-card p{
+    margin:10px 0 0;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.62;
+  }
+
+  /* =========================================================
+     OUTCOMES BENTO
+  ========================================================= */
+  .outcome-grid{
+    display:grid;
+    grid-template-columns:repeat(12,minmax(0,1fr));
+    gap:14px;
+  }
+
+  .outcome{
+    grid-column:span 4;
+    min-height:325px;
+    padding:28px;
+    border:1px solid var(--line);
+    border-radius:22px;
+    background:#fff;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    overflow:hidden;
+    transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
+  }
+
+  .outcome:hover{
+    transform:translateY(-4px);
+    border-color:#cbd1dc;
+    box-shadow:0 16px 45px rgba(16,24,40,.06);
+  }
+
+  .outcome.large{
+    grid-column:span 7;
+    min-height:400px;
+    background:var(--blue-50);
+    border-color:var(--blue-200);
+  }
+
+  .outcome.tall{
+    grid-column:span 5;
+    min-height:400px;
+    background:var(--ink);
+    color:#fff;
+    border-color:var(--ink);
+  }
+  .outcome.tall p{color:rgba(255,255,255,.58)}
+
+  .outcome h3{
+    max-width:560px;
+    margin:0;
+    font-size:clamp(26px,2.8vw,38px);
+    line-height:1.04;
+    letter-spacing:-.036em;
+  }
+
+  .outcome p{
+    max-width:540px;
+    margin:15px 0 0;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.62;
+  }
+
+  .outcome-bottom{
+    margin-top:42px;
+    padding-top:18px;
+    border-top:1px solid rgba(17,19,24,.09);
+    color:#6e7480;
+    font-size:11px;
+    font-weight:700;
+  }
+  .outcome.tall .outcome-bottom{
+    border-color:rgba(255,255,255,.12);
+    color:#aeb5c0;
+  }
+
+  .service-pills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin-top:38px;
+  }
+  .service-pills span{
+    padding:7px 9px;
+    border:1px solid var(--line);
+    border-radius:999px;
+    background:#fafbfc;
+    color:#656b76;
+    font-size:10px;
+    font-weight:650;
+  }
+
+  /* =========================================================
+     PRICING
+  ========================================================= */
+  .pricing-section{background:#fff}
+
+  .pricing-layout{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 430px;
+    gap:72px;
+    align-items:start;
+  }
+
+  .scope-title{
+    margin:0 0 22px;
+    color:#505661;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+
+  .scope-accordion{
+    border-top:1px solid var(--line-dark);
+  }
+
+  .scope-item{
+    border-bottom:1px solid var(--line-dark);
+  }
+
+  .scope-trigger{
+    width:100%;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:20px;
+    align-items:center;
+    padding:23px 0;
+    border:0;
+    background:transparent;
+    color:var(--ink);
+    text-align:left;
+    cursor:pointer;
+  }
+
+  .scope-trigger strong{
+    font-size:20px;
+    line-height:1.25;
+    letter-spacing:-.027em;
+  }
+
+  .scope-meta{
+    display:inline-block;
+    margin-left:9px;
+    padding:5px 7px;
+    border-radius:999px;
+    background:var(--blue-50);
+    color:#4c65bc;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:.04em;
+    vertical-align:2px;
+  }
+
+  .plus{
+    position:relative;
+    width:24px;
+    height:24px;
+  }
+  .plus::before,.plus::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:14px;
+    height:1.5px;
+    background:#4d535e;
+    transform:translate(-50%,-50%);
+    transition:transform .22s ease;
+  }
+  .plus::after{
+    transform:translate(-50%,-50%) rotate(90deg);
+  }
+  .scope-item.open .plus::after{
+    transform:translate(-50%,-50%) rotate(0);
+  }
+
+  .scope-panel{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .35s ease;
+  }
+  .scope-item.open .scope-panel{max-height:760px}
+
+  .scope-body{
+    padding:0 52px 25px 0;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.68;
+  }
+  .scope-body p{margin:0}
+  .scope-body ol,.scope-body ul{
+    margin:13px 0 0;
+    padding-left:21px;
+  }
+  .scope-body li{margin:5px 0}
+
+  .scope-exclusions{
+    margin-top:24px;
+    padding:18px;
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:var(--surface);
+  }
+
+  .scope-exclusions strong{
+    display:block;
+    margin-bottom:8px;
+    font-size:12px;
+  }
+
+  .scope-exclusions p{
+    margin:0;
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.6;
+  }
+
+  .exclusion-pills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin-top:12px;
+  }
+
+  .exclusion-pills span{
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:999px;
+    background:#fff;
+    color:#747a85;
+    font-size:9px;
+  }
+
+  .price-card{
+    position:sticky;
+    top:94px;
+    overflow:hidden;
+    padding:32px;
+    border:1px solid var(--blue-200);
+    border-radius:28px;
+    background:
+      radial-gradient(circle at 100% 0%,rgba(65,105,225,.11),transparent 31%),
+      #fff;
+    box-shadow:0 24px 70px rgba(16,24,40,.09);
+  }
+
+  .price-kicker{
+    margin-bottom:25px;
+    color:var(--blue);
+    font-size:11px;
+    font-weight:820;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+  }
+
+  .price-card h3{
+    margin:0;
+    font-size:31px;
+    line-height:1.05;
+    letter-spacing:-.036em;
+  }
+
+  .price{
+    display:flex;
+    align-items:flex-end;
+    gap:8px;
+    margin:22px 0 7px;
+  }
+  .price strong{
+    font-size:62px;
+    line-height:.88;
+    letter-spacing:-.065em;
+  }
+  .price span{
+    padding-bottom:7px;
+    color:#858b96;
+    font-size:13px;
+  }
+
+  .price-note{
+    margin:0 0 26px;
+    color:#868c97;
+    font-size:11px;
+  }
+
+  .price-features{
+    list-style:none;
+    margin:0;
+    padding:0;
+    border-top:1px solid var(--line);
+  }
+
+  .price-features li{
+    display:grid;
+    grid-template-columns:18px 1fr;
+    gap:10px;
+    padding:12px 0;
+    border-bottom:1px solid var(--line);
+    color:#565d68;
+    font-size:12px;
+    line-height:1.5;
+  }
+
+  .check{
+    width:17px;
+    height:17px;
+    margin-top:1px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    background:var(--blue-100);
+    color:var(--blue);
+    font-size:10px;
+    font-weight:900;
+  }
+
+  .price-card .button{
+    width:100%;
+    margin-top:24px;
+  }
+
+  .price-fineprint{
+    margin:13px 0 0;
+    color:#9298a2;
+    font-size:9px;
+    line-height:1.55;
+    text-align:center;
+  }
+
+  /* =========================================================
+     GET STARTED
+  ========================================================= */
+  .start-board{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--line-dark);
+    border-bottom:1px solid var(--line-dark);
+  }
+
+  .start-step{
+    min-height:320px;
+    padding:30px 30px 28px 0;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    border-right:1px solid var(--line-dark);
+  }
+  .start-step + .start-step{padding-left:30px}
+  .start-step:last-child{border-right:0}
+
+  .step-verb{
+    color:var(--blue);
+    font-size:11px;
+    font-weight:820;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+  }
+
+  .start-step h3{
+    max-width:320px;
+    margin:48px 0 0;
+    font-size:32px;
+    line-height:1.03;
+    letter-spacing:-.035em;
+  }
+
+  .start-step p{
+    max-width:310px;
+    margin:15px 0 0;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.62;
+  }
+
+  .step-foot{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-top:30px;
+    color:#8a909b;
+    font-size:10px;
+  }
+
+  .step-foot::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:#d8dce2;
+  }
+
+  /* =========================================================
+     TECH STACK
+  ========================================================= */
+  .tech-section{background:#fff}
+
+  .tech-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--line-dark);
+    border-left:1px solid var(--line-dark);
+  }
+
+  .tech{
+    min-height:145px;
+    padding:22px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    border-right:1px solid var(--line-dark);
+    border-bottom:1px solid var(--line-dark);
+    background:#fff;
+    transition:background .2s ease;
+  }
+  .tech:hover{background:var(--blue-25)}
+
+  .tech-name{
+    font-size:21px;
+    line-height:1;
+    font-weight:750;
+    letter-spacing:-.035em;
+  }
+  .tech small{
+    color:#9298a2;
+    font-size:9px;
+    line-height:1.45;
+  }
+
+  /* =========================================================
+     TESTIMONIAL
+  ========================================================= */
+  .proof-section{background:var(--surface)}
+
+  .proof-card{
+    display:grid;
+    grid-template-columns:.7fr 1.3fr;
+    min-height:500px;
+    overflow:hidden;
+    border:1px solid var(--blue-200);
+    border-radius:30px;
+    background:var(--blue-50);
+  }
+
+  .proof-side{
+    padding:32px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    border-right:1px solid var(--blue-200);
+  }
+
+  .proof-disc{
+    width:max-content;
+    height:auto;
+    padding:9px 11px;
+    border-radius:9px;
+    display:inline-flex;
+    align-items:center;
+    background:var(--blue);
+    color:#fff;
+    font-size:9px;
+    line-height:1;
+    text-align:left;
+    font-weight:800;
+    letter-spacing:.08em;
+  }
+
+  .proof-meta{
+    color:#7180ad;
+    font-size:11px;
+    line-height:1.55;
+  }
+
+  .proof-main{
+    padding:44px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+
+  .quote-mark{
+    color:#8fa6ec;
+    font-family:Georgia,serif;
+    font-size:76px;
+    line-height:.7;
+  }
+
+  .proof-quote{
+    max-width:760px;
+    margin:20px 0 50px;
+    color:#27355f;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:clamp(32px,4vw,50px);
+    line-height:1.07;
+    font-weight:500;
+    letter-spacing:-.035em;
+  }
+
+  .proof-placeholder{
+    width:max-content;
+    max-width:100%;
+    padding:8px 10px;
+    border:1px solid var(--blue-200);
+    border-radius:999px;
+    background:rgba(255,255,255,.64);
+    color:#6677ad;
+    font-size:9px;
+    font-weight:750;
+  }
+
+  /* =========================================================
+     BUILT FOR
+  ========================================================= */
+  .built-grid{
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    gap:14px;
+  }
+
+  .built-card{
+    grid-column:span 4;
+    min-height:320px;
+    padding:28px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    border:1px solid var(--line);
+    border-radius:22px;
+    background:#fff;
+    transition:transform .23s ease,border-color .23s ease;
+  }
+  .built-card:hover{
+    transform:translateY(-4px);
+    border-color:#c9cfda;
+  }
+
+  .built-card.featured{
+    grid-column:span 8;
+    background:var(--blue);
+    color:#fff;
+    border-color:var(--blue);
+  }
+
+  .built-card h3{
+    max-width:520px;
+    margin:0;
+    font-size:30px;
+    line-height:1.04;
+    letter-spacing:-.035em;
+  }
+
+  .built-card p{
+    max-width:520px;
+    margin:14px 0 0;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.62;
+  }
+  .built-card.featured p{color:rgba(255,255,255,.68)}
+
+  .built-label{
+    width:max-content;
+    margin-top:38px;
+    padding:7px 9px;
+    border-radius:999px;
+    background:var(--surface);
+    color:#747a85;
+    font-size:9px;
+    font-weight:800;
+  }
+
+  .built-card.featured .built-label{
+    background:rgba(255,255,255,.16);
+    color:#fff;
+  }
+
+  /* =========================================================
+     FAQ
+  ========================================================= */
+  .faq-section{background:var(--surface)}
+
+  .faq-layout{
+    display:grid;
+    grid-template-columns:.67fr 1.33fr;
+    gap:74px;
+    align-items:start;
+  }
+
+  .faq-intro{
+    position:sticky;
+    top:100px;
+  }
+
+  .faq-intro h2{
+    margin:0;
+    font-size:clamp(42px,5vw,64px);
+    line-height:.98;
+    letter-spacing:-.055em;
+  }
+
+  .faq-intro p{
+    max-width:390px;
+    margin:20px 0 0;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.65;
+  }
+
+  .faq-list{
+    border-top:1px solid var(--line-dark);
+  }
+
+  .faq-item{
+    border-bottom:1px solid var(--line-dark);
+  }
+
+  .faq-trigger{
+    width:100%;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:20px;
+    align-items:center;
+    padding:24px 0;
+    border:0;
+    background:transparent;
+    text-align:left;
+    cursor:pointer;
+    color:var(--ink);
+  }
+
+  .faq-trigger strong{
+    font-size:19px;
+    line-height:1.3;
+    letter-spacing:-.025em;
+  }
+
+  .faq-panel{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .35s ease;
+  }
+  .faq-item.open .faq-panel{max-height:360px}
+  .faq-item.open .plus::after{transform:translate(-50%,-50%) rotate(0)}
+
+  .faq-body{
+    max-width:690px;
+    padding:0 55px 24px 0;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.72;
+  }
+
+  /* =========================================================
+     FINAL CTA
+  ========================================================= */
+  .final-cta{
+    padding:34px 0;
+    background:#fff;
+  }
+
+  .cta-block{
+    position:relative;
+    overflow:hidden;
+    min-height:500px;
+    padding:54px;
+    border-radius:28px;
+    background:linear-gradient(135deg,#4169E1 0%,#5577E5 52%,#718BE9 100%);
+    color:#fff;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    box-shadow:0 24px 70px rgba(65,105,225,.16);
+  }
+
+
+  .cta-copy{
+    position:relative;
+    z-index:2;
+    max-width:900px;
+  }
+
+  .cta-copy h2{
+    margin:0;
+    max-width:900px;
+    font-size:clamp(48px,6.6vw,82px);
+    line-height:1.0;
+    font-weight:700;
+    letter-spacing:-.055em;
+    text-wrap:balance;
+  }
+
+  .cta-copy p{
+    max-width:620px;
+    margin:26px 0 0;
+    color:rgba(255,255,255,.78);
+    font-size:16px;
+    line-height:1.72;
+  }
+
+  .cta-actions{
+    position:relative;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+
+  .cta-block .button.primary{
+    background:#fff;
+    color:#203d93;
+    box-shadow:none;
+  }
+  .cta-block .button.primary:hover{background:#f4f6ff}
+  .cta-block .button.secondary{
+    color:#fff;
+    background:rgba(255,255,255,.08);
+    border-color:rgba(255,255,255,.34);
+  }
+
+  .cta-note{
+    color:rgba(255,255,255,.68);
+    font-size:10px;
+  }
+
+  /* =========================================================
+     FOOTER
+  ========================================================= */
+  .footer{
+    padding:72px 0 28px;
+    border-top:1px solid var(--line);
+    background:#fff;
+  }
+
+  .footer-top{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:72px;
+    padding-bottom:52px;
+  }
+
+  .footer-brand .brand{
+    font-size:28px;
+  }
+
+  .footer-brand p{
+    max-width:480px;
+    margin:14px 0 0;
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.65;
+  }
+
+  .footer-links{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:30px;
+  }
+
+  .footer-col strong{
+    display:block;
+    margin-bottom:13px;
+    color:#9298a2;
+    font-size:9px;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+  }
+
+  .footer-col a{
+    display:block;
+    width:max-content;
+    max-width:100%;
+    margin:9px 0;
+    color:#4d535e;
+    font-size:12px;
+  }
+  .footer-col a:hover{color:var(--blue)}
+
+  .footer-bottom{
+    padding-top:20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    border-top:1px solid var(--line);
+    color:#9aa0aa;
+    font-size:9px;
+  }
+
+  /* =========================================================
+     MOBILE MENU
+  ========================================================= */
+  .mobile-panel{
+    display:none;
+    position:fixed;
+    z-index:99;
+    inset:72px 0 0;
+    padding:24px;
+    background:#fff;
+  }
+
+  .mobile-panel a{
+    display:block;
+    padding:15px 0;
+    border-bottom:1px solid var(--line);
+    font-size:20px;
+    font-weight:650;
+    letter-spacing:-.025em;
+  }
+
+  .mobile-panel .button{
+    margin-top:22px;
+    width:100%;
+  }
+
+  /* =========================================================
+     RESPONSIVE
+  ========================================================= */
+  @media(max-width:980px){
+    .nav-links{display:none}
+    .menu-button{display:grid;place-items:center}
+    .mobile-panel.open{display:block}
+
+    .hero-copy{max-width:900px}
+    .queue-shell{max-width:820px}
+
+    .problem-layout{
+      grid-template-columns:1fr;
+    }
+    .problem-photo{min-height:520px}
+    .problem-layout{min-height:0}
+
+    .outcome,.outcome.large,.outcome.tall{grid-column:span 6}
+    .outcome.large{grid-column:span 12}
+
+    .pricing-layout{
+      grid-template-columns:1fr;
+      gap:50px;
+    }
+    .price-card{
+      position:relative;
+      top:auto;
+      max-width:580px;
+    }
+
+    .start-board{grid-template-columns:1fr}
+    .start-step,.start-step + .start-step{
+      min-height:auto;
+      padding:28px 0;
+      border-right:0;
+      border-bottom:1px solid var(--line-dark);
+    }
+    .start-step:last-child{border-bottom:0}
+    .start-step h3{margin-top:32px}
+
+    .proof-card{grid-template-columns:1fr}
+    .proof-side{
+      gap:52px;
+      border-right:0;
+      border-bottom:1px solid var(--blue-200);
+    }
+
+    .built-card,.built-card.featured{grid-column:span 6}
+
+    .faq-layout{
+      grid-template-columns:1fr;
+      gap:38px;
+    }
+    .faq-intro{position:static}
+
+    .footer-top{grid-template-columns:1fr}
+  }
+
+  @media(max-width:680px){
+    .shell{
+      width:min(var(--max),calc(100% - 32px));
+    }
+    .section{padding:88px 0}
+
+    .nav-inner{height:66px}
+    .mobile-panel{inset:66px 0 0}
+
+    .hero{
+      padding:72px 0 80px;
+    }
+    .hero h1{
+      font-size:48px;
+      line-height:1.04;
+      letter-spacing:-.05em;
+    }
+    .hero-copy>p{
+      max-width:620px;
+      font-size:16px;
+      line-height:1.72;
+    }
+    .trust-rail{margin-top:50px}
+    .logo-word{padding:0 22px;font-size:14px}
+    .hero-actions{
+      align-items:stretch;
+      flex-direction:column;
+    }
+    .hero-actions .button{width:100%}
+    .hero-foot{gap:10px 14px}
+
+    .queue-shell{
+      margin-top:44px;
+      padding:8px;
+      border-radius:18px;
+    }
+    .queued{grid-template-columns:1fr}
+    .queue-floating{
+      position:relative;
+      right:auto;
+      bottom:auto;
+      width:auto;
+      margin-top:8px;
+    }
+
+    .section-head{margin-bottom:36px}
+    .section-head h2{font-size:42px}
+    .section-head p{font-size:15px}
+
+    .problem-photo{min-height:420px}
+    .problem-photo-copy{left:22px;right:22px;bottom:20px}
+    .problem-cards{padding:12px}
+    .problem-card{padding:22px}
+
+    .outcome-grid{display:flex;flex-direction:column}
+    .outcome,.outcome.large,.outcome.tall{
+      width:100%;
+      min-height:300px;
+    }
+    .outcome h3{font-size:29px}
+
+    .scope-trigger strong{font-size:18px}
+    .scope-meta{display:block;width:max-content;margin:7px 0 0}
+    .scope-body{padding-right:10px}
+    .price-card{padding:25px}
+    .price strong{font-size:55px}
+
+    .tech-grid{grid-template-columns:1fr 1fr}
+    .tech{min-height:120px;padding:18px}
+    .tech-name{font-size:17px}
+
+    .proof-main,.proof-side{padding:28px}
+    .proof-quote{font-size:33px}
+
+    .built-grid{display:flex;flex-direction:column}
+    .built-card,.built-card.featured{
+      width:100%;
+      min-height:280px;
+    }
+
+    .faq-trigger strong{font-size:17px}
+    .faq-body{padding-right:12px}
+
+    .cta-block{
+      min-height:480px;
+      padding:32px;
+      border-radius:22px;
+    }
+    .cta-copy h2{
+      font-size:46px;
+      line-height:1.04;
+      letter-spacing:-.048em;
+    }
+    .cta-actions{
+      align-items:stretch;
+      flex-direction:column;
+    }
+    .cta-actions .button{width:100%}
+
+    .footer-links{grid-template-columns:1fr 1fr}
+    .footer-bottom{
+      align-items:flex-start;
+      flex-direction:column;
+    }
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{transition:none!important}
+    .logo-track{animation:none!important}
+  }
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="shell nav-inner">
+    <a href="#top" class="brand" aria-label="WPtize home">
+      <span class="brand-mark">W</span>
+      <span>WPtize</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="#why">Why WPtize</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#stack">Tech Stack</a>
+      <a href="#faq">FAQ</a>
+      <a href="#start" class="button primary nav-cta">Start With One Free Task</a>
+    </div>
+
+    <button class="menu-button" id="menuButton" aria-label="Open navigation" aria-expanded="false">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M4 8h16M4 16h16"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-panel" id="mobilePanel">
+  <a href="#why">Why WPtize</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#stack">Tech Stack</a>
+  <a href="#faq">FAQ</a>
+  <a href="#start" class="button primary">Start With One Free Task</a>
+</div>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="shell hero-grid">
+
+    <div class="hero-copy">
+      <span class="hero-pill">White-Label WordPress for Agencies</span>
+
+      <h1>
+        Take on more WordPress work.
+        <span>We handle the production.</span>
+      </h1>
+
+      <p>
+        WPtize gives agencies a dependable WordPress production lane for $1,499/month.
+        Submit as much work as you need, keep one scoped task active at a time, and move
+        standard requests through a 48–72 hour delivery rhythm — behind your agency brand.
+      </p>
+
+      <div class="hero-actions">
+        <a class="button primary" href="#start">
+          Start With One Free Task
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </a>
+        <a class="button secondary" href="#pricing">See What $1,499 Includes</a>
+      </div>
+
+      <div class="hero-foot">
+        <span>Unlimited task submissions</span>
+        <span>One active task at a time</span>
+        <span>48–72 hr standard delivery</span>
+        <span>Pause or cancel anytime</span>
+      </div>
+    </div>
+
+    <div class="trust-rail" aria-label="WordPress agency tool ecosystem">
+      <div class="trust-label">Built to fit the tools agencies already work with</div>
+      <div class="logo-marquee">
+        <div class="logo-track">
+          <span class="logo-word">WordPress</span>
+          <span class="logo-word">Elementor</span>
+          <span class="logo-word">Advanced Custom Fields</span>
+          <span class="logo-word">WooCommerce</span>
+          <span class="logo-word">Rank Math</span>
+          <span class="logo-word">Yoast</span>
+          <span class="logo-word">Slack</span>
+          <span class="logo-word">Loom</span>
+          <span class="logo-word">Cloudflare</span>
+
+          <span class="logo-word" aria-hidden="true">WordPress</span>
+          <span class="logo-word" aria-hidden="true">Elementor</span>
+          <span class="logo-word" aria-hidden="true">Advanced Custom Fields</span>
+          <span class="logo-word" aria-hidden="true">WooCommerce</span>
+          <span class="logo-word" aria-hidden="true">Rank Math</span>
+          <span class="logo-word" aria-hidden="true">Yoast</span>
+          <span class="logo-word" aria-hidden="true">Slack</span>
+          <span class="logo-word" aria-hidden="true">Loom</span>
+          <span class="logo-word" aria-hidden="true">Cloudflare</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="queue-shell" aria-label="Illustration of the WPtize agency task queue">
+      <div class="queue-card">
+        <div class="queue-top">
+          <strong>Agency production queue</strong>
+          <span class="queue-status">One task active</span>
+        </div>
+
+        <div class="queue-main">
+          <div class="active-task">
+            <div class="task-label">
+              <span>Active task</span>
+              <span>In production</span>
+            </div>
+            <h3>Home page · Elementor build</h3>
+            <p>Responsive page build from an approved design, including the form and standard interactions.</p>
+            <div class="progress"><span></span></div>
+          </div>
+
+          <div class="queued">
+            <div class="queued-item">
+              <div>
+                <strong>On-page SEO · Services</strong>
+                <small>Queued next</small>
+              </div>
+              <em>1 URL</em>
+            </div>
+
+            <div class="queued-item">
+              <div>
+                <strong>Blog content upload</strong>
+                <small>Queued</small>
+              </div>
+              <em>5 posts</em>
+            </div>
+
+            <div class="queued-item">
+              <div>
+                <strong>Existing site maintenance</strong>
+                <small>Queued</small>
+              </div>
+              <em>1 pass</em>
+            </div>
+          </div>
+        </div>
+
+        <div class="queue-footer">
+          <span>Keep adding requests as client work arrives.</span>
+          <span>Unlimited queue</span>
+        </div>
+      </div>
+
+      <div class="queue-floating">
+        <b>48–72 hrs</b>
+        <span>Typical delivery rhythm for standard scoped tasks.</span>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+
+<!-- PROBLEM -->
+<section class="section problem-section">
+  <div class="shell">
+    <header class="section-head">
+      <span class="eyebrow">The delivery problem</span>
+      <h2>More WordPress work is good. <span>Until delivery becomes the bottleneck.</span></h2>
+      <p>Growing agencies tend to hit the same three constraints: the internal team is full, hiring takes too long, and freelancers add another layer of uncertainty.</p>
+    </header>
+
+    <div class="problem-layout">
+      <div class="problem-photo">
+        <div class="problem-photo-copy">
+          Client demand keeps moving even when your production capacity does not.
+          <small>WPtize is designed to sit behind the agency and absorb recurring WordPress production.</small>
+        </div>
+      </div>
+
+      <div class="problem-cards">
+        <article class="problem-card">
+          <h3>Limited Team Capacity</h3>
+          <p>Client websites, landing pages, content updates, SEO changes, and ongoing WordPress requests keep piling up while your existing team is already stretched thin.</p>
+        </article>
+
+        <article class="problem-card">
+          <h3>Slow, Expensive Hiring</h3>
+          <p>Recruiting, onboarding, salaries, tools, and ongoing management add cost and complexity long before a new hire adds meaningful delivery capacity.</p>
+        </article>
+
+        <article class="problem-card">
+          <h3>Unreliable Freelancers</h3>
+          <p>Availability changes, quality varies, and turnaround is unpredictable. Your team ends up sourcing, briefing, chasing, and reviewing instead of moving client work forward.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section class="section" id="why">
+  <div class="shell">
+    <header class="section-head">
+      <span class="eyebrow">What changes with WPtize</span>
+      <h2>More room to sell. <span>Less operational weight to carry.</span></h2>
+      <p>The value is not “more outsourcing.” It is having a predictable WordPress production lane your agency can use whenever the client queue grows.</p>
+    </header>
+
+    <div class="outcome-grid">
+      <article class="outcome large">
+        <div>
+          <h3>Win More WordPress Work</h3>
+          <p>Take on more billable WordPress projects without letting limited internal capacity force you to turn work away.</p>
+        </div>
+        <div class="outcome-bottom">More capacity when the work shows up.</div>
+      </article>
+
+      <article class="outcome tall">
+        <div>
+          <h3>Protect Your Margins</h3>
+          <p>Keep WordPress fulfillment costs predictable while selling development, maintenance, and support at your agency rates.</p>
+        </div>
+        <div class="outcome-bottom">Predictable fulfillment. Agency pricing stays yours.</div>
+      </article>
+
+      <article class="outcome">
+        <div>
+          <h3>Skip Hiring & Freelancer Chaos</h3>
+          <p>Add reliable WordPress production without another recruiting cycle, salary commitment, freelancer hunt, or availability problem.</p>
+        </div>
+        <div class="outcome-bottom">Production without another staffing project.</div>
+      </article>
+
+      <article class="outcome">
+        <div>
+          <h3>Keep Client Work Moving</h3>
+          <p>Keep websites, landing pages, content updates, maintenance, and technical work progressing even when the internal team is booked.</p>
+        </div>
+        <div class="service-pills">
+          <span>Landing pages</span>
+          <span>Content updates</span>
+          <span>SEO</span>
+          <span>Maintenance</span>
+        </div>
+      </article>
+
+      <article class="outcome">
+        <div>
+          <h3>Grow Revenue Without Growing Payroll</h3>
+          <p>Support more WordPress clients and projects without continually adding full-time developers or expanding fixed staffing costs.</p>
+        </div>
+        <div class="outcome-bottom">Scale delivery, not permanent headcount.</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section pricing-section" id="pricing">
+  <div class="shell">
+    <header class="section-head">
+      <span class="eyebrow">Simple Pricing</span>
+      <h2>One plan. Unlimited tasks. <span>One active task at a time.</span></h2>
+      <p>A predictable WordPress production subscription for agencies. Keep adding work to the queue; WPtize delivers one scoped task at a time.</p>
+    </header>
+
+    <div class="pricing-layout">
+      <div>
+        <p class="scope-title">What counts as one task?</p>
+
+        <div class="scope-accordion">
+          <div class="scope-item open">
+            <button class="scope-trigger" aria-expanded="true">
+              <strong>Landing Pages (Elementor) <span class="scope-meta">1 TASK</span></strong>
+              <span class="plus"></span>
+            </button>
+            <div class="scope-panel">
+              <div class="scope-body">
+                <p><b>1 task = 1 landing page</b> up to 7 sections, responsive, basic animations, and form integration.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="scope-item">
+            <button class="scope-trigger" aria-expanded="false">
+              <strong>5-Page Business Site System <span class="scope-meta">8 TASKS</span></strong>
+              <span class="plus"></span>
+            </button>
+            <div class="scope-panel">
+              <div class="scope-body">
+                <p>We break a 5-page business site into 8 sequential tasks to maintain the 48–72 hour delivery rhythm:</p>
+                <ol>
+                  <li>WordPress setup + coming soon page</li>
+                  <li>Header, footer + global styles</li>
+                  <li>Home page</li>
+                  <li>About page</li>
+                  <li>Services page</li>
+                  <li>Blog listing + single post template</li>
+                  <li>Contact page + forms + standard functionality</li>
+                  <li>On-page SEO setup for all 5 pages</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <div class="scope-item">
+            <button class="scope-trigger" aria-expanded="false">
+              <strong>On-Page SEO Task Request <span class="scope-meta">1 URL</span></strong>
+              <span class="plus"></span>
+            </button>
+            <div class="scope-panel">
+              <div class="scope-body">
+                <p><b>1 task = 1 URL.</b> Includes meta title, description, H1–H3 structure, OG tags, internal links, image alt text, and schema setup.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="scope-item">
+            <button class="scope-trigger" aria-expanded="false">
+              <strong>Blog & Content Updates <span class="scope-meta">UP TO 5</span></strong>
+              <span class="plus"></span>
+            </button>
+            <div class="scope-panel">
+              <div class="scope-body">
+                <p><b>1 task = up to 5 blog posts</b> uploaded and formatted, or content updates across up to 5 existing pages.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="scope-item">
+            <button class="scope-trigger" aria-expanded="false">
+              <strong>Existing Site Maintenance <span class="scope-meta">1 PASS</span></strong>
+              <span class="plus"></span>
+            </button>
+            <div class="scope-panel">
+              <div class="scope-body">
+                <p><b>1 task = one maintenance pass:</b> WordPress core, theme and plugin updates, backup check, plus minor bug fixes within scope.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="scope-item">
+            <button class="scope-trigger" aria-expanded="false">
+              <strong>Standard ACF Module <span class="scope-meta">1 MODULE</span></strong>
+              <span class="plus"></span>
+            </button>
+            <div class="scope-panel">
+              <div class="scope-body">
+                <p><b>1 task = 1 standard ACF flexible module</b> such as Testimonials, Team Grid, FAQ, or Pricing Table. Complex custom PHP logic is not included.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="scope-exclusions">
+          <strong>Quoted separately / outside standard subscription scope</strong>
+          <p>Complex custom development, full eCommerce builds, multilingual / multisite / multivendor systems, and premium theme or plugin licenses.</p>
+          <div class="exclusion-pills">
+            <span>Complex development</span>
+            <span>eCommerce builds</span>
+            <span>Multilingual</span>
+            <span>Multisite</span>
+            <span>Multivendor</span>
+            <span>Premium licenses</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="price-card">
+        <div class="price-kicker">Agency Partner</div>
+        <h3>Your WordPress production lane.</h3>
+
+        <div class="price">
+          <strong>$1,499</strong>
+          <span>/ month</span>
+        </div>
+        <p class="price-note">One subscription · one active task · unlimited queue</p>
+
+        <ul class="price-features">
+          <li><span class="check">✓</span><span>One active task at a time</span></li>
+          <li><span class="check">✓</span><span>Unlimited tasks in queue</span></li>
+          <li><span class="check">✓</span><span>48–72 hour delivery for standard scoped tasks</span></li>
+          <li><span class="check">✓</span><span>Unlimited revisions within the active task scope</span></li>
+          <li><span class="check">✓</span><span>Elementor + ACF + on-page SEO included</span></li>
+          <li><span class="check">✓</span><span>White-label Slack + Portal + Loom</span></li>
+          <li><span class="check">✓</span><span>Pause or cancel anytime</span></li>
+        </ul>
+
+        <a class="button primary" href="#start">Start With One Free Task</a>
+        <p class="price-fineprint">The next task begins after the active task — including revisions — is marked complete.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- EASY START -->
+<section class="section alt">
+  <div class="shell">
+    <header class="section-head">
+      <span class="eyebrow">Easy to get started</span>
+      <h2>Send the work. <span>We keep it moving.</span></h2>
+      <p>No hiring cycle or vendor setup maze. Start with a real WordPress request and see how the workflow fits your agency.</p>
+    </header>
+
+    <div class="start-board">
+      <article class="start-step">
+        <div>
+          <span class="step-verb">Submit</span>
+          <h3>Drop your first task into the queue.</h3>
+          <p>Send the brief, design, content, credentials, or Loom. We confirm the scope and anything needed before work starts.</p>
+        </div>
+        <div class="step-foot">Brief → scope</div>
+      </article>
+
+      <article class="start-step">
+        <div>
+          <span class="step-verb">Build</span>
+          <h3>We work the active task through delivery.</h3>
+          <p>Standard scoped tasks move through the 48–72 hour delivery rhythm. Review the output and send revisions if needed.</p>
+        </div>
+        <div class="step-foot">Build → review</div>
+      </article>
+
+      <article class="start-step">
+        <div>
+          <span class="step-verb">Next</span>
+          <h3>Approve it. We pull the next task.</h3>
+          <p>Once the active task and its revisions are complete, the next queued request becomes active. Keep adding work as it arrives.</p>
+        </div>
+        <div class="step-foot">Approve → next task</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="section tech-section" id="stack">
+  <div class="shell">
+    <header class="section-head">
+      <span class="eyebrow">Tech Stack</span>
+      <h2>Built around the WordPress tools <span>agencies already use.</span></h2>
+      <p>Practical production across the WordPress stack — from page building and custom fields to SEO implementation, maintenance, and common agency workflows.</p>
+    </header>
+
+    <div class="tech-grid">
+      <div class="tech"><span class="tech-name">WordPress</span><small>Core CMS</small></div>
+      <div class="tech"><span class="tech-name">Elementor</span><small>Landing pages & site builds</small></div>
+      <div class="tech"><span class="tech-name">ACF</span><small>Structured custom fields</small></div>
+      <div class="tech"><span class="tech-name">WooCommerce</span><small>Scoped support work</small></div>
+      <div class="tech"><span class="tech-name">Rank Math</span><small>On-page SEO workflows</small></div>
+      <div class="tech"><span class="tech-name">Yoast</span><small>Metadata & SEO setup</small></div>
+      <div class="tech"><span class="tech-name">Cloudflare</span><small>DNS & performance workflows</small></div>
+      <div class="tech"><span class="tech-name">Loom</span><small>Async feedback & handoff</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="section proof-section">
+  <div class="shell">
+    <div class="proof-card">
+      <aside class="proof-side">
+        <div class="proof-disc">CLIENT PROOF</div>
+        <div class="proof-meta">
+          Add verified client name<br>
+          Role · Agency<br>
+          Optional headshot / logo
+        </div>
+      </aside>
+
+      <div class="proof-main">
+        <div>
+          <div class="quote-mark">“</div>
+          <blockquote class="proof-quote">
+            Replace this with a verified agency testimonial about faster delivery, less freelancer coordination, better margins, or being able to accept more WordPress work.
+          </blockquote>
+        </div>
+
+        <span class="proof-placeholder">Intentional placeholder — use a real client quote here</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILT FOR -->
+<section class="section">
+  <div class="shell">
+    <header class="section-head">
+      <span class="eyebrow">Built for</span>
+      <h2>For agencies that sell WordPress <span>without wanting every task in-house.</span></h2>
+      <p>WPtize fits teams that already have clients and demand, but need a more dependable way to handle recurring WordPress production.</p>
+    </header>
+
+    <div class="built-grid">
+      <article class="built-card featured">
+        <div>
+          <h3>Web & design agencies with more projects than developer capacity.</h3>
+          <p>Keep designers, account managers, and strategists moving while WordPress production runs behind the scenes under your agency.</p>
+        </div>
+        <span class="built-label">White-label production</span>
+      </article>
+
+      <article class="built-card">
+        <div>
+          <h3>SEO agencies that need implementation, not another handoff.</h3>
+          <p>Turn recommendations into actual WordPress changes without waiting on the client’s developer or sourcing someone for every task.</p>
+        </div>
+        <span class="built-label">SEO implementation</span>
+      </article>
+
+      <article class="built-card">
+        <div>
+          <h3>Marketing agencies selling landing pages and ongoing site work.</h3>
+          <p>Add WordPress execution to campaigns, retainers, and client requests without building a permanent production team.</p>
+        </div>
+        <span class="built-label">Campaign delivery</span>
+      </article>
+
+      <article class="built-card">
+        <div>
+          <h3>Lean agency teams protecting focus and margins.</h3>
+          <p>Keep the core team on client relationships and higher-value work instead of turning every site update into a scheduling problem.</p>
+        </div>
+        <span class="built-label">Lean operations</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section faq-section" id="faq">
+  <div class="shell">
+    <div class="faq-layout">
+      <div class="faq-intro">
+        <span class="eyebrow">FAQ</span>
+        <h2>Before you put the first task in the queue.</h2>
+        <p>The details that matter: task scope, turnaround, revisions, white-label delivery, and what happens when a request sits outside the standard subscription.</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item open">
+          <button class="faq-trigger" aria-expanded="true">
+            <strong>What does “one active task at a time” mean?</strong>
+            <span class="plus"></span>
+          </button>
+          <div class="faq-panel">
+            <div class="faq-body">You can keep adding requests to the queue, but WPtize works on one scoped task at a time. If the active task is in revision, it remains active until those revisions are complete and the task is approved.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" aria-expanded="false">
+            <strong>Is every task completed within 48–72 hours?</strong>
+            <span class="plus"></span>
+          </button>
+          <div class="faq-panel">
+            <div class="faq-body">The 48–72 hour window applies to standard scoped tasks. Larger work is split into smaller sequential tasks so delivery stays predictable. Complex or out-of-scope development may need a separate estimate.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" aria-expanded="false">
+            <strong>How does the 5-page business website work?</strong>
+            <span class="plus"></span>
+          </button>
+          <div class="faq-panel">
+            <div class="faq-body">The standard Home, About, Services, Blog, and Contact site is delivered as a sequence: setup and coming-soon page, global header/footer/styles, individual pages, blog templates, contact/form functionality, and on-page SEO across the five pages.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" aria-expanded="false">
+            <strong>Can I submit more tasks while another task is active?</strong>
+            <span class="plus"></span>
+          </button>
+          <div class="faq-panel">
+            <div class="faq-body">Yes. Your queue can hold multiple requests. We work through them one active task at a time, in the order you prioritize them.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" aria-expanded="false">
+            <strong>What is not included in the $1,499 subscription?</strong>
+            <span class="plus"></span>
+          </button>
+          <div class="faq-panel">
+            <div class="faq-body">Complex custom development, complete eCommerce builds, multilingual, multisite or multivendor builds, and paid theme or plugin licenses sit outside the standard subscription scope and can be quoted separately.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" aria-expanded="false">
+            <strong>Do you communicate directly with our clients?</strong>
+            <span class="plus"></span>
+          </button>
+          <div class="faq-panel">
+            <div class="faq-body">The service is designed to operate white-label behind your agency. Your agency owns the client relationship. Direct-client workflows should only be used when you explicitly want them.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" aria-expanded="false">
+            <strong>What do unlimited revisions cover?</strong>
+            <span class="plus"></span>
+          </button>
+          <div class="faq-panel">
+            <div class="faq-body">Revisions are unlimited within the agreed scope of the active task. New functionality, additional pages, or materially different requirements should be submitted as a new task or scoped as an add-on.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" aria-expanded="false">
+            <strong>Can I pause or cancel the subscription?</strong>
+            <span class="plus"></span>
+          </button>
+          <div class="faq-panel">
+            <div class="faq-body">Yes, provided this matches your final billing policy and service agreement. Keep your exact pause, cancellation, notice, and restart terms consistent at checkout.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="final-cta" id="start">
+  <div class="shell">
+    <div class="cta-block">
+      <div class="cta-copy">
+        <h2>Give us one real WordPress task.</h2>
+        <p>See how WPtize fits into your agency workflow before you hand over a full queue. Start with one free scoped task using actual client work.</p>
+      </div>
+
+      <div class="cta-actions">
+        <a href="#" class="button primary">
+          Start With One Free Task
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </a>
+        <a href="#pricing" class="button secondary">Review the $1,499 Plan</a>
+        <span class="cta-note">No demo task needed — use a real scoped request.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="shell">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#top" class="brand">
+          <span class="brand-mark">W</span>
+          <span>WPtize</span>
+        </a>
+        <p>White-label WordPress production for agencies that need dependable delivery capacity without continuously adding headcount.</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <strong>Explore</strong>
+          <a href="#why">Why WPtize</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#stack">Tech Stack</a>
+          <a href="#faq">FAQ</a>
+        </div>
+
+        <div class="footer-col">
+          <strong>Get Started</strong>
+          <a href="#start">Start with one free task</a>
+          <a href="#pricing">Agency Partner plan</a>
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 WPtize. All rights reserved.</span>
+      <span>White-label WordPress delivery for agencies.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav
+  const menuButton = document.getElementById('menuButton');
+  const mobilePanel = document.getElementById('mobilePanel');
+
+  menuButton.addEventListener('click', () => {
+    const open = mobilePanel.classList.toggle('open');
+    document.body.classList.toggle('menu-open', open);
+    menuButton.setAttribute('aria-expanded', String(open));
+  });
+
+  mobilePanel.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobilePanel.classList.remove('open');
+      document.body.classList.remove('menu-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Pricing scope accordion
+  document.querySelectorAll('.scope-item').forEach(item => {
+    const trigger = item.querySelector('.scope-trigger');
+
+    trigger.addEventListener('click', () => {
+      const wrapper = item.parentElement;
+      const items = wrapper.querySelectorAll('.scope-item');
+      const wasOpen = item.classList.contains('open');
+
+      items.forEach(other => {
+        other.classList.remove('open');
+        other.querySelector('.scope-trigger').setAttribute('aria-expanded', 'false');
+      });
+
+      if (!wasOpen) {
+        item.classList.add('open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const trigger = item.querySelector('.faq-trigger');
+
+    trigger.addEventListener('click', () => {
+      const wrapper = item.parentElement;
+      const items = wrapper.querySelectorAll('.faq-item');
+      const wasOpen = item.classList.contains('open');
+
+      items.forEach(other => {
+        other.classList.remove('open');
+        other.querySelector('.faq-trigger').setAttribute('aria-expanded', 'false');
+      });
+
+      if (!wasOpen) {
+        item.classList.add('open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
